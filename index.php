@@ -1,5 +1,5 @@
-<?// session_start(); ?>
-<?require_once('FirePHPCore/FirePHP.class.php');?>
+<? session_start(); ?>
+<?require_once('include/environment.inc');?>
 <? include "partial/head.php"; ?>
 <? include "partial/header.php"; ?>
 

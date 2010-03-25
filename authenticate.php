@@ -1,11 +1,6 @@
 <?php
-//session_start();
-require_once('FirePHPCore/FirePHP.class.php');
-require_once 'php-activerecord/ActiveRecord.php';
-ActiveRecord\Config::initialize(function($cfg) {
-            $cfg->set_model_directory('models');
-            $cfg->set_connections(array('development' => 'mysql://epc:Iree3cam@localhost/epc_development'));
-        });
+	session_start();
+	require_once('include/environment.inc');
   $firephp = FirePHP::getInstance(true);
 	switch($_POST["action"])
 	{
@@ -15,9 +10,17 @@ ActiveRecord\Config::initialize(function($cfg) {
 		case "create-account":
 			createAccount();
 			break;
-		default:
+		case "logout":
+			logout();
+			break;
+	default:
 			echo "Unknown Action";
 	}
+
+function logout()
+{
+	session_destroy();
+}
 
 function login()
 {
@@ -29,7 +32,7 @@ function login()
   $message = null;
 	if(crypt($pw, $cryptedPassword) == $cryptedPassword)
 	{
-    $_SESSION['user'] = $user->email;
+    $_SESSION['userid'] = $user->id;
 		$message = "Logged In!";
     $response.="0|".$message."|".$user->first_name;
 	}

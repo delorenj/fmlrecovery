@@ -4,18 +4,11 @@
 				<div id="header">
 					<div class="midHeader">
 						<div class="superHeader">
-<!--
-							<% if user_logged_in? %>
-				 				<span>Welcome <%= current_user.first_name.capitalize %></span><br />
-								<%= link_to 'Logout', logout_url  %> 
-							<% else %>
-								<span>Welcome Guest</span>
-							<% end %>
--->
-              <? if(isset($_SESSION['user'])){
-                echo "<span id='login-message'>Welcome ".$_SESSION['user']->first_name."</span>";
+              <? if(User::logged_in()){
+                echo "<span id='login-message'>Welcome ".User::current_user()->first_name."</span><br />";
+								echo "<a href='#' onClick='logout()'>Log out</a>";
               } else {
-                echo "<span id='login-message'>Welcome Guest</span>";
+                echo "<span id='login-message'>Welcome Guest</span><br />";
               }?>
 						</div>
 					</div>

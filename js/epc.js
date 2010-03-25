@@ -40,6 +40,13 @@
 		});
 	});
 
+function logout()
+{
+	$.post("authenticate.php", {action: "logout"},
+		function(data){
+			$("#login-message").text("Welcome Guest").parent().children(':last').remove();
+		});
+}
 
 function validateTicketForm()
 {
@@ -71,7 +78,7 @@ function handleLoginResponse(respArray)
   switch(xr(respArray))
   {
     case "0":
-      $("#login-message").text("Welcome "+respArray[3]);
+      $("#login-message").text("Welcome "+respArray[3]).parent().append("<a href='#' onClick='logout()'>Log out</a>");
       break;
     case "1":
       alert(xm(respArray));
