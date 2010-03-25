@@ -1,0 +1,216 @@
+*{
+	margin:0;
+	padding:0;
+	font:bold 12px "Lucida Grande", Arial, sans-serif;
+}
+body {
+	padding: 10px;
+}
+h1{
+	font-size:14px;
+}
+.focusField{
+	border:solid 2px #73A6FF;
+	background:#EFF5FF;
+	color:#000;
+}
+.idleField{
+	background:#EEE;
+	color: #6F6F6F;
+  border: solid 2px #DFDFDF;
+}		
+
+html {
+  height: 100%;
+}
+
+body {
+	min-width:850px;
+	text-align:center;
+  background: #abc3df url('../images/bg.jpg') no-repeat 50% 0;
+	color: black;
+	font-family: verdana, helvetica, arial, sans-serif;
+	font-size: 73%;  /* Enables font size scaling in MSIE */
+	padding: 0;
+}
+
+html > body {
+	font-size: 9pt;
+}
+
+#wrapper {
+	margin-left: auto;
+	margin-right: auto;
+	width: 850px;
+}
+
+.doNotDisplay {
+	display: none !important;
+}
+
+/* ##### Header ##### */
+
+.superHeader {
+	color: black;
+	background-color: transparent;
+	text-align: right;
+	margin: 0;
+	padding: 0.5ex 10px;
+}
+
+.superHeader span {
+	color: #051E5D;
+	background-color: transparent;
+	font-weight: bold;
+}
+
+#header {
+	color: inherit;
+}
+
+.headerTitle {
+	margin: 0;
+	padding: 0.25em 4mm 0.25em 4mm;
+}
+
+.headerTitle a {
+	color: black;
+	background-color: transparent;
+	text-decoration: none;
+	font-size: 110%;  /* For MSIE */
+	font-weight: bold;
+	font-style: italic;
+}
+
+.headerTitle > a {
+	font-size: 138%;  /* For fully standards-compliant user agents */
+}
+
+.headerTitle span {
+	color: white;
+	background-color: transparent;
+	font-weight: normal;
+}
+
+.subHeader {
+	color: #D2D3DD;
+	height: 40px;
+	background: #FFFFFF url('../images/banner_bot.gif') no-repeat top right;
+	font-size: 109%;
+	margin: 0;
+	padding: 10px 0 0 20px;
+	text-align:left;
+}
+
+.subHeader a {
+	color: #D2D3DD; 	/* whitish blue */
+	text-decoration: none;
+	font-weight: bold;
+	margin: 0;
+	padding: 0 1ex;
+}
+
+.subHeader a:hover {
+	color: #FFFFFF;
+}
+
+/* ##### Main Content ##### */
+#main-content {
+	color: black;
+	background-color: white;
+	text-align: justify;
+	line-height: 1.5em;
+	padding: 0.5ex 15em 1em 1em;
+}
+
+#main-content h1 {
+	color: #051e5d;
+	background-color: transparent;
+	font-family: arial, verdana, helvetica, sans-serif;
+	font-size: 175%;
+	font-weight: bold;
+	font-style: italic;
+	text-align: left;
+	margin: 1em 0 0 0;
+	padding: 1em 0 0 0;
+}
+
+#main-content a {
+	color: #600;
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+#main-content a:hover {
+	text-decoration: none;
+}
+
+/* ##### Header ##### */
+
+.midHeader {
+	height: 85px;
+	background: #FFFFFF url('../images/banner_top.gif') no-repeat top right;
+	margin: 0;
+}
+
+.headerTitle {
+	font-size: 300%;
+	margin: 0;
+	padding: 0;
+}
+
+.headerSubTitle {
+	font-size: 151%;
+	font-weight: normal;
+	font-style: italic;
+	margin: 0 0 1ex 0;
+	padding: 0;
+}
+
+
+.flash_notice {
+	color: #333;  
+	background: #efe;
+	border: solid 1px #bd7;  
+}
+
+.flash_notice .message {
+	padding: 0 0 0 25px;
+}
+
+
+#footer {
+  width: 100%;
+  color:#999999;
+  font-size: 0.9em;
+  text-align: center;
+  border-top: 2px solid #EEEEEE;
+}
+
+.formfield {
+	margin-top: 10px;
+	margin-bottom:10px;
+}
+
+.formfield label{
+	display:block;
+	color: #051E5D; 	/* whitish blue */
+	font-weight:bold;
+}
+
+.epc-textfield{
+	height: 20px;
+  padding: 5px;
+  font:bold 16px "Lucida Grande", Arial, sans-serif;
+}
+
+.epc-button{
+   outline: 0; 
+   margin:0 4px 0 0; 
+   padding: .4em 1em; 
+   text-decoration:none !important; 
+   cursor:pointer; 
+   position: relative; 
+   text-align: center; 
+   zoom: 1; 
+}
