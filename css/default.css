@@ -214,3 +214,18 @@ html > body {
    text-align: center; 
    zoom: 1; 
 }
+
+#phase1, #phase2, #phase3 {
+	display: none;
+}
+
+#phase1 ul, #phase2 ul, #phase3 ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;	
+}
+
+#phase1 ul li, #phase2 ul li, #phase3 ul li {
+	display: inline;
+}

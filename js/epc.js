@@ -48,18 +48,18 @@ function logout()
 		});
 }
 
-function validateTicketForm()
+function validateLoginForm()
 {
 
-	$("#ticket-form-loading").ajaxStart(function(){
+	$("#login-form-loading").ajaxStart(function(){
 		$(this).html("<img src='images/ajax-loader.gif' />");
 	});
 
-	$("#ticket-form-loading").ajaxComplete(function(){
+	$("#login-form-loading").ajaxComplete(function(){
 		$(this).html("");
 	});
 
-	$.post("authenticate.php", $("#ticket-form").serialize(),
+	$.post("authenticate.php", $("#login-form").serialize(),
 		function(data){
 			handleLoginResponse(data.split("|"));
 		});
