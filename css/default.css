@@ -229,3 +229,11 @@ html > body {
 #ticket-accordion ul li {
 	display: inline;
 }
+
+.select-result {
+  float: right;
+  background-color:#EEEEEE;
+  border: 2px dashed #AAAAAA;
+  width: 120px;
+  height:127px;
+}
