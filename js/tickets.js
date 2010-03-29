@@ -1,5 +1,8 @@
 $(document).ready(function() {
-	$("#phase1").css("display", "block");
+//	$("#phase1").css("display", "block");
+	$("#ticket-accordion").accordion({
+		autoHeight: false
+	});
 });
 
 function initPhase2()
