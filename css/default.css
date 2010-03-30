@@ -230,8 +230,13 @@ html > body {
 	display: inline;
 }
 
+.float_left {
+	float:left;
+	margin-right: 15px;
+}
+
 .select-result {
-  float: right;
+	text-align: center;
   background-color:#EEEEEE;
   border: 2px dashed #AAAAAA;
   width: 120px;

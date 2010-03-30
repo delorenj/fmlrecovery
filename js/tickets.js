@@ -3,6 +3,16 @@ $(document).ready(function() {
 	$("#ticket-accordion").accordion({
 		autoHeight: false
 	});
+
+	$("#mediaSizeSlider").slider({
+		value:100,
+		min:1,
+		max:10000,
+		step:50,
+		slide: function(event, ui) {
+			$("#mediaSize").val($("#mediaSizeSlider").slider("value"));
+		}
+	});
 });
 
 function onMediaTypeChange(val)
