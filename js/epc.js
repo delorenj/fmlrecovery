@@ -1,4 +1,9 @@
-		$(document).ready(function() {
+google.load("jquery", "1.4.2");
+google.load("jqueryui", "1.8");
+
+
+//$(document).ready(function() {
+google.setOnLoadCallback(function(){
 			$('.epc-textfield').addClass("idleField");
   		$('.epc-textfield').focus(function() {
    			$(this).removeClass("idleField").addClass("focusField");
@@ -15,7 +20,7 @@
 			   	this.value = (this.defaultValue ? this.defaultValue : '');
 				}
     	});
-		});			
+
 
 	$(function(){
 		//all hover and click logic for buttons
@@ -39,6 +44,7 @@
 			}
 		});
 	});
+});
 
 function logout()
 {

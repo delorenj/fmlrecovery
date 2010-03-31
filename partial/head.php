@@ -10,8 +10,9 @@
         <link href="css/reset.css" rel="stylesheet" type="text/css" />
         <link type="text/css" href="css/redmond/jquery-ui.css" rel="stylesheet" />
         <link href="css/default.css" rel="stylesheet" type="text/css" />
-				<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-				<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
+        <script src="http://www.google.com/jsapi"></script>
+    <!--<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>-->
         <script type="text/javascript" src="js/epc.js"></script>
+
     </head>
 

@@ -6,14 +6,41 @@ $(document).ready(function() {
 	});
 
 	$("#mediaSizeSlider").slider({
-		min:10,
-		max:2000,
-		step: 10,
+    value:1,
+		min:1,
+		max:10,
 		slide: function(event, ui) {
-  		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+$("#mediaSizeSlider").slider("value")+" GB</p>");
+  		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+indexToGB(ui.value)+"</p>");
 		}
 	});
 });
+
+function indexToGB(i)
+{
+  switch(i)
+  {
+    case 1:
+      return "< 1 GB";
+    case 2:
+      return "8 GB";
+    case 3:
+      return "16 GB";
+    case 4:
+      return "40 GB";
+    case 5:
+      return "60 GB"
+    case 6:
+      return "80 GB";
+    case 7:
+      return "100 GB";
+    case 8:
+      return "250 GB";
+    case 9:
+      return "500 GB";
+    case 10:
+      return "> 1 TB";
+  }
+}
 
 function onMediaTypeChange(val)
 {
