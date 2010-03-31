@@ -1,16 +1,16 @@
 $(document).ready(function() {
 //	$("#phase1").css("display", "block");
 	$("#ticket-accordion").accordion({
-		autoHeight: false
+		autoHeight: false,
+		fillSpace: true
 	});
 
 	$("#mediaSizeSlider").slider({
-		value:100,
-		min:1,
-		max:10000,
-		step:50,
+		min:10,
+		max:2000,
+		step: 10,
 		slide: function(event, ui) {
-			$("#mediaSize").val($("#mediaSizeSlider").slider("value"));
+  		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+$("#mediaSizeSlider").slider("value")+" GB</p>");
 		}
 	});
 });
@@ -37,7 +37,7 @@ function onMediaTypeChange(val)
       img = "images/media/nopicture.gif";
   }
 
-  $("#mediaTypeResult").css("border", "none").css("background-color", "#FFFFFF").html("<img src='"+img+"'/>");
+  $("#mediaTypeResult").css("border", "none").css("background-color", "#FFFFFF").html("<div class='wraptocenter'><span></span><img src='"+img+"'/></div>");
 }
 
 function initPhase2()

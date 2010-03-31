@@ -1,3 +1,6 @@
+/* ethereal Green: 93CD02 */
+/* ethereal Blue:  00027C */
+/* ethereal Light Blue: A9B2C7 */
 *{
 	margin:0;
 	padding:0;
@@ -217,6 +220,7 @@ html > body {
 
 #ticket-form {
 	width:100%;
+	height: 275px;
 }
 
 #ticket-accordion ul {
@@ -236,9 +240,59 @@ html > body {
 }
 
 .select-result {
+	line-height: 127px;
+	color: #AAAAAA;
+	font-family: sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 1.3em;
 	text-align: center;
   background-color:#EEEEEE;
   border: 2px dashed #AAAAAA;
-  width: 120px;
+  width: 170px;
   height:127px;
 }
+
+.select-result > p {
+	line-height: 127px;
+	color: #93CD02; 	/* whitish blue */
+	font-size: 2em;
+}
+
+.lcolumn {
+	float: left;
+	width: 50%;
+}
+
+.rcolumn {
+	float: right;
+	width: 50%;
+}
+
+.wraptocenter {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: ...;
+    height: ...;
+}
+.wraptocenter * {
+    vertical-align: middle;
+}
+/*\*//*/
+.wraptocenter {
+    display: block;
+}
+.wraptocenter span {
+    display: inline-block;
+    height: 100%;
+    width: 1px;
+}
+/**/
+</style>
+<!--[if lt IE 8]><style>
+.wraptocenter span {
+    display: inline-block;
+    height: 100%;
+}
+

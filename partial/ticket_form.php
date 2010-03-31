@@ -2,24 +2,28 @@
 	<div id="ticket-accordion">
 		<h3><a href="#">Service</a></h3>
 		<div id="serviceDiv">
-      <div class="formfield horizontal">
-        <label for="mediaType">Select a type of media:</label>
-        <select name="mediaType" onChange="onMediaTypeChange(this.value)">
-          <option value="1">External Hard Drive</option>
-          <option value="2">Internal Hard Drive</option>
-          <option value="3">Laptop Hard Drive</option>
-          <option value="4">USB/Flash Drive</option>
-        </select>
-      </div>
-      <div class="formfield horizontal">
-        <label for="mediaSize">What size is your media: </label>
-				<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />
-				<div id="mediaSizeSlider"></div>
-      </div>
-			<span style="widthmargin-left: auto; margin-right: auto;">
-	      <div class="select-result float_left" id="mediaTypeResult"></div>
-  	    <div class="select-result float_left" id="mediaSizeResult"></div>
-			</span>
+			<div class="lcolumn">
+				<div class="formfield">
+					<label for="mediaType">Select a type of media:</label>
+					<select name="mediaType" onChange="onMediaTypeChange(this.value)">
+						<option value="1">External Hard Drive</option>
+						<option value="2">Internal Hard Drive</option>
+						<option value="3">Laptop Hard Drive</option>
+						<option value="4">USB/Flash Drive</option>
+					</select>
+				</div>
+				<div class="formfield">
+					<label for="mediaSize">What size is your media: </label>
+					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />
+					<div id="mediaSizeSlider" style="width: 225px;"></div>
+				</div>
+			</div>
+			<div class="rcolumn">
+				<div style="width:380px; margin-left: auto; margin-right: auto;">
+					<div class="select-result float_left" id="mediaSizeResult">Media Size</div>
+					<div class="select-result float_left" id="mediaTypeResult">Media Type</div>
+				</div>
+			</div>
 		</div>
 		<h3><a href="#">Shipping Info</a></h3>
 		<div>
