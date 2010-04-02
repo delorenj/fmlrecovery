@@ -5,7 +5,7 @@
 			<div class="lcolumn">
 				<div class="formfield">
 					<label for="mediaType">Select a type of media:</label>
-					<select name="mediaType" onChange="onMediaTypeChange(this.value)">
+					<select name="mediaType" onChange="onChangeMediaType(this.value)">
 						<option value="1">External Hard Drive</option>
 						<option value="2">Internal Hard Drive</option>
 						<option value="3">Laptop Hard Drive</option>
@@ -14,8 +14,9 @@
 				</div>
 				<div class="formfield">
 					<label for="mediaSize">What size is your media: </label>
-					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />
-					<div id="mediaSizeSlider" style="width: 225px;"></div>
+<!--					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />-->
+<!--					<div id="mediaSizeSlider" style="width: 225px;"></div> -->
+					<input type="text" size="5" name="mediaSizeInput" onChange="onChangeMediaSize(this.value)" /> GB
 				</div>
 			</div>
 			<div class="rcolumn">

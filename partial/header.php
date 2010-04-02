@@ -13,15 +13,6 @@
 						</div>
 					</div>
 					<div class="subHeader">
-<!--
-						<% if user_logged_in? %>
-  	          <%= link_to 'My Tickets','tickets'  %>
-    	        <%= link_to 'Account Info',:controller=>'users', :action=>'show', :id=>current_user.id  %>
-						<% else %>
-					 	<%= link_to 'Login', login_url  %>
-						<% end %> 
-				  	<%= link_to 'Contact Us', 'contact'  %>
--->
 						<? if(User::logged_in()){
 							echo "<a href='tickets.php?userid=".User::current_user()->id."'>My Tickets</a>";
 							echo "<a href='account.php?userid=".User::current_user()->id."'>Account Info</a>";

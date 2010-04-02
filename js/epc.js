@@ -114,3 +114,69 @@ function extractResult(a) {return a[1];}
 function extractMessage(a) {return a[2];}
 function xr(a) { return extractResult(a);}
 function xm(a) { return extractMessage(a);}
+
+function isNumeric(strString, msg, selector)
+{
+   var strValidChars = "0123456789";
+   var strChar;
+   var blnResult = true;
+
+   if (strString.length == 0) return false;
+
+   //  test strString consists of valid characters listed above
+   for (i = 0; i < strString.length && blnResult == true; i++)
+      {
+      strChar = strString.charAt(i);
+      if (strValidChars.indexOf(strChar) == -1)
+         {
+         blnResult = false;
+         }
+      }
+   if(!blnResult)
+	{
+		fieldError(msg, selector);
+		return false;
+	}
+	fieldErrorOff(selector);
+	return true;
+}
+
+function inBounds(val, l, r, msg, selector)
+{
+	if(!isNumeric(val, msg, selector))
+	{
+		return false;
+	} 
+	if((val < l) || (val > r))
+	{
+		fieldError(msg,selector)
+		return false;
+	}
+	fieldErrorOff(selector);
+	return true;
+}
+
+function fieldError(msg, selector)
+{
+	$(selector).addClass("fieldError");
+	flashError(msg);
+	
+}
+
+function fieldErrorOff(selector)
+{
+	$(selector).removeClass("fieldError");
+}
+
+
+function flashError(msg)
+{
+	$(".flash_error").html("<p class='message'>"+msg+"</p>").fadeIn();
+	setTimeout("$('.flash_error').fadeOut('slow')","5000");
+}
+
+function flashNotice(msg)
+{
+	$(".flash_notice").html("<p class='message'>"+msg+"</p>").fadeIn();
+	setTimeout("$('.flash_notice').fadeOut('slow')","5000");
+}

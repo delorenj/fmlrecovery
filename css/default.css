@@ -170,15 +170,34 @@ html > body {
 	padding: 0;
 }
 
-
-.flash_notice {
-	color: #333;  
-	background: #efe;
-	border: solid 1px #bd7;  
+#flash {/*
+	display: none;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -20px;
+*/
 }
 
-.flash_notice .message {
-	padding: 0 0 0 25px;
+.flash_notice {
+	display:none;
+	color: #333;  
+	background: #efe;
+	border: solid 2px #bd7;  
+	margin-bottom:5px;
+}
+
+.flash_error {
+	display:none;
+	color: #333;  
+	background: #f8ccc6;
+	border: solid 2px #e85744;  
+	margin-bottom:5px;
+}
+
+.flash_notice,.flash_error .message {
+	padding: 8px;
+	font-weight: bold;
 }
 
 
@@ -237,6 +256,10 @@ html > body {
 .float_left {
 	float:left;
 	margin-right: 15px;
+}
+
+.fieldError {
+	border: 2px solid red;
 }
 
 .select-result {

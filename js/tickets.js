@@ -42,7 +42,7 @@ function indexToGB(i)
   }
 }
 
-function onMediaTypeChange(val)
+function onChangeMediaType(val)
 {
   //var res = $("select [name='mediaType']:selected").val();
   var res = val;
@@ -63,16 +63,19 @@ function onMediaTypeChange(val)
     default:
       img = "images/media/nopicture.gif";
   }
-
   $("#mediaTypeResult").css("border", "none").css("background-color", "#FFFFFF").html("<div class='wraptocenter'><span></span><img src='"+img+"'/></div>");
 }
 
-function initPhase2()
+function onChangeMediaSize(size)
 {
-	$("#phase2").slideDown('slow');
-}
+	var pass = true;
+	pass = pass &&
+					isNumeric(size, "Media size should be a number!", "input[name='mediaSizeInput']") &&
+					inBounds(size, 1, 9999, "Hmm, that doesn't seem right...You sure you have a "+size+" GB drive?","input[name='mediaSizeInput']");
 
-function initPhase3()
-{
-	$("#phase3").slideDown('slow');
+	if(!pass)
+		return;
+
+  		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+size+" GB</p>");
+	flashNotice("Looks Good holmes!");
 }
