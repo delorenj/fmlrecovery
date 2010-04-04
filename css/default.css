@@ -239,20 +239,30 @@ html > body {
 
 #ticket-form {
 	width:100%;
-	height: 275px;
+	/*height: 275px;*/
 }
 
-#ticket-accordion ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	text-align: center;	
+#serviceContainer {
+  width: 100%;
+  margin: 0 auto;
+}
+.service {
+  background-image: url('../images/gradient1.jpg');
+  background-repeat: repeat-x;
+  padding: 5px 20px;
+  float:left;
+  height:175px;
+  border-right:1px solid #DDDDDD;
 }
 
-#ticket-accordion ul li {
-	display: inline;
+.service:last-child {
+  border:none;
 }
 
+.service label {
+  font-size: large;
+  height:50px;
+}
 .float_left {
 	float:left;
 	margin-right: 15px;
@@ -292,30 +302,7 @@ html > body {
 	width: 50%;
 }
 
-.wraptocenter {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    width: ...;
-    height: ...;
+.column3 {
+	float: left;
+	width: 28%;
 }
-.wraptocenter * {
-    vertical-align: middle;
-}
-/*\*//*/
-.wraptocenter {
-    display: block;
-}
-.wraptocenter span {
-    display: inline-block;
-    height: 100%;
-    width: 1px;
-}
-/**/
-</style>
-<!--[if lt IE 8]><style>
-.wraptocenter span {
-    display: inline-block;
-    height: 100%;
-}
-

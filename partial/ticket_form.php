@@ -1,7 +1,27 @@
 <form id="ticket-form" method="post" action="validateTicket.php">
-	<div id="ticket-accordion">
-		<h3><a href="#">Service</a></h3>
-		<div id="serviceDiv">
+  <div id="ticket-accordion">
+    <h3><a href="#">Choose a service</a></h3>
+    <div id="serviceDiv">
+      <div id="serviceContainer">
+        <div class="service column3">
+          <div style="height:30px;"><label>Selective Recovery</label></div>
+          <p>I have an individual file or a group of files that I need recovered.</p>
+          <img src="images/files.jpg" height=65% style="float:right;text-align: right;"/>
+        </div>
+        <div class="service column3">
+          <div style="height:30px;"><label>Media Recovery</label></div>
+          <p>I want to recover all of my personal media, including photos, music, and documents.</p>
+          <img src="images/polaroids.jpg" height=65% style="float:right;text-align: right;"/>
+        </div>
+        <div class="service column3">
+          <div style="height:30px;"><label>Full Recovery</label></div>
+          <p>I want a complete recovery of the data on my damaged media.</p>
+          <img src="images/cabinet.jpg" height=65% style="float:right;text-align: right;"/>
+        </div>
+      </div>
+		</div>
+		<h3><a href="#">Tell us about your media</a></h3>
+		<div id="mediaDiv">
 			<div class="lcolumn">
 				<div class="formfield">
 					<label for="mediaType">Select a type of media:</label>

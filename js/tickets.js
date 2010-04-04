@@ -1,4 +1,5 @@
-$(document).ready(function() {
+google.setOnLoadCallback(function(){
+
 //	$("#phase1").css("display", "block");
 	$("#ticket-accordion").accordion({
 		autoHeight: false,
@@ -13,7 +14,25 @@ $(document).ready(function() {
   		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+indexToGB(ui.value)+"</p>");
 		}
 	});
+
+  $(".service").hover(function(){
+    $(this).find("label").animate({
+      fontSize: '+=4px',
+    }, 200);
+  }, function(){
+    $(this).find("label").animate({
+      fontSize: '-=4px',
+    },200);
+   })
+   .click(function(){
+     validateService($(this).prevAll().length);
+   });
 });
+
+function validateService(index)
+{
+  $("#ticket-accordion").accordion("activate", 1)
+}
 
 function indexToGB(i)
 {
