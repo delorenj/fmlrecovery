@@ -11,7 +11,7 @@
         <div class="service column3">
           <div style="height:30px;"><label>Media Recovery</label></div>
           <p>I want to recover all of my personal media, including photos, music, and documents.</p>
-          <img src="images/polaroids.jpg" height=65% style="float:right;text-align: right;"/>
+          <img src="images/polaroids.jpg" height=60% style="float:right;text-align: right;"/>
         </div>
         <div class="service column3">
           <div style="height:30px;"><label>Full Recovery</label></div>
@@ -19,9 +19,10 @@
           <img src="images/cabinet.jpg" height=65% style="float:right;text-align: right;"/>
         </div>
       </div>
+      <div id="serviceInfo" style="display:none; border:2px solid black;"></div>
 		</div>
 		<h3><a href="#">Tell us about your media</a></h3>
-		<div id="mediaDiv">
+		<div id="mediaDiv" style="display:none;">
 			<div class="lcolumn">
 				<div class="formfield">
 					<label for="mediaType">Select a type of media:</label>
@@ -47,23 +48,12 @@
 			</div>
 		</div>
 		<h3><a href="#">Shipping Info</a></h3>
-		<div>
+		<div  style="display:none;">
 			<ul>
 				<li><a href="#" onClick="initPhase3()"><img src="images/media/external.gif" /></a></li>
 				<li><a href="#" onClick="initPhase3()"><img src="images/media/laptop.gif" /></a></li>
 				<li><a href="#" onClick="initPhase3()"><img src="images/media/flash.gif" /></a></li>
 			</ul>			
-		</div>
-		<h3><a href="#">Payment Info</a></h3>
-		<div>
-			<ul>
-				<li><a href="#" onClick="initPhase4()"><img src="images/media/external.gif" /></a></li>
-				<li><a href="#" onClick="initPhase4()"><img src="images/media/laptop.gif" /></a></li>
-				<li><a href="#" onClick="initPhase4()"><img src="images/media/flash.gif" /></a></li>
-			</ul>			
-			<div class="formfield clearfix">
-				<button type="submit" class="epc-button ui-state-default ui-corner-all">Submit</button>
-			</div>
 		</div>
 	</div>
 </form>

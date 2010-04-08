@@ -239,7 +239,7 @@ html > body {
 
 #ticket-form {
 	width:100%;
-	/*height: 275px;*/
+	height: 600px;
 }
 
 #serviceContainer {
@@ -253,10 +253,12 @@ html > body {
   float:left;
   height:175px;
   border-right:1px solid #DDDDDD;
+  border-bottom: 8px solid #051E5D
 }
 
 .service:last-child {
-  border:none;
+  border-right:none;
+  border-bottom: 8px solid #051E5D
 }
 
 .service label {

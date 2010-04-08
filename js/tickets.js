@@ -14,7 +14,7 @@ google.setOnLoadCallback(function(){
   		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+indexToGB(ui.value)+"</p>");
 		}
 	});
-
+/*
   $(".service").hover(function(){
     $(this).find("label").animate({
       fontSize: '+=4px',
@@ -27,39 +27,47 @@ google.setOnLoadCallback(function(){
    .click(function(){
      validateService($(this).prevAll().length);
    });
+*/
+  $(".service").hover(function(){
+    $(this).css({
+      borderBottom: '8px solid #8FA3C6',
+    });
+    displayServiceInfo($(this).prevAll().length);
+    $("#serviceInfo").fadeIn('fast', function(){
+    });
+  }, function(){
+    $(this).css({
+      borderBottom: '8px solid #051E5D',
+    });
+    $("#serviceInfo").fadeOut();
+   })
+   .click(function(){
+     validateService($(this).prevAll().length);
+   });
 });
+
+function displayServiceInfo(index)
+{
+  var html ="";
+  switch(index){
+    case 0:
+      html += "<div><h1><em>This</em> is info on Selective Recovery</h1></div>";
+      break;
+    case 1:
+      html += "<p>This is info on Media Recovery</p>";
+      break;
+    case 2:
+      html += "<p>This is info on Full Recovery</p>";
+      break;
+  }
+  $("#serviceInfo").html(html);
+}
 
 function validateService(index)
 {
   $("#ticket-accordion").accordion("activate", 1)
 }
 
-function indexToGB(i)
-{
-  switch(i)
-  {
-    case 1:
-      return "< 1 GB";
-    case 2:
-      return "8 GB";
-    case 3:
-      return "16 GB";
-    case 4:
-      return "40 GB";
-    case 5:
-      return "60 GB"
-    case 6:
-      return "80 GB";
-    case 7:
-      return "100 GB";
-    case 8:
-      return "250 GB";
-    case 9:
-      return "500 GB";
-    case 10:
-      return "> 1 TB";
-  }
-}
 
 function onChangeMediaType(val)
 {
