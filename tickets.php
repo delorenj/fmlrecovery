@@ -15,8 +15,15 @@ function create()
 	$key = $_POST["key"];
   $val = $_POST["val"];
   if(!isset ($_SESSION["newticket"])) { fb("New Ticket Started"); }
+  if(!isset ($_SESSION["newticket"][$key])){
+    $result = "SUCCESS_INITIAL_SELECTION";
+  }
+  else{
+    $result = "SUCCESS";
+  }
   $_SESSION["newticket"][$key] = $val;
   fb($key."=".$_SESSION["newticket"][$key]);
+  echo $result;
 }
 
 ?>

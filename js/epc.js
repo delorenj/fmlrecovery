@@ -4,8 +4,8 @@ google.load("jqueryui", "1.8");
 
 //$(document).ready(function() {
 google.setOnLoadCallback(function(){
-			$('.epc-textfield').addClass("idleField");
-  		$('.epc-textfield').focus(function() {
+			$('.epc-textfield, .epc-select').addClass("idleField");
+  		$('.epc-textfield, .epc-select').live('focus',function() {
    			$(this).removeClass("idleField").addClass("focusField");
   	    if (this.value == this.defaultValue){ 
   	    	this.value = '';
@@ -14,7 +14,7 @@ google.setOnLoadCallback(function(){
 	    			this.select();
 	   		}
    		});
-   		$('.epc-textfield').blur(function() {
+   		$('.epc-textfield, .epc-select').live('blur', function() {
    			$(this).removeClass("focusField").addClass("idleField");
    	    if ($.trim(this.value) == ''){
 			   	this.value = (this.defaultValue ? this.defaultValue : '');
@@ -25,23 +25,25 @@ google.setOnLoadCallback(function(){
 	$(function(){
 		//all hover and click logic for buttons
 		$(".epc-button:not(.ui-state-disabled)")
-		.hover(
-			function(){ 
+    .live("mouseover mouseout", function(event){
+      if(event.type == 'mouseover'){
 				$(this).addClass("ui-state-hover"); 
-			},
-			function(){ 
+			}
+      if(event.type == 'mouseout'){
 				$(this).removeClass("ui-state-hover"); 
 			}
-		)
-		.mousedown(function(){
+    })
+    .live("mousedown mouseup", function(event){
+      if(event.type =='mousedown'){
 				$(this).parents('.epc-buttonset-single:first').find(".epc-button.ui-state-active").removeClass("ui-state-active");
 				if( $(this).is('.ui-state-active.epc-button-toggleable, .epc-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }
-				else { $(this).addClass("ui-state-active"); }	
-		})
-		.mouseup(function(){
-			if(! $(this).is('.epc-button-toggleable, .epc-buttonset-single .epc-button,  .epc-buttonset-multi .epc-button') ){
-				$(this).removeClass("ui-state-active");
-			}
+				else { $(this).addClass("ui-state-active"); }
+      }
+      if(event.type == 'mouseup'){
+        if(! $(this).is('.epc-button-toggleable, .epc-buttonset-single .epc-button,  .epc-buttonset-multi .epc-button') ){
+          $(this).removeClass("ui-state-active");
+        }
+      }
 		});
 	});
 });

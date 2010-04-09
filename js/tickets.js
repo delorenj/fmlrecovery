@@ -6,6 +6,9 @@ google.setOnLoadCallback(function(){
 		fillSpace: true
 	});
 
+//  $(".ui-accordion-header").unbind("click");
+  $("#ticket-accordion h3 a").css("text-decoration", "none");
+  
 	$("#mediaSizeSlider").slider({
     value:1,
 		min:1,
@@ -32,7 +35,7 @@ google.setOnLoadCallback(function(){
     $(this).css({
       borderBottom: '8px solid #8FA3C6',
     });
-    displayServiceInfo($(this).prevAll().length);
+    //displayServiceInfo($(this).prevAll().length);
   }, function(){
     $(this).css({
       borderBottom: '8px solid #051E5D',
@@ -63,21 +66,30 @@ function displayServiceInfo(index)
 
 function validateService(index)
 {
-  $.post("tickets.php", {action: "create", key: "service", val: index});
+  $.post("tickets.php", {action: "create", key: "service", val: index},
+    function(data){
+      if(data == "FAILED"){
+        flashError("Oops, something went wrong. Try again.");
+        return;
+      }
+      if(data == "SUCCESS_INITIAL_SELECTION"){
+        $("#ticket-accordion h3:first-child a").append("<img src='images/accept.png' height=25 style='margin-top:-5px;float:right;'/>")
+      }
+      $("#ticket-accordion").accordion("activate", 1);   
+    });
   switch(index){
     case 0: //Selective
       $("#fileSelection").html("").append("\n\
-        <div class='formfield'>\n\
+        <div class='formfield clearfix'>\n\
           <label for='fileSelectInput'>Name of file to recover</label>\n\
-          <input type='text' name='fileSelectInput' />\n\
-          <button href='#' onClick='addFile(); return false;' class='epc-button ui-state-default ui-corner-all'>Add file</button>\n\
+          <input type='text' name='fileSelectInput' class='epc-textfield idleField' />\n\
+          <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add file</button>\n\
         </div>\n\
         ");
       break;
     default:
       $("#fileSelection").html("");
   }
-  $("#ticket-accordion").accordion("activate", 1)
 }
 
 

@@ -1,3 +1,4 @@
+<?php unset($_SESSION["newticket"]); ?>
 <form id="ticket-form" method="post" action="validateTicket.php">
   <div id="ticket-accordion">
     <h3><a href="#">Choose a service</a></h3>
@@ -6,17 +7,17 @@
         <div class="service column3">
           <div style="height:30px;"><label>Selective Recovery</label></div>
           <p>I have an individual file or a group of files that I need recovered.</p>
-          <img src="images/files.jpg" height=65% style="float:right;text-align: right;"/>
+          <img src="images/files.jpg" height=65% style="float:right;text-align: right;"alt="image of files"/>
         </div>
         <div class="service column3">
           <div style="height:30px;"><label>Media Recovery</label></div>
           <p>I want to recover all of my personal media, including photos, music, and documents.</p>
-          <img src="images/polaroids.jpg" height=60% style="float:right;text-align: right;"/>
+          <img src="images/polaroids.jpg" height=60% style="float:right;text-align: right;" alt="image of polaroids"/>
         </div>
         <div class="service column3">
           <div style="height:30px;"><label>Full Recovery</label></div>
           <p>I want a complete recovery of the data on my damaged media.</p>
-          <img src="images/cabinet.jpg" height=65% style="float:right;text-align: right;"/>
+          <img src="images/cabinet.jpg" height=65% style="float:right;text-align: right;" alt="image of file cabinet"/>
         </div>
       </div>
       <div id="serviceInfo"></div>
@@ -27,7 +28,7 @@
         <div class="lcolumn">
           <div class="formfield">
             <label for="mediaType">Select a type of media:</label>
-            <select name="mediaType" onChange="onChangeMediaType(this.value)">
+            <select name="mediaType" class="epc-select" onChange="onChangeMediaType(this.value)">
               <option value="1">External Hard Drive</option>
               <option value="2">Internal Hard Drive</option>
               <option value="3">Laptop Hard Drive</option>
@@ -38,7 +39,7 @@
             <label for="mediaSize">What size is your media: </label>
   <!--					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />-->
             <!--					<div id="mediaSizeSlider" style="width: 225px;"></div> -->
-            <input type="text" size="5" name="mediaSizeInput" onChange="onChangeMediaSize(this.value)" /> GB
+            <input type="text" size="5" name="mediaSizeInput" class="epc-textfield" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text">GB</span>
           </div>
         </div>
         <div class="rcolumn">
@@ -48,6 +49,7 @@
           </div>
         </div>
       </div>
+      <div class="clearfix"></div>
       <div id="fileSelection"></div>
 		</div>
 		<h3><a href="#">Shipping Info</a></h3>
