@@ -33,13 +33,11 @@ google.setOnLoadCallback(function(){
       borderBottom: '8px solid #8FA3C6',
     });
     displayServiceInfo($(this).prevAll().length);
-    $("#serviceInfo").fadeIn('fast', function(){
-    });
   }, function(){
     $(this).css({
       borderBottom: '8px solid #051E5D',
     });
-    $("#serviceInfo").fadeOut();
+    $("#serviceInfo > *").fadeOut();
    })
    .click(function(){
      validateService($(this).prevAll().length);
@@ -54,10 +52,10 @@ function displayServiceInfo(index)
       html += "<div><h1><em>This</em> is info on Selective Recovery</h1></div>";
       break;
     case 1:
-      html += "<p>This is info on Media Recovery</p>";
+      html += "<div><h1><em>This</em> is info on Media Recovery</h1></div>";
       break;
     case 2:
-      html += "<p>This is info on Full Recovery</p>";
+      html += "<div><h1><em>This</em> is info on Full Recovery</h1></div>";
       break;
   }
   $("#serviceInfo").html(html);
@@ -65,6 +63,20 @@ function displayServiceInfo(index)
 
 function validateService(index)
 {
+  $.post("tickets.php", {action: "create", key: "service", val: index});
+  switch(index){
+    case 0: //Selective
+      $("#fileSelection").html("").append("\n\
+        <div class='formfield'>\n\
+          <label for='fileSelectInput'>Name of file to recover</label>\n\
+          <input type='text' name='fileSelectInput' />\n\
+          <button href='#' onClick='addFile(); return false;' class='epc-button ui-state-default ui-corner-all'>Add file</button>\n\
+        </div>\n\
+        ");
+      break;
+    default:
+      $("#fileSelection").html("");
+  }
   $("#ticket-accordion").accordion("activate", 1)
 }
 
@@ -103,6 +115,5 @@ function onChangeMediaSize(size)
 	if(!pass)
 		return;
 
-  		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+size+" GB</p>");
-	flashNotice("Looks Good holmes!");
+	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+size+" GB</p>");
 }

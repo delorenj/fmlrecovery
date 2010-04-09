@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	require_once('include/environment.inc');
-  $firephp = FirePHP::getInstance(true);
 	switch($_POST["action"])
 	{
 		case "login":

@@ -19,33 +19,36 @@
           <img src="images/cabinet.jpg" height=65% style="float:right;text-align: right;"/>
         </div>
       </div>
-      <div id="serviceInfo" style="display:none; border:2px solid black;"></div>
+      <div id="serviceInfo"></div>
 		</div>
 		<h3><a href="#">Tell us about your media</a></h3>
-		<div id="mediaDiv" style="display:none;">
-			<div class="lcolumn">
-				<div class="formfield">
-					<label for="mediaType">Select a type of media:</label>
-					<select name="mediaType" onChange="onChangeMediaType(this.value)">
-						<option value="1">External Hard Drive</option>
-						<option value="2">Internal Hard Drive</option>
-						<option value="3">Laptop Hard Drive</option>
-						<option value="4">USB/Flash Drive</option>
-					</select>
-				</div>
-				<div class="formfield">
-					<label for="mediaSize">What size is your media: </label>
-<!--					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />-->
-<!--					<div id="mediaSizeSlider" style="width: 225px;"></div> -->
-					<input type="text" size="5" name="mediaSizeInput" onChange="onChangeMediaSize(this.value)" /> GB
-				</div>
-			</div>
-			<div class="rcolumn">
-				<div style="width:380px; margin-left: auto; margin-right: auto;">
-					<div class="select-result float_left" id="mediaSizeResult">Media Size</div>
-					<div class="select-result float_left" id="mediaTypeResult">Media Type</div>
-				</div>
-			</div>
+    <div id="mediaDiv" style="display:none;">
+      <div>
+        <div class="lcolumn">
+          <div class="formfield">
+            <label for="mediaType">Select a type of media:</label>
+            <select name="mediaType" onChange="onChangeMediaType(this.value)">
+              <option value="1">External Hard Drive</option>
+              <option value="2">Internal Hard Drive</option>
+              <option value="3">Laptop Hard Drive</option>
+              <option value="4">USB/Flash Drive</option>
+            </select>
+          </div>
+          <div class="formfield">
+            <label for="mediaSize">What size is your media: </label>
+  <!--					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />-->
+            <!--					<div id="mediaSizeSlider" style="width: 225px;"></div> -->
+            <input type="text" size="5" name="mediaSizeInput" onChange="onChangeMediaSize(this.value)" /> GB
+          </div>
+        </div>
+        <div class="rcolumn">
+          <div style="width:380px; margin-left: auto; margin-right: auto;">
+            <div class="select-result float_left" id="mediaSizeResult">Media Size</div>
+            <div class="select-result float_left" id="mediaTypeResult">Media Type</div>
+          </div>
+        </div>
+      </div>
+      <div id="fileSelection"></div>
 		</div>
 		<h3><a href="#">Shipping Info</a></h3>
 		<div  style="display:none;">

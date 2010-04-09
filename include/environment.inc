@@ -1,5 +1,5 @@
 <?
-require_once('FirePHPCore/FirePHP.class.php');
+require_once('FirePHPCore/fb.php');
 
 require_once 'php-activerecord/ActiveRecord.php';
 ActiveRecord\Config::initialize(function($cfg) {
