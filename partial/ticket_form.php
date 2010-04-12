@@ -39,13 +39,14 @@
             <label for="mediaSize">What size is your media: </label>
   <!--					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />-->
             <!--					<div id="mediaSizeSlider" style="width: 225px;"></div> -->
-            <input type="text" size="5" name="mediaSizeInput" class="epc-textfield" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text">GB</span>
+            <input type="text" size="5" name="mediaSizeInput" class="epc-textfield" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text">GB</span><br />
+            <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
           </div>
         </div>
         <div class="rcolumn">
           <div style="width:380px; margin-left: auto; margin-right: auto;">
-            <div class="select-result float_left" id="mediaSizeResult">Media Size</div>
-            <div class="select-result float_left" id="mediaTypeResult">Media Type</div>
+            <div class="select-result float_left" id="mediaSizeResult"></div>
+            <div class="select-result float_left" id="mediaTypeResult"></div>
           </div>
         </div>
       </div>

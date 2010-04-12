@@ -85,6 +85,7 @@ function validateService(index)
           <input type='text' name='fileSelectInput' class='epc-textfield idleField' />\n\
           <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add file</button>\n\
         </div>\n\
+        <div id='fileSelectionResults><ol></ol></div>\n\
         ");
       break;
     default:
@@ -92,6 +93,24 @@ function validateService(index)
   }
 }
 
+function addFile(file)
+{
+  if($("#fileSelectionResults ol").children().size() < 5) {
+    $("#fileSelectionResults ol").append("<li>"+$("#fileSelection input").val()+"</li>");
+    $("#fileSelectionResults ol li:last-child").effect("highlight",1000);
+  }
+  else {
+    flashError("You may only recover up to 5 files. If you wish to recover more consider our Media Recovery service.");
+  }
+  $("#fileSelection input").attr("value","");
+
+}
+
+function dontKnowMediaSize()
+{
+  flashNotice("That's Ok - We'll discuss that later");
+	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>? GB</p>");
+}
 
 function onChangeMediaType(val)
 {
