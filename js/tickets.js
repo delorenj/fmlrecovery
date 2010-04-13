@@ -81,8 +81,8 @@ function validateService(index)
     case 0: //Selective
       $("#fileSelection").html("").append("\n\
         <div class='formfield clearfix'>\n\
-          <label for='fileSelectInput'>Name of file to recover</label>\n\
-          <input type='text' name='fileSelectInput' class='epc-textfield idleField' />\n\
+          <label for='fileSelectInput'>What files would you like recovered?</label>\n\
+          <input type='text' size=30 name='fileSelectInput' class='epc-textfield idleField' />\n\
           <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add file</button>\n\
         </div>\n\
         <div id='fileSelectionResults><ol></ol></div>\n\
@@ -110,6 +110,7 @@ function dontKnowMediaSize()
 {
   flashNotice("That's Ok - We'll discuss that later");
 	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>? GB</p>");
+  $("input[name='mediaSizeInput']").attr("value","?");
 }
 
 function onChangeMediaType(val)
@@ -140,8 +141,8 @@ function onChangeMediaSize(size)
 {
 	var pass = true;
 	pass = pass &&
-					isNumeric(size, "Media size should be a number!", "input[name='mediaSizeInput']") &&
-					inBounds(size, 1, 9999, "Hmm, that doesn't seem right...You sure you have a "+size+" GB drive?","input[name='mediaSizeInput']");
+					isNumeric(size, "Media size should be a number!", "input[name='mediaSizeInput']","?") &&
+					inBounds(size, 1, 9999, "Hmm, that doesn't seem right...You sure you have a "+size+" GB drive?","input[name='mediaSizeInput']", "?");
 
 	if(!pass)
 		return;

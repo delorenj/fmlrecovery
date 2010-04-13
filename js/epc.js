@@ -10,9 +10,9 @@ google.setOnLoadCallback(function(){
   	    if (this.value == this.defaultValue){ 
   	    	this.value = '';
 				}
-				if(this.value != this.defaultValue){
-	    			this.select();
-	   		}
+//				if(this.value != this.defaultValue){
+//	    			this.select();
+//	   		}
    		});
    		$('.epc-textfield, .epc-select').live('blur', function() {
    			$(this).removeClass("focusField").addClass("idleField");
@@ -117,9 +117,9 @@ function extractMessage(a) {return a[2];}
 function xr(a) { return extractResult(a);}
 function xm(a) { return extractMessage(a);}
 
-function isNumeric(strString, msg, selector)
+function isNumeric(strString, msg, selector, exception)
 {
-   var strValidChars = "0123456789";
+   var strValidChars = "0123456789"+exception;
    var strChar;
    var blnResult = true;
 
@@ -143,8 +143,10 @@ function isNumeric(strString, msg, selector)
 	return true;
 }
 
-function inBounds(val, l, r, msg, selector)
+function inBounds(val, l, r, msg, selector, exception)
 {
+  if(val == exception) return true;
+  
 	if(!isNumeric(val, msg, selector))
 	{
 		return false;

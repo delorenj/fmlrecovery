@@ -45,13 +45,15 @@
         </div>
         <div class="rcolumn">
           <div style="width:380px; margin-left: auto; margin-right: auto;">
+            <div id="fileSelection"></div>
+<!--
             <div class="select-result float_left" id="mediaSizeResult"></div>
             <div class="select-result float_left" id="mediaTypeResult"></div>
+-->
           </div>
         </div>
       </div>
       <div class="clearfix"></div>
-      <div id="fileSelection"></div>
 		</div>
 		<h3><a href="#">Shipping Info</a></h3>
 		<div  style="display:none;">
