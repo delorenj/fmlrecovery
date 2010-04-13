@@ -83,8 +83,9 @@ function validateService(index)
         <div class='formfield clearfix'>\n\
           <label for='fileSelectInput'>What files would you like recovered?</label>\n\
           <input type='text' size=30 name='fileSelectInput' class='epc-textfield idleField' />\n\
-          <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add file</button>\n\
-        </div>\n\
+          <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add file</button><br />\n\
+          <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>I don't know</a>\n\
+         </div>\n\
         <div id='fileSelectionResults><ol></ol></div>\n\
         ");
       break;
@@ -95,6 +96,12 @@ function validateService(index)
 
 function addFile(file)
 {
+  var pass = true;
+  pass = pass &&
+          notEmpty($("#fileSelection input").val(),"File name cannot be blank", "#fileSelection input", "?");
+
+  if(!pass) return;
+
   if($("#fileSelectionResults ol").children().size() < 5) {
     $("#fileSelectionResults ol").append("<li>"+$("#fileSelection input").val()+"</li>");
     $("#fileSelectionResults ol li:last-child").effect("highlight",1000);
@@ -111,6 +118,14 @@ function dontKnowMediaSize()
   flashNotice("That's Ok - We'll discuss that later");
 	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>? GB</p>");
   $("input[name='mediaSizeInput']").attr("value","?");
+}
+
+function dontKnowFileNames()
+{
+  flashNotice("That's Ok - We'll discuss that later");
+//  $("#fileSelectionResults").append("<li style='padding-top:15px; font-size:1em;'>I don't know the names of the files I need recovered</li>");
+//  $("#fileSelectionResults:last-child").effect("highlight",1000);
+  $("#fileSelection input").attr("value", "?");
 }
 
 function onChangeMediaType(val)

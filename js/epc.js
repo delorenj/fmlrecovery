@@ -160,6 +160,19 @@ function inBounds(val, l, r, msg, selector, exception)
 	return true;
 }
 
+function notEmpty(val, msg, selector, exception)
+{
+  if(val == exception) return true;
+  
+	if(val == "")
+	{
+		fieldError(msg,selector)
+		return false;
+	}
+	fieldErrorOff(selector);
+	return true;
+}
+
 function fieldError(msg, selector)
 {
 	$(selector).addClass("fieldError");
