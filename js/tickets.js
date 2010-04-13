@@ -123,8 +123,8 @@ function dontKnowMediaSize()
 function dontKnowFileNames()
 {
   flashNotice("That's Ok - We'll discuss that later");
-//  $("#fileSelectionResults").append("<li style='padding-top:15px; font-size:1em;'>I don't know the names of the files I need recovered</li>");
-//  $("#fileSelectionResults:last-child").effect("highlight",1000);
+  $("#fileSelectionResults").append("<li style='padding-top:15px; font-size:1em;'>I don't know the names of the files I need recovered</li>");
+  $("#fileSelectionResults:last-child").effect("highlight",1000);
   $("#fileSelection input").attr("value", "?");
 }
 
