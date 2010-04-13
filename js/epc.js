@@ -189,11 +189,11 @@ function fieldErrorOff(selector)
 function flashError(msg)
 {
 	$(".flash_error").html("<p class='message'>"+msg+"</p>").fadeIn();
-	setTimeout("$('.flash_error').fadeOut('slow')","5000");
+	setTimeout("$('.flash_error').fadeOut('slow')","8000");
 }
 
 function flashNotice(msg)
 {
 	$(".flash_notice").html("<p class='message'>"+msg+"</p>").fadeIn();
-	setTimeout("$('.flash_notice').fadeOut('slow')","5000");
+	setTimeout("$('.flash_notice').fadeOut('slow')","8000");
 }

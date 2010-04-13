@@ -299,8 +299,23 @@ html > body {
 #fileSelectionResults ol li {
  font-family: arial;
  font-weight: bold;
+ font-size: 1.3em;
  list-style: decimal inside;
+ padding-bottom:10px;
 
+}
+
+#fileSelectionResults ol li a{
+ float: right;
+ text-decoration: none;
+ background-color: #600;
+ color: white;
+ padding-left: 2px;
+ padding-right: 2px;
+}
+
+#fileSelectionResults ol li a:hover{
+  color:#AAAAFF;
 }
 
 #serviceContainer {
@@ -367,6 +382,6 @@ html > body {
 
 .column3 {
 	float: left;
-	width: 28%;
+	width: 25%;
 }
 

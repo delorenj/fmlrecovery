@@ -82,7 +82,7 @@ function validateService(index)
       $("#fileSelection").html("").append("\n\
         <div class='formfield clearfix'>\n\
           <label for='fileSelectInput'>What files would you like recovered?</label>\n\
-          <input type='text' size=30 name='fileSelectInput' class='epc-textfield idleField' />\n\
+          <input type='text' size=30 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
           <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add file</button><br />\n\
           <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>I don't know</a>\n\
          </div>\n\
@@ -103,7 +103,7 @@ function addFile(file)
   if(!pass) return;
 
   if($("#fileSelectionResults ol").children().size() < 5) {
-    $("#fileSelectionResults ol").append("<li>"+$("#fileSelection input").val()+"</li>");
+    $("#fileSelectionResults ol").append("<li><span>"+$("#fileSelection input").val()+"</span><a href='#' onClick='removeFile($(this).parent().prevAll().length);'>X</a></li>");
     $("#fileSelectionResults ol li:last-child").effect("highlight",1000);
   }
   else {
@@ -111,6 +111,11 @@ function addFile(file)
   }
   $("#fileSelection input").attr("value","");
 
+}
+
+function removeFile(index)
+{
+  $("#fileSelectionResults ol li:eq("+index+")").fadeOut("slow", function(){$(this).remove();});
 }
 
 function dontKnowMediaSize()
@@ -131,9 +136,9 @@ function dontKnowFileNames()
 function onChangeMediaType(val)
 {
   //var res = $("select [name='mediaType']:selected").val();
-  var res = val;
   var img;
-  switch(res){
+  $("#mediaTypeByTextbox").html("");
+  switch(val){
     case "1":
       img = "images/media/external.gif";
       break;
@@ -146,10 +151,20 @@ function onChangeMediaType(val)
     case "4":
       img = "images/media/flash.gif";
       break;
+    case "5":
+      $("#mediaTypeByTextbox").html("<div class='formfield'>\n\
+                                      <label for='mediaTypeByTextbox'>Describe your media</label>\n\
+                                      <input class='epc-textfield idleField' type='text' onChange='onChangeMediaTypeByTextbox()' /></div>");
+      break;
     default:
       img = "images/media/nopicture.gif";
   }
-  $("#mediaTypeResult").css("border", "none").css("background-color", "#FFFFFF").html("<div class='wraptocenter'><span></span><img src='"+img+"'/></div>");
+//  $("#mediaTypeResult").css("border", "none").css("background-color", "#FFFFFF").html("<div class='wraptocenter'><span></span><img src='"+img+"'/></div>");
+}
+
+function onChangeMediaTypeByTextbox()
+{
+  flashNotice("Saved!\n(temporary message)");
 }
 
 function onChangeMediaSize(size)
