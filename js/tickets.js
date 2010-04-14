@@ -71,7 +71,7 @@ function validateService(index)
           <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add file</button><br />\n\
           <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>I don't know</a>\n\
          </div>\n\
-        <div id='fileSelectionResults><ol></ol></div>\n\
+        <div id='fileSelectionResults'><ol></ol></div>\n\
         ");
       break;
     default:

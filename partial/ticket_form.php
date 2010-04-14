@@ -35,7 +35,8 @@
               <option value="5">Other</option>
             </select><br />
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaType()">I don't know</a>
-            <div id="mediaTypeByTextbox">&nbsp</div>
+            <div id="mediaTypeByTextbox">&nbsp;</div>
+            <div id="mediaTypeHelpDialog">&nbsp;</div>
           </div>
           <div class="formfield">
             <label for="mediaSize">What size is your media: </label>
@@ -47,7 +48,7 @@
         </div>
         <div class="rcolumn">
           <div style="width:380px; margin-left: auto; margin-right: auto;">
-            <div id="fileSelection">&nbsp</div>
+            <div id="fileSelection">&nbsp;</div>
 <!--
             <div class="select-result float_left" id="mediaSizeResult"></div>
             <div class="select-result float_left" id="mediaTypeResult"></div>
