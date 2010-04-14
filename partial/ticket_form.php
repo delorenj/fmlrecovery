@@ -28,15 +28,28 @@
           <div class="formfield">
             <label for="mediaType">Select a type of media:</label>
             <select name="mediaType" class="epc-select" onChange="onChangeMediaType(this.value)">
-              <option value="1">External Hard Drive</option>
-              <option value="2">Internal Hard Drive</option>
-              <option value="3">Laptop Hard Drive</option>
-              <option value="4">USB/Flash Drive</option>
-              <option value="5">Other</option>
+              <option value="external">External Hard Drive</option>
+              <option value="internal">Internal Hard Drive</option>
+              <option value="desktop">Desktop</option>
+              <option value="laptop">Laptop</option>
+              <option value="usb">USB Stick</option>
+              <option value="flash">Flash Card</option>
+              <option value="phone">Phone</option>
+              <option value="other">Other</option>
+              <option value="dontknow">I don't know</option>
             </select><br />
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaType()">I don't know</a>
             <div id="mediaTypeByTextbox">&nbsp;</div>
-            <div id="mediaTypeHelpDialog">&nbsp;</div>
+            <div id="mediaTypeHelpDialog" title="What kind of media do I have?">
+              <div class="formfield">
+                <label for="deviceType">I want to recover files from my:</label>
+                <input type="radio" name="deviceType" value="desktop"/>Desktop PC <br />
+                <input type="radio" name="deviceType" value="laptop"/>Laptop <br />
+                <input type="radio" name="deviceType" value="phone"/>Phone <br />
+                <input type="radio" name="deviceType" value="usb"/>USB Stick <br />
+                <input type="radio" name="deviceType" value="other"/>Other <br />
+              </div>
+            </div>
           </div>
           <div class="formfield">
             <label for="mediaSize">What size is your media: </label>

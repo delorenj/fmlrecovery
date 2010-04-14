@@ -259,11 +259,24 @@ html > body {
 .epc-buttonset button{
   float:left;
 }
+
+.epc-buttonset-multi .epc-button {
+  margin-right: -1px;
+}
+
 .epc-text {
   font-size:1.2em;
 }
 
 .epc-textfield{
+	height: 20px;
+  padding: 3px;
+  font-family: "Lucida Grande", Arial, sans-serif;
+  font-weight: bold;
+  font-size:20px;
+}
+
+.epc-checkbox{
 	height: 20px;
   padding: 3px;
   font-family: "Lucida Grande", Arial, sans-serif;
@@ -393,3 +406,7 @@ html > body {
 	width: 27%;
 }
 
+#mediaTypeHelpDialog {
+  display:none;
+  text-align: left;
+}

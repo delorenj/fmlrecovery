@@ -30,7 +30,35 @@ google.setOnLoadCallback(function(){
    .click(function(){
      validateService($(this).parent().prevAll().length);
    });
+
+ $("input[name='deviceType']").click(function(){
+   onClickDeviceType($(this).val());
+ })
 });
+
+function onClickDeviceType(device)
+{
+  switch(device){
+    case "desktop":
+      flashNotice("Sounds like you have an internal hard drive");
+      $("select[name='mediaType']").val("2");
+      break;
+    case "laptop":
+      flashNotice("Sounds like you have an laptop hard drive");
+      $("select[name='mediaType']").val("3");
+      break;
+    case "phone":
+    case "usb":
+      flashNotice("Sounds like you have flash media");
+      $("select[name='mediaType']").val("4");
+      break;
+    case "other":
+      flashNotice("Describe your media in the box below");
+      $("select[name='mediaType']").val("5");
+      break;
+  }
+  $("#mediaTypeHelpDialog").dialog("destroy");
+}
 
 function displayServiceInfo(index)
 {
@@ -66,9 +94,19 @@ function validateService(index)
     case 0: //Media
       $("#fileSelection").html("").append("\n\
         <div class='formfield clearfix'>\n\
-          <label for='fileSelectInput'>What files would you like recovered?</label>\n\
-          <input type='text' size=30 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
-          <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add file</button><br />\n\
+          <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>\n\
+          <div class='epc-buttonset epc-buttonset-multi'\n\
+            <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-left'><b>Music</b><span class='ui-icon ui-icon-volume-on'></span></button>\n\
+            <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default'><b>Documents</b><span class='ui-icon ui-icon-document'></span></button>\n\
+            <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default  ui-corner-right'><b>Videos</b><span class='ui-icon ui-icon-video'></span></button>\n\
+          </div>\n\
+          <div class='clearfix'></div>\n\
+          <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileTypes()'>I don't know</a>\n\
+        </div>\n\
+        <div class='formfield clearfix'>\n\
+          <label for='fileSelectInput'>Any specific files you'd like recovered?</label>\n\
+          <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
+          <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add File</button><br />\n\
           <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>I don't know</a>\n\
          </div>\n\
         <div id='fileSelectionResults'><ol></ol></div>\n\
@@ -112,7 +150,39 @@ function dontKnowMediaSize()
 
 function dontKnowMediaType()
 {
-  flashError("not implemented yet!");
+  $("#mediaTypeHelpDialog").dialog({
+    autoOpen: false,
+    height: 300,
+    width: 350,
+    modal: true,
+    buttons: {
+/*
+      'Ok': function() {
+          $(this).dialog('close');
+
+      },
+      Cancel: function() {
+        $(this).dialog('close');
+      }
+*/
+    },
+    close: function() {
+      //TODO
+    }
+  });
+
+//  $("#mediaTypeHelpDialog").dialog("open");
+  flashNotice("That's Ok - We'll discuss that later");
+  $("select[name='mediaType']").attr("value","dontknow");
+
+}
+
+function dontKnowFileTypes()
+{
+  flashNotice("That's Ok - We'll discuss that later");
+  $("#fileSelectionResults").append("<li style='padding-top:15px; font-size:1em;'>I don't know what types of media I want recovered</li>");
+  $("#fileSelectionResults:last-child").effect("highlight",1000);
+  $("#fileTypeSelection input").attr("value", "?");
 }
 
 function dontKnowFileNames()
@@ -125,31 +195,16 @@ function dontKnowFileNames()
 
 function onChangeMediaType(val)
 {
-  //var res = $("select [name='mediaType']:selected").val();
-  var img;
   $("#mediaTypeByTextbox").html("");
   switch(val){
-    case "1":
-      img = "images/media/external.gif";
-      break;
-    case "2":
-      img = "images/media/internal.gif";
-      break;
-    case "3":
-      img = "images/media/laptop.gif";
-      break;
-    case "4":
-      img = "images/media/flash.gif";
-      break;
-    case "5":
+    case "other":
       $("#mediaTypeByTextbox").html("<div class='formfield'>\n\
                                       <label for='mediaTypeByTextbox'>Describe your media</label>\n\
                                       <input class='epc-textfield idleField' type='text' onChange='onChangeMediaTypeByTextbox()' /></div>");
       break;
     default:
-      img = "images/media/nopicture.gif";
+      //no action
   }
-//  $("#mediaTypeResult").css("border", "none").css("background-color", "#FFFFFF").html("<div class='wraptocenter'><span></span><img src='"+img+"'/></div>");
 }
 
 function onChangeMediaTypeByTextbox()

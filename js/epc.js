@@ -4,8 +4,8 @@ google.load("jqueryui", "1.8");
 
 //$(document).ready(function() {
 google.setOnLoadCallback(function(){
-			$('.epc-textfield, .epc-select').addClass("idleField");
-  		$('.epc-textfield, .epc-select').live('focus',function() {
+			$('.epc-textfield, .epc-select, .epc-checkbox').addClass("idleField");
+  		$('.epc-textfield, .epc-select, .epc-checkbox').live('focus',function() {
    			$(this).removeClass("idleField").addClass("focusField");
   	    if (this.value == this.defaultValue){ 
   	    	this.value = '';
@@ -14,7 +14,7 @@ google.setOnLoadCallback(function(){
 //	    			this.select();
 //	   		}
    		});
-   		$('.epc-textfield, .epc-select').live('blur', function() {
+   		$('.epc-textfield, .epc-select, .epc-checkbox').live('blur', function() {
    			$(this).removeClass("focusField").addClass("idleField");
    	    if ($.trim(this.value) == ''){
 			   	this.value = (this.defaultValue ? this.defaultValue : '');
