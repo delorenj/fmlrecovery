@@ -322,12 +322,14 @@ html > body {
   width: 100%;
   margin: 0 auto;
 }
+
 .service {
   background-image: url('../images/gradient1.jpg');
   background-repeat: repeat-x;
   padding: 5px 20px;
   float:left;
   height:175px;
+  width: 80%;
   border-right:1px solid #DDDDDD;
   border-bottom: 8px solid #051E5D
 }
@@ -341,9 +343,15 @@ html > body {
   font-size: large;
   height:50px;
 }
+
 .float_left {
 	float:left;
 	margin-right: 15px;
+}
+
+.float_right {
+	float:right;
+	margin-left: 15px;
 }
 
 .fieldError {
@@ -382,6 +390,6 @@ html > body {
 
 .column3 {
 	float: left;
-	width: 25%;
+	width: 27%;
 }
 

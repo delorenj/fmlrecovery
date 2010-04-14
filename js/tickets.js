@@ -1,6 +1,5 @@
 google.setOnLoadCallback(function(){
 
-//	$("#phase1").css("display", "block");
 	$("#ticket-accordion").accordion({
 		autoHeight: false,
 		fillSpace: true
@@ -17,33 +16,19 @@ google.setOnLoadCallback(function(){
   		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+indexToGB(ui.value)+"</p>");
 		}
 	});
-/*
-  $(".service").hover(function(){
-    $(this).find("label").animate({
-      fontSize: '+=4px',
-    }, 200);
-  }, function(){
-    $(this).find("label").animate({
-      fontSize: '-=4px',
-    },200);
-   })
-   .click(function(){
-     validateService($(this).prevAll().length);
-   });
-*/
   $(".service").hover(function(){
     $(this).css({
-      borderBottom: '8px solid #8FA3C6',
+      borderBottom: '8px solid #8FA3C6'
     });
     //displayServiceInfo($(this).prevAll().length);
   }, function(){
     $(this).css({
-      borderBottom: '8px solid #051E5D',
+      borderBottom: '8px solid #051E5D'
     });
     $("#serviceInfo > *").fadeOut();
    })
    .click(function(){
-     validateService($(this).prevAll().length);
+     validateService($(this).parent().prevAll().length);
    });
 });
 
@@ -78,7 +63,7 @@ function validateService(index)
       $("#ticket-accordion").accordion("activate", 1);   
     });
   switch(index){
-    case 0: //Selective
+    case 0: //Media
       $("#fileSelection").html("").append("\n\
         <div class='formfield clearfix'>\n\
           <label for='fileSelectInput'>What files would you like recovered?</label>\n\
@@ -123,6 +108,11 @@ function dontKnowMediaSize()
   flashNotice("That's Ok - We'll discuss that later");
 	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>? GB</p>");
   $("input[name='mediaSizeInput']").attr("value","?");
+}
+
+function dontKnowMediaType()
+{
+  flashError("not implemented yet!");
 }
 
 function dontKnowFileNames()
