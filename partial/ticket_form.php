@@ -24,7 +24,7 @@
 		<h3><a href="#">Tell us about your media</a></h3>
     <div id="mediaDiv" style="display:none;">
       <div>
-        <div class="lcolumn">
+        <div class="lcolumn" style="width:40%;">
           <div class="formfield">
             <label for="mediaType">Select a type of media:</label>
             <select name="mediaType" class="epc-select" onChange="onChangeMediaType(this.value)">
@@ -59,8 +59,8 @@
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
           </div>
         </div>
-        <div class="rcolumn">
-          <div style="width:380px; margin-left: auto; margin-right: auto;">
+        <div class="rcolumn" style="width:60%;">
+          <div style="width:100%; margin-left: auto; margin-right: auto;">
             <div id="fileSelection">&nbsp;</div>
 <!--
             <div class="select-result float_left" id="mediaSizeResult"></div>

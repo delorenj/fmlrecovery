@@ -98,11 +98,13 @@ function validateService(index)
           <div class='epc-buttonset epc-buttonset-multi'\n\
             <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-left'><b>Music</b><span class='ui-icon ui-icon-volume-on'></span></button>\n\
             <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default'><b>Documents</b><span class='ui-icon ui-icon-document'></span></button>\n\
+            <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default'><b>Pictures</b><span class='ui-icon ui-icon-image'></span></button>\n\
             <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default  ui-corner-right'><b>Videos</b><span class='ui-icon ui-icon-video'></span></button>\n\
           </div>\n\
           <div class='clearfix'></div>\n\
-          <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileTypes()'>I don't know</a>\n\
+          <a href='#' style='font-size: 0.8em;' onClick='specificFileType()'>I want to add a specific file type</a>\n\
         </div>\n\
+        <div id='specificFileTypeField'>&nbsp;</div>\n\
         <div class='formfield clearfix'>\n\
           <label for='fileSelectInput'>Any specific files you'd like recovered?</label>\n\
           <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
@@ -177,12 +179,15 @@ function dontKnowMediaType()
 
 }
 
-function dontKnowFileTypes()
+function specificFileType()
 {
-  flashNotice("That's Ok - We'll discuss that later");
-  $("#fileSelectionResults").append("<li style='padding-top:15px; font-size:1em;'>I don't know what types of media I want recovered</li>");
-  $("#fileSelectionResults:last-child").effect("highlight",1000);
-  $("#fileTypeSelection input").attr("value", "?");
+  $("#specificFileTypeField").html("<div class='formfield'>\n\
+                                      <label for='specificFileTypeField'>Popular File Types</label>\n\
+                                      <select class='epc-select idleField'>\n\
+                                        <option>.doc,docx [Microsoft Word Documents]</option\n\
+                                        <option>.ai [Adobe Illustrator Document]</option\n\\n\
+                                      </select>\n\
+                                    </div>");
 }
 
 function dontKnowFileNames()
