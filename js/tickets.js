@@ -106,7 +106,7 @@ function validateService(index)
         </div>\n\
         <div id='specificFileTypeField'>&nbsp;</div>\n\
         <div class='formfield clearfix'>\n\
-          <label for='fileSelectInput'>Any specific files you'd like recovered?</label>\n\
+          <label for='fileSelectInput'>Any specific files or directories you'd like recovered?</label>\n\
           <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
           <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add File</button><br />\n\
           <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>I don't know</a>\n\
@@ -184,8 +184,14 @@ function specificFileType()
   $("#specificFileTypeField").html("<div class='formfield'>\n\
                                       <label for='specificFileTypeField'>Popular File Types</label>\n\
                                       <select class='epc-select idleField'>\n\
-                                        <option>.doc,docx [Microsoft Word Documents]</option\n\
-                                        <option>.ai [Adobe Illustrator Document]</option\n\\n\
+                                        <option>doc [Microsoft Word Document]</option>\n\
+                                        <option>ppt [Microsoft Powerpoint Document]</option>\n\
+                                        <option>ai [Adobe Illustrator Document]</option>\n\
+                                        <option>zip [Zip Archive]</option>\n\
+                                        <option>pdf [PDF Document]</option>\n\
+                                        <option>mp3 [MP3 Audio File]</option>\n\
+                                        <option>jpg [JPG Image]</option>\n\
+                                        <option>rar [RAR Archive]</option>\n\
                                       </select>\n\
                                     </div>");
 }
