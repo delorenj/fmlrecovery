@@ -406,6 +406,18 @@ html > body {
 	width: 27%;
 }
 
+.fieldOK {
+  display:none;
+  float:left;
+  background-image: url('../images/accept.png');
+  height: 25px;
+  width:25px;
+}
+
+#mediaTypeByTextbox {
+  display:none;
+}
+
 #mediaTypeHelpDialog {
   display:none;
   text-align: left;
@@ -413,4 +425,8 @@ html > body {
 
 #specifiFileTypeField {
   display: none;
+}
+
+#filetypes {
+  width: 50%;
 }

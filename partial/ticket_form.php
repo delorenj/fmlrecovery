@@ -27,7 +27,8 @@
         <div class="lcolumn" style="width:40%;">
           <div class="formfield">
             <label for="mediaType">Select a type of media:</label>
-            <select name="mediaType" class="epc-select" onChange="onChangeMediaType(this.value)">
+            <select name="mediaType" class="epc-select float_left" onChange="onChangeMediaType(this.value)">
+              <option value="none">--Choose one--</option>
               <option value="external">External Hard Drive</option>
               <option value="internal">Internal Hard Drive</option>
               <option value="desktop">Desktop</option>
@@ -37,7 +38,9 @@
               <option value="phone">Phone</option>
               <option value="other">Other</option>
               <option value="dontknow">I don't know</option>
-            </select><br />
+            </select>
+            <span class="fieldOK"></span>
+            <div class="clearfix"></div>
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaType()">I don't know</a>
             <div id="mediaTypeByTextbox">&nbsp;</div>
             <div id="mediaTypeHelpDialog" title="What kind of media do I have?">
@@ -51,11 +54,12 @@
               </div>
             </div>
           </div>
-          <div class="formfield">
+          <div class="formfield" style="overflow:hidden;">
             <label for="mediaSize">What size is your media: </label>
   <!--					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />-->
             <!--					<div id="mediaSizeSlider" style="width: 225px;"></div> -->
-            <input type="text" size="5" name="mediaSizeInput" class="epc-textfield" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text">GB</span><br />
+            <input type="text" size="5" name="mediaSizeInput" class="epc-textfield float_left" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK"></div>
+            <div class="clearfix"></div>
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
           </div>
         </div>

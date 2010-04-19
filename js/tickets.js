@@ -7,7 +7,6 @@ google.setOnLoadCallback(function(){
 
 //  $(".ui-accordion-header").unbind("click");
   $("#ticket-accordion h3 a").css("text-decoration", "none");
-  
 	$("#mediaSizeSlider").slider({
     value:1,
 		min:1,
@@ -33,7 +32,7 @@ google.setOnLoadCallback(function(){
 
  $("input[name='deviceType']").click(function(){
    onClickDeviceType($(this).val());
- })
+ });
 });
 
 function onClickDeviceType(device)
@@ -86,7 +85,7 @@ function validateService(index)
         return;
       }
       if(data == "SUCCESS_INITIAL_SELECTION"){
-        $("#ticket-accordion h3:first-child a").append("<img src='images/accept.png' height=25 style='margin-top:-5px;float:right;'/>")
+        $("#ticket-accordion h3:first-child a").append("<img src='images/accept.png' style='margin-top:-5px;float:right;'/>")
       }
       $("#ticket-accordion").accordion("activate", 1);   
     });
@@ -123,18 +122,18 @@ function addFile(file)
 {
   var pass = true;
   pass = pass &&
-          notEmpty($("#fileSelection input").val(),"File name cannot be blank", "#fileSelection input", "?");
+          notEmpty($("#fileSelection input[name='fileSelectInput']").val(),"File name cannot be blank", "#fileSelection input", "?");
 
   if(!pass) return;
 
-  if($("#fileSelectionResults ol").children().size() < 5) {
-    $("#fileSelectionResults ol").append("<li><span>"+$("#fileSelection input").val()+"</span><a href='#' onClick='removeFile($(this).parent().prevAll().length);'>X</a></li>");
+//  if($("#fileSelectionResults ol").children().size() < 5) {
+    $("#fileSelectionResults ol").append("<li><span>"+$("#fileSelection input[name='fileSelectInput']").val()+"</span><a href='#' onClick='removeFile($(this).parent().prevAll().length);'>X</a></li>");
     $("#fileSelectionResults ol li:last-child").effect("highlight",1000);
-  }
-  else {
-    flashError("You may only recover up to 5 files. If you wish to recover more consider our Media Recovery service.");
-  }
-  $("#fileSelection input").attr("value","");
+//  }
+//  else {
+//    flashError("You may only recover up to 5 files. If you wish to recover more consider our Media Recovery service.");
+//  }
+  $("#fileSelection input[name='fileSelectInput']").attr("value","");
 
 }
 
@@ -183,17 +182,19 @@ function specificFileType()
 {
   $("#specificFileTypeField").html("<div class='formfield'>\n\
                                       <label for='specificFileTypeField'>Popular File Types</label>\n\
-                                      <select class='epc-select idleField'>\n\
-                                        <option>doc [Microsoft Word Document]</option>\n\
-                                        <option>ppt [Microsoft Powerpoint Document]</option>\n\
-                                        <option>ai [Adobe Illustrator Document]</option>\n\
-                                        <option>zip [Zip Archive]</option>\n\
-                                        <option>pdf [PDF Document]</option>\n\
-                                        <option>mp3 [MP3 Audio File]</option>\n\
-                                        <option>jpg [JPG Image]</option>\n\
-                                        <option>rar [RAR Archive]</option>\n\
+                                      <select id='filetypes' class='multiselect' multiple='multiple' name='filetypes[]'>\n\
+                                        <option value='doc'>doc</option>\n\
+                                        <option value='doc'>ppt</option>\n\
+                                        <option value='doc'>ai</option>\n\
+                                        <option value='doc'>zip</option>\n\
+                                        <option value='doc'>pdf</option>\n\
+                                        <option value='doc'>mp3</option>\n\
+                                        <option value='doc'>jpg</option>\n\
+                                        <option value='doc'>rar</option>\n\
                                       </select>\n\
                                     </div>");
+
+$("#filetypes").multiselect({sortable: false, searchable: false});
 }
 
 function dontKnowFileNames()
@@ -206,14 +207,20 @@ function dontKnowFileNames()
 
 function onChangeMediaType(val)
 {
-  $("#mediaTypeByTextbox").html("");
   switch(val){
     case "other":
       $("#mediaTypeByTextbox").html("<div class='formfield'>\n\
                                       <label for='mediaTypeByTextbox'>Describe your media</label>\n\
                                       <input class='epc-textfield idleField' type='text' onChange='onChangeMediaTypeByTextbox()' /></div>");
+      $("#mediaTypeByTextbox").slideDown("slow");
+      break;
+    case "none":
+      $("#mediaTypeByTextbox").slideUp("slow");
+      $("select[name='mediaType']").siblings(".fieldOK").fadeOut("slow");
       break;
     default:
+      $("#mediaTypeByTextbox").slideUp("slow");
+      $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
       //no action
   }
 }
@@ -233,5 +240,12 @@ function onChangeMediaSize(size)
 	if(!pass)
 		return;
 
-	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+size+" GB</p>");
+//	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+size+" GB</p>");
+
+  $.post("tickets.php",{action: "create", key: "mediaSize", val: size},
+    function(data){
+      if(data.indexOf("SUCCESS") != -1){
+        $("input[name='mediaSizeInput']").siblings(".fieldOK").fadeIn("slow");
+      }
+    });
 }

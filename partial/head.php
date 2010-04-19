@@ -18,7 +18,6 @@
 				<script type="text/javascript" src="js/plugins/localisation/jquery.localisation-min.js"></script>
 				<script type="text/javascript" src="js/plugins/scrollTo/jquery.scrollTo-min.js"></script>
 				<script type="text/javascript" src="js/ui.multiselect.js"></script>
-        <!--<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>-->
         <script type="text/javascript" src="js/epc.js"></script>
 
     </head>
