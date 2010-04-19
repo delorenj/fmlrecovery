@@ -78,13 +78,21 @@ function displayServiceInfo(index)
 
 function validateService(index)
 {
-  $.post("tickets.php", {action: "create", key: "service", val: index},
+  $("#ticket-accordion h3:first-child a img").remove();
+  $("#ticket-accordion h3:first-child a span").ajaxStart(function(){
+    $(this).fadeIn("fast");console.log("start");
+  });
+  $("#ticket-accordion h3:first-child a span").ajaxStop(function(){
+    $(this).hide();console.log("stop");
+  });
+
+$.post("tickets.php", {action: "create", key: "service", val: index},
     function(data){
       if(data == "FAILED"){
         flashError("Oops, something went wrong. Try again.");
         return;
       }
-      if(data == "SUCCESS_INITIAL_SELECTION"){
+      if(data.indexOf("SUCCESS") != -1){
         $("#ticket-accordion h3:first-child a").append("<img src='images/accept.png' style='margin-top:-5px;float:right;'/>")
       }
       $("#ticket-accordion").accordion("activate", 1);   
@@ -211,7 +219,8 @@ function onChangeMediaType(val)
     case "other":
       $("#mediaTypeByTextbox").html("<div class='formfield'>\n\
                                       <label for='mediaTypeByTextbox'>Describe your media</label>\n\
-                                      <input class='epc-textfield idleField' type='text' onChange='onChangeMediaTypeByTextbox()' /></div>");
+                                      <input name='mediaTypeByTextbox' class='epc-textfield idleField float_left' type='text' onChange='onChangeMediaTypeByTextbox()' /><span class='fieldOK'></span>\n\
+                                     </div>");
       $("#mediaTypeByTextbox").slideDown("slow");
       break;
     case "none":
@@ -220,14 +229,31 @@ function onChangeMediaType(val)
       break;
     default:
       $("#mediaTypeByTextbox").slideUp("slow");
-      $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
+      $.post("tickets.php", {action: "create", key: "mediaType", val: val},
+        function(data){
+          if(data.indexOf("SUCCESS") != -1){
+            $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
+          }
+          else {
+            flashError("Oops, something went wrong. Try Again.");
+          }
+        })
       //no action
   }
 }
 
 function onChangeMediaTypeByTextbox()
 {
-  flashNotice("Saved!\n(temporary message)");
+  $.post("tickets.php", {action: "create", key: "mediaType", val: $("input[name='mediaTypeByTextbox']").val()},
+    function(data){
+      if(data.indexOf("SUCCESS") != -1){
+        $("input[name='mediaTypeByTextbox']").siblings(".fieldOK").fadeIn("slow");
+        $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
+      }
+      else {
+        flashError("Oops, something went wrong. Try Again.");
+      }
+    });
 }
 
 function onChangeMediaSize(size)

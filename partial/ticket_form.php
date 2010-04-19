@@ -1,7 +1,7 @@
 <?php unset($_SESSION["newticket"]); ?>
 <form id="ticket-form" method="post" action="validateTicket.php">
   <div id="ticket-accordion">
-    <h3><a href="#">Choose a service</a></h3>
+    <h3><a href="#">Choose a service<span class="loading"></span></a></h3>
     <div id="serviceDiv">
       <div id="serviceContainer">
         <div class="lcolumn">
@@ -39,10 +39,12 @@
               <option value="other">Other</option>
               <option value="dontknow">I don't know</option>
             </select>
-            <span class="fieldOK"></span>
+            <span class="fieldOK"></span><div class="loader"></div>
             <div class="clearfix"></div>
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaType()">I don't know</a>
-            <div id="mediaTypeByTextbox">&nbsp;</div>
+            <div class="clearfix"></div>
+            <div id="mediaTypeByTextbox" class="float_left">&nbsp;</div>
+            <div class="clearfix"></div>
             <div id="mediaTypeHelpDialog" title="What kind of media do I have?">
               <div class="formfield">
                 <label for="deviceType">I want to recover files from my:</label>
@@ -56,8 +58,6 @@
           </div>
           <div class="formfield" style="overflow:hidden;">
             <label for="mediaSize">What size is your media: </label>
-  <!--					<input type="text" id="mediaSize" style="border:0; color:#f6931f; font-weight:bold;" />-->
-            <!--					<div id="mediaSizeSlider" style="width: 225px;"></div> -->
             <input type="text" size="5" name="mediaSizeInput" class="epc-textfield float_left" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK"></div>
             <div class="clearfix"></div>
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
@@ -66,10 +66,6 @@
         <div class="rcolumn" style="width:60%;">
           <div style="width:100%; margin-left: auto; margin-right: auto;">
             <div id="fileSelection">&nbsp;</div>
-<!--
-            <div class="select-result float_left" id="mediaSizeResult"></div>
-            <div class="select-result float_left" id="mediaTypeResult"></div>
--->
           </div>
         </div>
       </div>
