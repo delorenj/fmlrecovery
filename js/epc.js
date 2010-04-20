@@ -197,3 +197,15 @@ function flashNotice(msg)
 	$(".flash_notice").html("<p class='message'>"+msg+"</p>").fadeIn();
 	setTimeout("$('.flash_notice').fadeOut('slow')","8000");
 }
+
+function resetAjaxLoader(selector)
+{
+  $(".loading").unbind("ajaxStart ajaxStop");
+  $(selector).siblings(".loading").ajaxStart(function(){
+    $(selector).siblings(".fieldOK").hide();
+    $(this).show();
+  });
+  $(selector).siblings(".loading").ajaxStop(function(){
+    $(this).hide();
+  });
+}

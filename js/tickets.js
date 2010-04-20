@@ -79,11 +79,12 @@ function displayServiceInfo(index)
 function validateService(index)
 {
   $("#ticket-accordion h3:first-child a img").remove();
+  $(".loading").unbind("ajaxStart ajaxStop");
   $("#ticket-accordion h3:first-child a span").ajaxStart(function(){
-    $(this).fadeIn("fast");console.log("start");
+    $(this).fadeIn("fast");
   });
   $("#ticket-accordion h3:first-child a span").ajaxStop(function(){
-    $(this).hide();console.log("stop");
+    $(this).hide();
   });
 
 $.post("tickets.php", {action: "create", key: "service", val: index},
@@ -215,6 +216,7 @@ function dontKnowFileNames()
 
 function onChangeMediaType(val)
 {
+  resetAjaxLoader("select[name='mediaType']");
   switch(val){
     case "other":
       $("#mediaTypeByTextbox").html("<div class='formfield'>\n\
@@ -222,6 +224,7 @@ function onChangeMediaType(val)
                                       <input name='mediaTypeByTextbox' class='epc-textfield idleField float_left' type='text' onChange='onChangeMediaTypeByTextbox()' /><span class='fieldOK'></span>\n\
                                      </div>");
       $("#mediaTypeByTextbox").slideDown("slow");
+      setTimeout("$(\"input[name='mediaTypeByTextbox']\").focus()", 700);
       break;
     case "none":
       $("#mediaTypeByTextbox").slideUp("slow");
@@ -266,7 +269,7 @@ function onChangeMediaSize(size)
 	if(!pass)
 		return;
 
-//	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+size+" GB</p>");
+  resetAjaxLoader("input[name='mediaSizeInput']");
 
   $.post("tickets.php",{action: "create", key: "mediaSize", val: size},
     function(data){

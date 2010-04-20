@@ -416,7 +416,7 @@ html > body {
 
 .loading {
   display:none;
-  float:right;
+  float:left;
   background-image: url('../images/ajax-loader.gif');
   background-repeat: no-repeat;
   height: 25px;

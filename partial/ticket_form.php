@@ -1,7 +1,7 @@
 <?php unset($_SESSION["newticket"]); ?>
 <form id="ticket-form" method="post" action="validateTicket.php">
   <div id="ticket-accordion">
-    <h3><a href="#">Choose a service<span class="loading"></span></a></h3>
+    <h3><a href="#">Choose a service<span class="loading" style="float:right;"></span></a></h3>
     <div id="serviceDiv">
       <div id="serviceContainer">
         <div class="lcolumn">
@@ -20,8 +20,8 @@
         </div>
       </div>
       <div id="serviceInfo"></div>
-		</div>
-		<h3><a href="#">Tell us about your media</a></h3>
+    </div>
+		<h3><a href="#">Tell us about your media<span class="loading"></span></a></h3>
     <div id="mediaDiv" style="display:none;">
       <div>
         <div class="lcolumn" style="width:40%;">
@@ -39,7 +39,7 @@
               <option value="other">Other</option>
               <option value="dontknow">I don't know</option>
             </select>
-            <span class="fieldOK"></span><div class="loader"></div>
+            <span class="fieldOK"></span><span class="loading"></span>
             <div class="clearfix"></div>
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaType()">I don't know</a>
             <div class="clearfix"></div>
@@ -58,7 +58,7 @@
           </div>
           <div class="formfield" style="overflow:hidden;">
             <label for="mediaSize">What size is your media: </label>
-            <input type="text" size="5" name="mediaSizeInput" class="epc-textfield float_left" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK"></div>
+            <input type="text" size="5" name="mediaSizeInput" class="epc-textfield float_left" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK"></div><span class="loading"></span>
             <div class="clearfix"></div>
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
           </div>
