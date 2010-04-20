@@ -101,24 +101,29 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
   switch(index){
     case 0: //Media
       $("#fileSelection").html("").append("\n\
-        <div class='formfield clearfix'>\n\
-          <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>\n\
-          <div class='epc-buttonset epc-buttonset-multi'\n\
-            <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-left'><b>Music</b><span class='ui-icon ui-icon-volume-on'></span></button>\n\
-            <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default'><b>Documents</b><span class='ui-icon ui-icon-document'></span></button>\n\
-            <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default'><b>Pictures</b><span class='ui-icon ui-icon-image'></span></button>\n\
-            <button href='#' onClick='return false;' class='epc-button epc-button-icon-right ui-state-default  ui-corner-right'><b>Videos</b><span class='ui-icon ui-icon-video'></span></button>\n\
+        <div class='formfield'>\n\
+          <div class='clearfix'>\n\
+            <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>\n\
+              <div class='epc-checkbox-group'>\n\
+                <input type='checkbox' class='epc-checkbox' value='music'/>Music <br />\n\
+                <input type='checkbox' class='epc-checkbox' value='documents'/>Documents <br />\n\
+                <input type='checkbox' class='epc-checkbox' value='pictures'/>Pictures <br />\n\
+                <input type='checkbox' class='epc-checkbox' value='videos'/>Videos <br />\n\
+              </div>\n\
           </div>\n\
-          <div class='clearfix'></div>\n\
           <a href='#' style='font-size: 0.8em;' onClick='specificFileType()'>I want to add a specific file type</a>\n\
         </div>\n\
-        <div id='specificFileTypeField'>&nbsp;</div>\n\
-        <div class='formfield clearfix'>\n\
-          <label for='fileSelectInput'>Any specific files or directories you'd like recovered?</label>\n\
-          <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
-          <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-left ui-state-default ui-corner-all'><span class='ui-icon ui-icon-circle-plus'></span>Add File</button><br />\n\
-          <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>I don't know</a>\n\
-         </div>\n\
+        <div class='clearfix'>&nbsp;</div>\n\
+        <div id='specificFileTypeField' class='float_left'>&nbsp;</div>\n\
+        <div class='clearfix'></div>\n\
+        <div class='formfield'>\n\
+          <div class='clearfix'>\n\
+            <label for='fileSelectInput'>Any specific files or directories you'd like recovered?</label>\n\
+            <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
+            <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add File</b></button><br />\n\
+            <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>I don't know</a>\n\
+          </div>\n\
+        </div>\n\
         <div id='fileSelectionResults'><ol></ol></div>\n\
         ");
       break;
@@ -153,9 +158,19 @@ function removeFile(index)
 
 function dontKnowMediaSize()
 {
-  flashNotice("That's Ok - We'll discuss that later");
-	$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>? GB</p>");
-  $("input[name='mediaSizeInput']").attr("value","?");
+  resetAjaxLoader("input[name='mediaSizeInput']");
+  $.post("tickets.php", {action: "create", key: "mediaSize", val: "0"},
+    function(data){
+      if(data.indexOf("SUCCESS") != -1){
+        flashNotice("That's Ok - We'll discuss that later");
+        $("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>? GB</p>");
+        $("input[name='mediaSizeInput']").attr("value","?");
+        $("input[name='mediaSizeInput']").siblings(".fieldOK").fadeIn("slow");
+      }
+      else{
+        flashError("Oops, something went wrong. Try Again.")
+      }
+    })
 }
 
 function dontKnowMediaType()
@@ -182,13 +197,24 @@ function dontKnowMediaType()
   });
 
 //  $("#mediaTypeHelpDialog").dialog("open");
-  flashNotice("That's Ok - We'll discuss that later");
-  $("select[name='mediaType']").attr("value","dontknow");
+  resetAjaxLoader("select[name='mediaType']");
+  $.post("tickets.php", {action: "create", key: "mediaType", val: "idk"},
+    function(data){
+      if(data.indexOf("SUCCESS") != -1){
+        flashNotice("That's Ok - We'll discuss that later");
+        $("select[name='mediaType']").attr("value","dontknow");
+        $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
+      }
+      else{
+        flashError("Oops, something went wrong. Try Again.")
+      }
+    })
 
 }
 
 function specificFileType()
 {
+  /*
   $("#specificFileTypeField").html("<div class='formfield'>\n\
                                       <label for='specificFileTypeField'>Popular File Types</label>\n\
                                       <select id='filetypes' class='multiselect' multiple='multiple' name='filetypes[]'>\n\
@@ -204,6 +230,16 @@ function specificFileType()
                                     </div>");
 
 $("#filetypes").multiselect({sortable: false, searchable: false});
+*/
+
+      $("#specificFileTypeField").html("<div class='formfield'>\n\
+                                        <div class='clearfix'>\n\
+                                      <label for='specificFileTypeField'>Specific File Type (i.e. mp3)</label>\n\
+                                      <input name='specificFileTypeField' class='epc-textfield idleField float_left' type='text' onChange='onChangeSpecificFileTypeField()' /><span class='fieldOK'></span>\n\
+                                      </div>\n\
+                                     </div>");
+      $("#specificFileTypeField").slideDown("slow");
+      setTimeout("$(\"input[name='specificFileTypeField']\").focus()", 700);
 }
 
 function dontKnowFileNames()
