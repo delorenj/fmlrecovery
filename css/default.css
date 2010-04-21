@@ -343,6 +343,27 @@ font-size:1em;
   width: 90%;
 }
 
+#extraTypes {
+  width: auto;
+}
+
+#extraTypes ol li a{
+ float: right;
+ text-decoration: none;
+ background-color: #600;
+ color: white;
+ padding-left: 2px;
+ padding-right: 2px;
+}
+
+#extraTypes ol li:hover {
+  background-color: #E3ECF8;
+}
+
+#extraTypes ol li a:hover{
+  color:#AAAAFF;
+}
+
 #fileSelectionResults ol li {
  font-family: arial;
  font-weight: bold;

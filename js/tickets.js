@@ -104,12 +104,13 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
         <div class='formfield'>\n\
           <div class='clearfix'>\n\
             <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>\n\
-              <div class='epc-checkbox-group'>\n\
-                <input type='checkbox' class='epc-checkbox' value='music'/>Music <br />\n\
-                <input type='checkbox' class='epc-checkbox' value='documents'/>Documents <br />\n\
-                <input type='checkbox' class='epc-checkbox' value='pictures'/>Pictures <br />\n\
-                <input type='checkbox' class='epc-checkbox' value='videos'/>Videos <br />\n\
-              </div>\n\
+            <div class='epc-checkbox-group lcolumn'>\n\
+              <input type='checkbox' class='epc-checkbox' value='music'/>Music <br />\n\
+              <input type='checkbox' class='epc-checkbox' value='documents'/>Documents <br />\n\
+              <input type='checkbox' class='epc-checkbox' value='pictures'/>Pictures <br />\n\
+              <input type='checkbox' class='epc-checkbox' value='videos'/>Videos <br />\n\
+            </div>\n\
+            <div id='extraTypes' class='lcolumn' style='width:20%;'><ol></ol></div>\n\
           </div>\n\
           <a href='#' style='font-size: 0.8em;' onClick='specificFileType()'>I want to add a specific file type</a>\n\
         </div>\n\
@@ -151,9 +152,28 @@ function addFile(file)
 
 }
 
+function addType(type)
+{
+  var pass = true;
+  pass = pass &&
+          notEmpty($("input[name='specificFileTypeField']").val(),"File type cannot be blank", "input[name='specificFileTypeField']");
+
+  if(!pass) return;
+
+    $("#extraTypes ol").append("<li><span>"+$("input[name='specificFileTypeField']").val()+"</span><a href='#' onClick='removeType($(this).parent().prevAll().length);'>X</a></li>");
+    $("#extraTypes ol li:last-child").effect("highlight",1000);
+    $("input[name='specificFileTypeField']").attr("value","");
+
+}
+
 function removeFile(index)
 {
   $("#fileSelectionResults ol li:eq("+index+")").fadeOut("slow", function(){$(this).remove();});
+}
+
+function removeType(index)
+{
+  $("#extraTypes ol li:eq("+index+")").fadeOut("slow", function(){$(this).remove();});
 }
 
 function dontKnowMediaSize()
@@ -235,7 +255,8 @@ $("#filetypes").multiselect({sortable: false, searchable: false});
       $("#specificFileTypeField").html("<div class='formfield'>\n\
                                         <div class='clearfix'>\n\
                                       <label for='specificFileTypeField'>Specific File Type (i.e. mp3)</label>\n\
-                                      <input name='specificFileTypeField' class='epc-textfield idleField float_left' type='text' onChange='onChangeSpecificFileTypeField()' /><span class='fieldOK'></span>\n\
+                                      <input name='specificFileTypeField' class='epc-textfield idleField float_left' type='text' /><span class='fieldOK'></span>\n\
+                                      <button href='#' onClick='addType(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add Type</b></button><br />\n\
                                       </div>\n\
                                      </div>");
       $("#specificFileTypeField").slideDown("slow");
