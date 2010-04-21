@@ -106,9 +106,10 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
             <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>\n\
             <div class='epc-checkbox-group lcolumn'>\n\
               <input type='checkbox' class='epc-checkbox' value='music'/>Music <br />\n\
-              <input type='checkbox' class='epc-checkbox' value='documents'/>Documents <br />\n\
+              <input type='checkbox' class='epc-checkbox' value='documents'/>Text Documents <br />\n\
               <input type='checkbox' class='epc-checkbox' value='pictures'/>Pictures <br />\n\
               <input type='checkbox' class='epc-checkbox' value='videos'/>Videos <br />\n\
+              <input type='checkbox' class='epc-checkbox' value='archives'/>Archived Files <br />\n\
             </div>\n\
             <div id='extraTypes' class='lcolumn' style='width:20%;'><ol></ol></div>\n\
           </div>\n\
@@ -251,16 +252,20 @@ function specificFileType()
 
 $("#filetypes").multiselect({sortable: false, searchable: false});
 */
-
-      $("#specificFileTypeField").html("<div class='formfield'>\n\
-                                        <div class='clearfix'>\n\
-                                      <label for='specificFileTypeField'>Specific File Type (i.e. mp3)</label>\n\
-                                      <input name='specificFileTypeField' class='epc-textfield idleField float_left' type='text' /><span class='fieldOK'></span>\n\
-                                      <button href='#' onClick='addType(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add Type</b></button><br />\n\
+  var fileTypes = "";
+  $("#specificFileTypeField").html("<div class='formfield'>\n\
+                                      <div class='clearfix'>\n\
+                                        <label for='specificFileTypeField'>Specific File Type (i.e. mp3)</label>\n\
+                                        <input id='extraTypeField' name='specificFileTypeField' size=10 maxlength=10 class='epc-textfield idleField float_left' type='text' /><span class='fieldOK'></span>\n\
+                                        <button href='#' onClick='addType(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add Type</b></button><br />\n\
                                       </div>\n\
                                      </div>");
-      $("#specificFileTypeField").slideDown("slow");
-      setTimeout("$(\"input[name='specificFileTypeField']\").focus()", 700);
+  $("#specificFileTypeField").slideDown("slow");
+
+  $("#extraTypeField").autocomplete({
+    source: ["zip","pdf","mp3","jpg","rar","exe","wmv","doc","avi","ppt","mpg","tif","wav","mov","psd","wma","sitx","sit","eps","cdr","ai","xls","mp4","txt","m4a","rmvb","bmp","pps","aif","pub","dwg","gif","qbb","mpeg","indd","swf","asf","png","dat","rm","mdb","chm","jar","htm","dvf","dss","dmg","iso","flv","wpd","cda","m4b","7z","gz","fla","qxd","rtf","aiff","msi","jpeg","3gp","cdl","vob","ace","m4p","divx","html","pst","cab","ttf","xtm","hqx","qbw","sea","ptb","bin","mswmm","ifo","tgz","log","dll","mcd","ss","m4v","eml","mid","ogg","ram","lnk","torrent","ses","mp2","vcd","bat","asx","ps","bup","cbr","amr","wps","sql"]
+  });
+  setTimeout("$(\"input[name='specificFileTypeField']\").focus()", 700);
 }
 
 function dontKnowFileNames()

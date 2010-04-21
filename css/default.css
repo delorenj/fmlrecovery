@@ -364,6 +364,11 @@ font-size:1em;
   color:#AAAAFF;
 }
 
+.ui-menu {
+  width:50px;
+  cursor:pointer;
+}
+
 #fileSelectionResults ol li {
  font-family: arial;
  font-weight: bold;
