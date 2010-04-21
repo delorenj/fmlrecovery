@@ -33,7 +33,14 @@ google.setOnLoadCallback(function(){
  $("input[name='deviceType']").click(function(){
    onClickDeviceType($(this).val());
  });
+
+ $("img.float_right").css("opacity","0.3");
 });
+
+function togglePanel(panel)
+{
+  $("#ticket-accordion").accordion("activate", panel);
+}
 
 function onClickDeviceType(device)
 {
@@ -78,13 +85,6 @@ function displayServiceInfo(index)
 
 function validateService(index)
 {
-  var winHeight = $(window).height();
-var tabHeight = winHeight - 10;
-$('#ticket-accordion').height(tabHeight);
-var contentPanelHeight = $("#ticket-accordion").find(".ui-tabs-panel:visible").height();
-console.log(contentPanelHeight);
-
-
   $("#ticket-accordion h3:first-child a img").remove();
   $(".loading").unbind("ajaxStart ajaxStop");
   $("#ticket-accordion h3:first-child a span").ajaxStart(function(){
@@ -126,11 +126,11 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
         <div id='specificFileTypeField' class='float_left'>&nbsp;</div>\n\
         <div class='clearfix'></div>\n\
         <div class='formfield'>\n\
-          <div class='clearfix'>\n\
+          <div class='clearfix' id='fileSelectDiv'>\n\
             <label for='fileSelectInput'>Any specific files or directories you'd like recovered?</label>\n\
             <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
             <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add File</b></button><br />\n\
-            <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>I don't know</a>\n\
+            <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>No, not really</a>\n\
           </div>\n\
         </div>\n\
         <div id='fileSelectionResults'><ol></ol></div>\n\
@@ -273,10 +273,26 @@ $("#filetypes").multiselect({sortable: false, searchable: false});
 
 function dontKnowFileNames()
 {
+/*
   flashNotice("That's Ok - We'll discuss that later");
   $("#fileSelectionResults").append("<li style='padding-top:15px; font-size:1em;'>I don't know the names of the files I need recovered</li>");
   $("#fileSelectionResults:last-child").effect("highlight",1000);
   $("#fileSelection input").attr("value", "?");
+*/
+  $("#fileSelectDiv").fadeOut("slow", function(){
+    $("#fileSelectDiv").html("<span class='epc-text'><p>No Specific Files</p></span><a href='#' onClick='doKnowFileNames()' style='font:normal 12px \"Lucida Grande\", Arial, sans-serif;'>Actually, I do want to add some specific files or directories</a>").fadeIn("slow");
+  });
+}
+
+function doKnowFileNames()
+{
+  $("#fileSelectDiv").fadeOut("slow", function(){
+    $("#fileSelectDiv").html("<label for='fileSelectInput'>Any specific files or directories you'd like recovered?</label>\n\
+            <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
+            <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add File</b></button><br />\n\
+            <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>No, not really</a>\n\
+            ").fadeIn("slow");
+  });
 }
 
 function onChangeMediaType(val)

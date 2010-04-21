@@ -1,6 +1,7 @@
 /* ethereal Green: 93CD02 */
 /* ethereal Blue:  00027C */
 /* ethereal Light Blue: A9B2C7 */
+/* ethereal Text Blue: 051E5D */
 .clearfix:after {
   content:".";
   display:block;
@@ -304,6 +305,10 @@ font-size:1em;
 }
 
 .epc-text {
+  color:#051E5D;
+  font-family: "Lucida Grande", Arial, sans-serif;
+  font-weight: bold;
+  /*font-size:15px;  */
   font-size:1.2em;
 }
 
@@ -491,6 +496,11 @@ font-size:1em;
   width:25px;  
 }
 
+.accordion-control {
+  width:30%;
+  margin: 15px auto;
+}
+
 #mediaTypeByTextbox {
   display:none;
 }
@@ -507,7 +517,6 @@ font-size:1em;
 #filetypes {
   width: 50%;
 }
-
 
 html>body .ie-fix-button-height {position:relative;top:2px;}
 * html .ie-fix-button-height {height:1.85em;}

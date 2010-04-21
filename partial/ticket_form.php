@@ -46,21 +46,11 @@
             <div class="clearfix"></div>
             <div id="mediaTypeByTextbox" class="float_left">&nbsp;</div>
             <div class="clearfix"></div>
-            <div id="mediaTypeHelpDialog" title="What kind of media do I have?">
-              <div class="formfield">
-                <label for="deviceType">I want to recover files from my:</label>
-                <input type="radio" name="deviceType" value="desktop"/>Desktop PC <br />
-                <input type="radio" name="deviceType" value="laptop"/>Laptop <br />
-                <input type="radio" name="deviceType" value="phone"/>Phone <br />
-                <input type="radio" name="deviceType" value="usb"/>USB Stick <br />
-                <input type="radio" name="deviceType" value="other"/>Other <br />
-              </div>
-            </div>
           </div>
           <div class="formfield" style="overflow:hidden;">
             <div class="clearfix">
               <label for="mediaSize">What size is your media: </label>
-              <input type="text" size="5" name="mediaSizeInput" class="epc-textfield float_left" onChange="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK" style="position:relative; top:5px;"></div><span class="loading" style="position:relative; top:5px;"></span>
+              <input type="text" size="5" name="mediaSizeInput" class="epc-textfield float_left" onBlur="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK" style="position:relative; top:5px;"></div><span class="loading" style="position:relative; top:5px;"></span>
             </div>
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
           </div>
@@ -69,6 +59,11 @@
           <div style="width:100%; margin-left: auto; margin-right: auto;">
             <div id="fileSelection">&nbsp;</div>
           </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="accordion-control">
+          <a href="#" onClick="togglePanel(0)"><img src="images/back.png" alt="previous" class="float_left" name="back" height=40 /></a>
+          <a href="#" onClick="togglePanel(2)"><img src="images/next.png" alt="next" class="float_right" name="next"height=40 /></a>
         </div>
       </div>
 		</div>
