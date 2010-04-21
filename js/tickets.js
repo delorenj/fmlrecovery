@@ -2,11 +2,7 @@ google.setOnLoadCallback(function(){
 
 	$("#ticket-accordion").accordion({
 		autoHeight: false,
-		fillSpace: true,
-    change: function(event, ui) {
-      console.log("change triggered:" + ui.newContent.css("height")); // jQuery object, activated content
-      //ui.oldContent // jQuery object, previous content
-    }
+		clearStyle: true
 	});
 
 //  $(".ui-accordion-header").unbind("click");

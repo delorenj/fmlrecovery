@@ -4,6 +4,11 @@
 
 //$(document).ready(function() {
 google.setOnLoadCallback(function(){
+      //Set console.log to 'undefined' when firebug is not active
+      if(typeof console === "undefined") {
+          console = { log: function() { } };
+      }
+      
 			$('.epc-textfield, .epc-select, .epc-checkbox').addClass("idleField");
   		$('.epc-textfield, .epc-select, .epc-checkbox').live('focus',function() {
    			$(this).removeClass("idleField").addClass("focusField");

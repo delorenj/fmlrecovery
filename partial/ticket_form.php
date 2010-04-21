@@ -1,7 +1,7 @@
 <?php unset($_SESSION["newticket"]); ?>
 <form id="ticket-form" method="post" action="validateTicket.php">
-  <div id="ticket-accordion" style="clear:both;">
-    <h3><a href="#">Choose a service<span class="loading" style="float:right;"></span></a></h3>
+  <div id="ticket-accordion" class="ui-accordion-container" style="padding-top: 10px; clear: both;">
+    <h3><a href="javascript: void(0)" class="ui-accordion-link">Choose a service<span class="loading" style="float:right;"></span></a></h3>
     <div id="serviceDiv">
       <div id="serviceContainer">
         <div class="lcolumn">
@@ -21,7 +21,7 @@
       </div>
       <div id="serviceInfo"></div>
     </div>
-		<h3><a href="#">Tell us about your media<span class="loading"></span></a></h3>
+		<h3><a href="javascript: void(0)" class="ui-accordion-link">Tell us about your media<span class="loading"></span></a></h3>
     <div id="mediaDiv" style="display:none;">
       <div>
         <div class="lcolumn roundy-border" style="width:38%;margin-left:-20px; padding-left:20px;">
@@ -72,7 +72,7 @@
         </div>
       </div>
 		</div>
-		<h3><a href="#">Shipping Info</a></h3>
+		<h3><a href="javascript: void(0)" class="ui-accordion-link">Shipping Info</a></h3>
 		<div  style="display:none;">
 		</div>
 	</div>
