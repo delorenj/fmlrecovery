@@ -2,7 +2,11 @@ google.setOnLoadCallback(function(){
 
 	$("#ticket-accordion").accordion({
 		autoHeight: false,
-		fillSpace: true
+		fillSpace: true,
+    change: function(event, ui) {
+      console.log("change triggered:" + ui.newContent.css("height")); // jQuery object, activated content
+      //ui.oldContent // jQuery object, previous content
+    }
 	});
 
 //  $(".ui-accordion-header").unbind("click");
@@ -78,6 +82,13 @@ function displayServiceInfo(index)
 
 function validateService(index)
 {
+  var winHeight = $(window).height();
+var tabHeight = winHeight - 10;
+$('#ticket-accordion').height(tabHeight);
+var contentPanelHeight = $("#ticket-accordion").find(".ui-tabs-panel:visible").height();
+console.log(contentPanelHeight);
+
+
   $("#ticket-accordion h3:first-child a img").remove();
   $(".loading").unbind("ajaxStart ajaxStop");
   $("#ticket-accordion h3:first-child a span").ajaxStart(function(){
@@ -111,7 +122,7 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
               <input type='checkbox' class='epc-checkbox' value='videos'/>Videos <br />\n\
               <input type='checkbox' class='epc-checkbox' value='archives'/>Archived Files <br />\n\
             </div>\n\
-            <div id='extraTypes' class='lcolumn' style='width:20%;'><ol></ol></div>\n\
+            <div id='extraTypes' class='epc-checkbox-group lcolumn'></div>\n\
           </div>\n\
           <a href='#' style='font-size: 0.8em;' onClick='specificFileType()'>I want to add a specific file type</a>\n\
         </div>\n\
@@ -161,8 +172,8 @@ function addType(type)
 
   if(!pass) return;
 
-    $("#extraTypes ol").append("<li><span>"+$("input[name='specificFileTypeField']").val()+"</span><a href='#' onClick='removeType($(this).parent().prevAll().length);'>X</a></li>");
-    $("#extraTypes ol li:last-child").effect("highlight",1000);
+    $("#extraTypes").append("<input type='checkbox' class='epc-checkbox' value='"+$("input[name='specificFileTypeField']").val()+"' checked />"+$("input[name='specificFileTypeField']").val()+" <br />");
+    $("#extraTypes:last-child").effect("highlight",1000);
     $("input[name='specificFileTypeField']").attr("value","");
 
 }
@@ -170,11 +181,6 @@ function addType(type)
 function removeFile(index)
 {
   $("#fileSelectionResults ol li:eq("+index+")").fadeOut("slow", function(){$(this).remove();});
-}
-
-function removeType(index)
-{
-  $("#extraTypes ol li:eq("+index+")").fadeOut("slow", function(){$(this).remove();});
 }
 
 function dontKnowMediaSize()
@@ -261,6 +267,7 @@ $("#filetypes").multiselect({sortable: false, searchable: false});
                                       </div>\n\
                                      </div>");
   $("#specificFileTypeField").slideDown("slow");
+  $("#ticket-form").animate({height:"+=2em"},1000);
 
   $("#extraTypeField").autocomplete({
     source: ["zip","pdf","mp3","jpg","rar","exe","wmv","doc","avi","ppt","mpg","tif","wav","mov","psd","wma","sitx","sit","eps","cdr","ai","xls","mp4","txt","m4a","rmvb","bmp","pps","aif","pub","dwg","gif","qbb","mpeg","indd","swf","asf","png","dat","rm","mdb","chm","jar","htm","dvf","dss","dmg","iso","flv","wpd","cda","m4b","7z","gz","fla","qxd","rtf","aiff","msi","jpeg","3gp","cdl","vob","ace","m4p","divx","html","pst","cab","ttf","xtm","hqx","qbw","sea","ptb","bin","mswmm","ifo","tgz","log","dll","mcd","ss","m4v","eml","mid","ogg","ram","lnk","torrent","ses","mp2","vcd","bat","asx","ps","bup","cbr","amr","wps","sql"]

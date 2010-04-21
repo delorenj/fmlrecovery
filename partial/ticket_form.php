@@ -1,6 +1,6 @@
 <?php unset($_SESSION["newticket"]); ?>
 <form id="ticket-form" method="post" action="validateTicket.php">
-  <div id="ticket-accordion">
+  <div id="ticket-accordion" style="clear:both;">
     <h3><a href="#">Choose a service<span class="loading" style="float:right;"></span></a></h3>
     <div id="serviceDiv">
       <div id="serviceContainer">
@@ -24,7 +24,7 @@
 		<h3><a href="#">Tell us about your media<span class="loading"></span></a></h3>
     <div id="mediaDiv" style="display:none;">
       <div>
-        <div class="lcolumn" style="width:38%;margin-left:-20px; padding-left:20px;">
+        <div class="lcolumn roundy-border" style="width:38%;margin-left:-20px; padding-left:20px;">
           <div class="formfield">
             <div class="clearfix">
               <label for="mediaType">Select a type of media:</label>
@@ -65,7 +65,7 @@
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
           </div>
         </div>
-        <div class="rcolumn" style="width:60%;">
+        <div class="rcolumn roundy-border" style="width:56%;margin-left:-20px; padding-left:20px;">
           <div style="width:100%; margin-left: auto; margin-right: auto;">
             <div id="fileSelection">&nbsp;</div>
           </div>

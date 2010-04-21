@@ -12,7 +12,7 @@
 
 function create()
 {
-  sleep(1);
+  //sleep(1);
 	$key = $_POST["key"];
   $val = $_POST["val"];
   if(!isset ($_SESSION["newticket"])) { fb("New Ticket Started"); }
