@@ -410,6 +410,7 @@ font-size:1em;
   width: 80%;
   border-right:1px solid #DDDDDD;
   border-bottom: 8px solid #051E5D;
+  cursor:pointer;
   -moz-border-radius: 5%;
 }
 
@@ -498,7 +499,7 @@ font-size:1em;
 
 .accordion-control {
   width:30%;
-  margin: 15px auto;
+  margin: 35px auto 0px auto;
 }
 
 #mediaTypeByTextbox {

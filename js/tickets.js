@@ -5,7 +5,18 @@ google.setOnLoadCallback(function(){
 		clearStyle: true
 	});
 
-//  $(".ui-accordion-header").unbind("click");
+  $(".ui-accordion-header").unbind("click");
+
+  $(".ui-accordion-header")
+    .live("mouseover mouseout", function(event){
+      if(event.type == 'mouseover'){
+				$(this).removeClass("ui-state-hover").css("cursor", "default").children().css("cursor", "default");
+			}
+      if(event.type == 'mouseout'){
+				$(this).removeClass("ui-state-hover").css("cursor", "default").children().css("cursor", "default");
+			}
+    })
+  
   $("#ticket-accordion h3 a").css("text-decoration", "none");
 	$("#mediaSizeSlider").slider({
     value:1,
@@ -34,7 +45,6 @@ google.setOnLoadCallback(function(){
    onClickDeviceType($(this).val());
  });
 
- $("img.float_right").css("opacity","0.3");
 });
 
 function togglePanel(panel)
@@ -117,10 +127,10 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
               <input type='checkbox' class='epc-checkbox' value='pictures'/>Pictures <br />\n\
               <input type='checkbox' class='epc-checkbox' value='videos'/>Videos <br />\n\
               <input type='checkbox' class='epc-checkbox' value='archives'/>Archived Files <br />\n\
+              <input type='checkbox' class='epc-checkbox' value='other'/>Other <br />\n\
             </div>\n\
             <div id='extraTypes' class='epc-checkbox-group lcolumn'></div>\n\
           </div>\n\
-          <a href='#' style='font-size: 0.8em;' onClick='specificFileType()'>I want to add a specific file type</a>\n\
         </div>\n\
         <div class='clearfix'>&nbsp;</div>\n\
         <div id='specificFileTypeField' class='float_left'>&nbsp;</div>\n\
@@ -139,6 +149,18 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
     default:
       $("#fileSelection").html("");
   }
+  $("#fileSelection").find(".epc-checkbox").change(function(){
+    var key = $(this).prevAll().length/2;
+    var val = $(this).attr("checked");
+    console.log(key+":"+val);
+    if((key == 5) && (val == 1)){ //Other
+      specificFileType();
+    }
+    else if((key == 5) && (val == 0)){
+      $("#specificFileTypeField").fadeOut("slow");
+      $("#extraTypes").fadeOut("slow");
+    }
+  });
 }
 
 function addFile(file)

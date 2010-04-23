@@ -62,8 +62,8 @@
         </div>
         <div class="clearfix"></div>
         <div class="accordion-control">
-          <a href="#" onClick="togglePanel(0)"><img src="images/back.png" alt="previous" class="float_left" name="back" height=40 /></a>
-          <a href="#" onClick="togglePanel(2)"><img src="images/next.png" alt="next" class="float_right" name="next"height=40 /></a>
+          <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(0); return false;"><< Back</button>
+          <button class="epc-button ui-state-disabled ui-corner-all" onClick="togglePanel(2)" disabled>Next >></button>
         </div>
       </div>
 		</div>
