@@ -38,13 +38,14 @@ google.setOnLoadCallback(function(){
     $("#serviceInfo > *").fadeOut();
    })
    .click(function(){
-     validateService($(this).parent().prevAll().length);
+     validateServicePanel($(this).parent().prevAll().length);
    });
 
  $("input[name='deviceType']").click(function(){
    onClickDeviceType($(this).val());
  });
 
+ jQuery.epc.mediaPanel = [0,0];
 });
 
 function togglePanel(panel)
@@ -93,7 +94,7 @@ function displayServiceInfo(index)
   $("#serviceInfo").html(html);
 }
 
-function validateService(index)
+function validateServicePanel(index)
 {
   $("#ticket-accordion h3:first-child a img").remove();
   $(".loading").unbind("ajaxStart ajaxStop");
@@ -122,12 +123,12 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
           <div class='clearfix'>\n\
             <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>\n\
             <div class='epc-checkbox-group lcolumn'>\n\
-              <input type='checkbox' class='epc-checkbox' value='music'/>Music <br />\n\
-              <input type='checkbox' class='epc-checkbox' value='documents'/>Text Documents <br />\n\
-              <input type='checkbox' class='epc-checkbox' value='pictures'/>Pictures <br />\n\
-              <input type='checkbox' class='epc-checkbox' value='videos'/>Videos <br />\n\
-              <input type='checkbox' class='epc-checkbox' value='archives'/>Archived Files <br />\n\
-              <input type='checkbox' class='epc-checkbox' value='other'/>Other <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='music'/>Music <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='documents'/>Text Documents <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='pictures'/>Pictures <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='videos'/>Videos <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='archives'/>Archived Files <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='other'/>Other <br />\n\
             </div>\n\
             <div id='extraTypes' class='epc-checkbox-group lcolumn'></div>\n\
           </div>\n\
@@ -137,10 +138,7 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
         <div class='clearfix'></div>\n\
         <div class='formfield'>\n\
           <div class='clearfix' id='fileSelectDiv'>\n\
-            <label for='fileSelectInput'>Any specific files or directories you'd like recovered?</label>\n\
-            <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
-            <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add File</b></button><br />\n\
-            <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>No, not really</a>\n\
+            <a href='#' onClick='doKnowFileNames()' style='font:normal 12px \"Lucida Grande\", Arial, sans-serif;'>I want to add specific files or directories</a>\n\
           </div>\n\
         </div>\n\
         <div id='fileSelectionResults'><ol></ol></div>\n\
@@ -149,18 +147,46 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
     default:
       $("#fileSelection").html("");
   }
-  $("#fileSelection").find(".epc-checkbox").change(function(){
-    var key = $(this).prevAll().length/2;
-    var val = $(this).attr("checked");
-    console.log(key+":"+val);
-    if((key == 5) && (val == 1)){ //Other
-      specificFileType();
+  $("#fileSelection").find(".epc-checkbox").change(function() {checkCheck($(this))});
+}
+
+function validateMediaPanel()
+{
+  $("#ticket-accordion h3:eq(1) a img").remove();
+  $(".loading").unbind("ajaxStart ajaxStop");
+  $("#ticket-accordion h3:eq(1) a span").ajaxStart(function(){
+    $(this).fadeIn("fast");
+  });
+  $("#ticket-accordion h3:eq(1) a span").ajaxStop(function(){
+    $(this).hide();
+  });
+
+  fileTypeArray = new Array;
+  $("#fileSelection").find(".epc-checkbox:checked").each(function(){
+    textval = $(this).attr("id");
+    if(textval == "other") return true;
+    console.log(textval)
+    fileTypeArray.push(textval);
+  });
+
+  specificFileArray = new Array;
+  $("#fileSelectionResults ol").children().each(function(){
+    fileval = $(this).text();
+    fileval = fileval.substring(0,fileval.length - 1);
+    console.log(fileval)
+    specificFileArray.push(fileval);
+  });
+  $.post("tickets.php", {action: "create", key: "mediaDetail", val: "fileTypes="+fileTypeArray+"|specificFiles="+specificFileArray},
+   function(data){
+    if(data == "FAILED"){
+      flashError("Oops, something went wrong. Try again.");
     }
-    else if((key == 5) && (val == 0)){
-      $("#specificFileTypeField").fadeOut("slow");
-      $("#extraTypes").fadeOut("slow");
+    if(data.indexOf("SUCCESS") != -1){
+      $("#ticket-accordion h3:eq(1) a").append("<img src='images/accept.png' style='margin-top:-5px;float:right;'/>")
+      $("#ticket-accordion").accordion("activate", 2);
     }
   });
+  return false;
 }
 
 function addFile(file)
@@ -182,6 +208,29 @@ function addFile(file)
 
 }
 
+function checkCheck(sel)
+{
+    var key = $(sel).prevAll().length/2;
+    var val = $(sel).attr("checked");
+    var numChecked = $("#fileSelection").find("input[type='checkbox']:checked").length;
+    if((key == 5) && (val == 1)){ //Other
+      specificFileType();
+      numChecked--;
+    }
+    else if((key == 5) && (val == 0)){
+      $("#specificFileTypeField").fadeOut("slow");
+      $("#extraTypes").fadeOut("slow");
+    }
+
+    if(numChecked > 0){
+      jQuery.epc.mediaPanel[2] = 1;
+    }
+    else {
+      jQuery.epc.mediaPanel[2] = 0;
+    }
+    formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
+}
+
 function addType(type)
 {
   var pass = true;
@@ -190,7 +239,7 @@ function addType(type)
 
   if(!pass) return;
 
-    $("#extraTypes").append("<input type='checkbox' class='epc-checkbox' value='"+$("input[name='specificFileTypeField']").val()+"' checked />"+$("input[name='specificFileTypeField']").val()+" <br />");
+    $("#extraTypes").append("<input type='checkbox' class='epc-checkbox' value='"+$("input[name='specificFileTypeField']").val()+"' id= '"+$("input[name='specificFileTypeField']").val()+"' onChange='checkCheck($(\"this\"))' checked />"+$("input[name='specificFileTypeField']").val()+" <br />");
     $("#extraTypes:last-child").effect("highlight",1000);
     $("input[name='specificFileTypeField']").attr("value","");
 
@@ -211,8 +260,11 @@ function dontKnowMediaSize()
         $("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>? GB</p>");
         $("input[name='mediaSizeInput']").attr("value","?");
         $("input[name='mediaSizeInput']").siblings(".fieldOK").fadeIn("slow");
+        jQuery.epc.mediaPanel[1] = 1;
+        formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
       }
       else{
+        jQuery.epc.mediaPanel[1] = 0;
         flashError("Oops, something went wrong. Try Again.")
       }
     })
@@ -247,10 +299,13 @@ function dontKnowMediaType()
     function(data){
       if(data.indexOf("SUCCESS") != -1){
         flashNotice("That's Ok - We'll discuss that later");
-        $("select[name='mediaType']").attr("value","dontknow");
+        $("select[name='mediaType']").attr("value","idk");
         $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
+        jQuery.epc.mediaPanel[0] = 1;
+        formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
       }
       else{
+        jQuery.epc.mediaPanel[0] = 0;
         flashError("Oops, something went wrong. Try Again.")
       }
     })
@@ -301,8 +356,9 @@ function dontKnowFileNames()
   $("#fileSelectionResults:last-child").effect("highlight",1000);
   $("#fileSelection input").attr("value", "?");
 */
+  $("#fileSelectionResults ol").children().fadeOut("slow");
   $("#fileSelectDiv").fadeOut("slow", function(){
-    $("#fileSelectDiv").html("<span class='epc-text'><p>No Specific Files</p></span><a href='#' onClick='doKnowFileNames()' style='font:normal 12px \"Lucida Grande\", Arial, sans-serif;'>Actually, I do want to add some specific files or directories</a>").fadeIn("slow");
+    $("#fileSelectDiv").html("<span class='epc-text'><p>No Specific Files</p></span><a href='#' onClick='doKnowFileNames()' style='font:normal 12px \"Lucida Grande\", Arial, sans-serif;'>I want to add specific files or directories</a>").fadeIn("slow");
   });
 }
 
@@ -312,7 +368,7 @@ function doKnowFileNames()
     $("#fileSelectDiv").html("<label for='fileSelectInput'>Any specific files or directories you'd like recovered?</label>\n\
             <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
             <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add File</b></button><br />\n\
-            <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>No, not really</a>\n\
+            <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>Nevermind, I don't want to add specific files or directories</a>\n\
             ").fadeIn("slow");
   });
 }
@@ -339,8 +395,11 @@ function onChangeMediaType(val)
         function(data){
           if(data.indexOf("SUCCESS") != -1){
             $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
+            jQuery.epc.mediaPanel[0] = 1;
+            formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
           }
           else {
+            jQuery.epc.mediaPanel[0] = 0;
             flashError("Oops, something went wrong. Try Again.");
           }
         })
@@ -355,8 +414,11 @@ function onChangeMediaTypeByTextbox()
       if(data.indexOf("SUCCESS") != -1){
         $("input[name='mediaTypeByTextbox']").siblings(".fieldOK").fadeIn("slow");
         $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
+        jQuery.epc.mediaPanel[0] = 1;
+        formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
       }
       else {
+        jQuery.epc.mediaPanel[0] = 0;
         flashError("Oops, something went wrong. Try Again.");
       }
     });
@@ -378,6 +440,22 @@ function onChangeMediaSize(size)
     function(data){
       if(data.indexOf("SUCCESS") != -1){
         $("input[name='mediaSizeInput']").siblings(".fieldOK").fadeIn("slow");
+       jQuery.epc.mediaPanel[1] = 1;
+       formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
       }
     });
+}
+
+function formCompleteCheck(p, button)
+{
+  var pass = true;
+  for(i=0; i<p.length;i++){
+    pass = pass && p[i];
+  }
+  if(pass){
+    $(button).removeAttr("disabled").removeClass("ui-state-disabled").addClass("ui-state-default");
+  }
+  else {
+    $(button).attr("disabled","true").removeClass("ui-state-default").addClass("ui-state-disabled");;
+  }
 }

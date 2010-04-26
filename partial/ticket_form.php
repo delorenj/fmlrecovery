@@ -21,7 +21,7 @@
       </div>
       <div id="serviceInfo"></div>
     </div>
-		<h3><a href="javascript: void(0)" class="ui-accordion-link">Tell us about your media<span class="loading"></span></a></h3>
+		<h3><a href="javascript: void(0)" class="ui-accordion-link">Tell us about your media<span class="loading" style="float:right;"></span></a></h3>
     <div id="mediaDiv" style="display:none;">
       <div>
         <div class="lcolumn roundy-border" style="width:38%;margin-left:-20px; padding-left:20px;">
@@ -63,12 +63,17 @@
         <div class="clearfix"></div>
         <div class="accordion-control">
           <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(0); return false;"><< Back</button>
-          <button class="epc-button ui-state-disabled ui-corner-all" onClick="togglePanel(2)" disabled>Next >></button>
+          <button class="epc-button ui-state-disabled ui-corner-all" onClick="validateMediaPanel(); return false;" disabled>Next >></button>
         </div>
       </div>
 		</div>
-		<h3><a href="javascript: void(0)" class="ui-accordion-link">Shipping Info</a></h3>
-		<div  style="display:none;">
-		</div>
+		<h3><a href="javascript: void(0)" class="ui-accordion-link">Shipping Info<span class="loading" style="float:right;"></span></a></h3>
+    <div id="shippingDiv" style="display:none;">
+      <div class="clearfix">&nbsp;</div>
+      <div class="accordion-control">
+        <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(1); return false;"><< Back</button>
+        <button class="epc-button ui-state-disabled ui-corner-all" onClick="return false;" disabled>Next >></button>
+      </div>
+    </div>
 	</div>
 </form>
