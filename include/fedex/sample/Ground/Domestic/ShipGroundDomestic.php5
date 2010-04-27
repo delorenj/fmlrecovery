@@ -31,8 +31,8 @@ else
 	$dutyAccount='XXX';
 }
 
-define('SHIP_LABEL', 'shipgroundlabel.pdf');  // PDF label file. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
-define('SHIP_CODLABEL', 'CODgroundreturnlabel.pdf');  // PDF label file. Change to file-extension ..png for creating a PNG label (e.g. CODgroundreturnlabel.png)
+define('SHIP_LABEL', '../../../../../labels/shipgroundlabel.pdf');  // PDF label file. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
+define('SHIP_CODLABEL', '../../../../../labels/CODgroundreturnlabel.pdf');  // PDF label file. Change to file-extension ..png for creating a PNG label (e.g. CODgroundreturnlabel.png)
 
 ini_set("soap.wsdl_cache_enabled", "0");
 
