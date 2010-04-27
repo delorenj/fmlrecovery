@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><soapenv:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><v8:ProcessTagReply xmlns:v8="http://fedex.com/ws/ship/v8"><v8:HighestSeverity>SUCCESS</v8:HighestSeverity><v8:Notifications><v8:Severity>SUCCESS</v8:Severity><v8:Source>ship</v8:Source><v8:Code>0000</v8:Code><v8:Message>Success</v8:Message><v8:LocalizedMessage>Success</v8:LocalizedMessage></v8:Notifications><v8:TransactionDetail xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+<v8:CustomerTransactionId>TC01_USUS_GroundCallTag_FG_SEND_POS</v8:CustomerTransactionId>
+</v8:TransactionDetail><v8:Version xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+<v8:ServiceId>ship</v8:ServiceId>
+<v8:Major>8</v8:Major>
+<v8:Intermediate>0</v8:Intermediate>
+<v8:Minor>0</v8:Minor>
+</v8:Version><v8:CompletedShipmentDetail><v8:UsDomestic>true</v8:UsDomestic><v8:MasterTrackingId><v8:TrackingIdType>GROUND</v8:TrackingIdType><v8:TrackingNumber>997038004670766</v8:TrackingNumber></v8:MasterTrackingId><v8:TagDetail><v8:ConfirmationNumber>997038004670766</v8:ConfirmationNumber></v8:TagDetail><v8:IneligibleForMoneyBackGuarantee>false</v8:IneligibleForMoneyBackGuarantee><v8:CompletedPackageDetails><v8:SequenceNumber>0</v8:SequenceNumber><v8:TrackingIds><v8:TrackingIdType>GROUND</v8:TrackingIdType><v8:TrackingNumber>997038004670766</v8:TrackingNumber></v8:TrackingIds><v8:GroupNumber>0</v8:GroupNumber></v8:CompletedPackageDetails></v8:CompletedShipmentDetail></v8:ProcessTagReply></soapenv:Body></soapenv:Envelope>

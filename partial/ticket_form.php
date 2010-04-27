@@ -1,5 +1,6 @@
 <?php unset($_SESSION["newticket"]); ?>
-<form id="ticket-form" method="post" action="validateTicket.php">
+<!--<form id="ticket-form" method="post" action="validateTicket.php">-->
+<div>
   <div id="ticket-accordion" class="ui-accordion-container" style="padding-top: 10px; clear: both;">
     <h3><a href="javascript: void(0)" class="ui-accordion-link">Choose a service<span class="loading" style="float:right;"></span></a></h3>
     <div id="serviceDiv">
@@ -69,11 +70,48 @@
 		</div>
 		<h3><a href="javascript: void(0)" class="ui-accordion-link">Shipping Info<span class="loading" style="float:right;"></span></a></h3>
     <div id="shippingDiv" style="display:none;">
-      <div class="clearfix">&nbsp;</div>
-      <div class="accordion-control">
-        <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(1); return false;"><< Back</button>
-        <button class="epc-button ui-state-disabled ui-corner-all" onClick="return false;" disabled>Next >></button>
-      </div>
+      <form id="shippingForm" action="tickets.php" method="post">
+        <div class="lcolumn roundy-border" style="width:38%;margin-left:-20px; padding-left:20px;">
+          <div class="formfield">
+            <div class="clearfix">
+              <label for="address">Street</label>
+              <input type="text" size="30" name="address" class="epc-textfield float_left" />
+            </div>
+          </div>
+          <div class="formfield">
+            <div class="clearfix">
+              <label for="zip">Zip</label>
+              <input id="zip" type="text" size="5" name="zip" class="epc-textfield float_left" /><div class="fieldOK" style="position:relative; top:5px;"></div><span class="loading" style="float:right;"></span>
+            </div>
+          </div>
+          <div id="hiddenState" style="display:none;">
+            <div class="formfield">
+              <div class="clearfix">
+                <label for="city">City</label>
+                <input id="city" type="text" size="30" name="city" class="epc-textfield float_left" />
+              </div>
+            </div>
+            <div class="formfield">
+              <div class="clearfix">
+                <label for="state">State</label>
+                <input type="text" id="state" size="30" name="state" class="epc-textfield float_left" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="rcolumn roundy-border" style="width:56%;margin-left:-20px; padding-left:20px;">
+          <div style="width:100%; margin-left: auto; margin-right: auto;">
+            <? include "login_form.php"; ?>
+          </div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="accordion-control">
+          <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(1); return false;"><< Back</button>
+          <button type="submit" class="epc-button ui-state-disabled ui-corner-all" disabled>Next >></button>
+        </div>
+      </form>
     </div>
 	</div>
-</form>
+<!--</form>-->
+</div>

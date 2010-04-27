@@ -18,14 +18,7 @@ google.setOnLoadCallback(function(){
     })
   
   $("#ticket-accordion h3 a").css("text-decoration", "none");
-	$("#mediaSizeSlider").slider({
-    value:1,
-		min:1,
-		max:10,
-		slide: function(event, ui) {
-  		$("#mediaSizeResult").css("border", "none").css("background-color", "#FFFFFF").html("<p>"+indexToGB(ui.value)+"</p>");
-		}
-	});
+
   $(".service").hover(function(){
     $(this).css({
       borderBottom: '8px solid #8FA3C6'
@@ -45,6 +38,20 @@ google.setOnLoadCallback(function(){
    onClickDeviceType($(this).val());
  });
 
+ $("#zip").blur(function() {
+	var city = $("#city");
+  var state = $("#state");
+  resetAjaxLoader("#zip");
+	$.getJSON("http://www.geonames.org/postalCodeLookupJSON?&country=US&callback=?", {postalcode: this.value }, function(response) {
+		if (!city.val() && response && response.postalcodes.length && response.postalcodes[0].placeName) {
+			city.val(response.postalcodes[0].placeName);
+		}
+		if (!state.val() && response && response.postalcodes.length && response.postalcodes[0].adminCode1) {
+			state.val(response.postalcodes[0].adminCode1);
+		}
+    $("#hiddenState").slideDown("slow");
+	})
+ });
  jQuery.epc.mediaPanel = [0,0];
 });
 
@@ -53,41 +60,14 @@ function togglePanel(panel)
   $("#ticket-accordion").accordion("activate", panel);
 }
 
-function onClickDeviceType(device)
-{
-  switch(device){
-    case "desktop":
-      flashNotice("Sounds like you have an internal hard drive");
-      $("select[name='mediaType']").val("2");
-      break;
-    case "laptop":
-      flashNotice("Sounds like you have an laptop hard drive");
-      $("select[name='mediaType']").val("3");
-      break;
-    case "phone":
-    case "usb":
-      flashNotice("Sounds like you have flash media");
-      $("select[name='mediaType']").val("4");
-      break;
-    case "other":
-      flashNotice("Describe your media in the box below");
-      $("select[name='mediaType']").val("5");
-      break;
-  }
-  $("#mediaTypeHelpDialog").dialog("destroy");
-}
-
 function displayServiceInfo(index)
 {
   var html ="";
   switch(index){
     case 0:
-      html += "<div><h1><em>This</em> is info on Selective Recovery</h1></div>";
-      break;
-    case 1:
       html += "<div><h1><em>This</em> is info on Media Recovery</h1></div>";
       break;
-    case 2:
+    case 1:
       html += "<div><h1><em>This</em> is info on Full Recovery</h1></div>";
       break;
   }
@@ -114,7 +94,7 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
       if(data.indexOf("SUCCESS") != -1){
         $("#ticket-accordion h3:first-child a").append("<img src='images/accept.png' style='margin-top:-5px;float:right;'/>")
       }
-      $("#ticket-accordion").accordion("activate", 1);   
+      $("#ticket-accordion").accordion("activate", 2);
     });
   switch(index){
     case 0: //Media
