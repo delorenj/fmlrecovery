@@ -60,7 +60,6 @@ google.setOnLoadCallback(function(){
   $("#phone1,#phone2,#phone3").keydown(function(e){
     var data = "0123456789";
     var c = String.fromCharCode(e.which)
-    console.log(e.which);
     if((data.indexOf(c) == -1) && (e.which != 8) && (e.which != 9) && (e.which != 37)&& (e.which != 39)){
       return false;
     }
@@ -106,7 +105,6 @@ function validateName(name)
   var first = "";
   var last = "";
   name = name.split(" ");
-  console.log(name.length);
   if(!isValidFirstAndLastName(name,"#name")){
     return false;
   }
@@ -117,8 +115,6 @@ function validateName(name)
       last += " ";
     }
   }
-  console.log(last+", "+first);
-
   return true;
 }
 
@@ -193,7 +189,6 @@ function validateMediaPanel()
   $("#fileSelection").find(".epc-checkbox:checked").each(function(){
     textval = $(this).attr("id");
     if(textval == "other") return true;
-    console.log(textval)
     fileTypeArray.push(textval);
   });
 
@@ -201,7 +196,6 @@ function validateMediaPanel()
   $("#fileSelectionResults ol").children().each(function(){
     fileval = $(this).text();
     fileval = fileval.substring(0,fileval.length - 1);
-    console.log(fileval)
     specificFileArray.push(fileval);
   });
   $.post("tickets.php", {action: "create", key: "mediaDetail", val: "fileTypes="+fileTypeArray+"|specificFiles="+specificFileArray},
