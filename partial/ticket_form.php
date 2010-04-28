@@ -115,7 +115,7 @@
                 <input type="hidden" id="phone" />
                 <input type="text" id="phone1" size="3" maxlength="3" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/><span class="float_left" style="margin:0 -10px; font-weight:bold;line-height:2;">-</span>
                 <input type="text" id="phone2" size="3" maxlength="3" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/><span class="float_left" style="margin:0 -10px; font-weight:bold;line-height:2;">-</span>
-                <input type="text" id="phone3" size="4" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/>
+                <input type="text" id="phone3" size="4" maxlength="4" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/>
               </div>
             </div>
           </div>
