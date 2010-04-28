@@ -43,10 +43,10 @@ google.setOnLoadCallback(function(){
   var state = $("#state");
   resetAjaxLoader("#zip");
 	$.getJSON("http://www.geonames.org/postalCodeLookupJSON?&country=US&callback=?", {postalcode: this.value }, function(response) {
-		if (!city.val() && response && response.postalcodes.length && response.postalcodes[0].placeName) {
+		if (response && response.postalcodes.length && response.postalcodes[0].placeName) {
 			city.val(response.postalcodes[0].placeName);
 		}
-		if (!state.val() && response && response.postalcodes.length && response.postalcodes[0].adminCode1) {
+		if (response && response.postalcodes.length && response.postalcodes[0].adminCode1) {
 			state.val(response.postalcodes[0].adminCode1);
 		}
     $("#hiddenState").slideDown("slow");
@@ -54,6 +54,19 @@ google.setOnLoadCallback(function(){
  });
  jQuery.epc.mediaPanel = [0,0];
 });
+
+function onKeyupPhone(field)
+{
+  switch(field){
+    case "phone1":
+    case "phone2":
+      if($("#"+field).val().length == 3){
+        $("#"+field).focusNextInputField();
+      }
+      break;
+  }
+  $("#phone").val($("#phone1").val() + $("#phone2").val() + $("#phone3").val());
+}
 
 function togglePanel(panel)
 {
