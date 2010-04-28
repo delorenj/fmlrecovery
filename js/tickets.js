@@ -1,8 +1,10 @@
 google.setOnLoadCallback(function(){
 
+
 	$("#ticket-accordion").accordion({
 		autoHeight: false,
-		clearStyle: true
+		clearStyle: true,
+    animated:false
 	});
 
   $(".ui-accordion-header").unbind("click");
@@ -18,6 +20,7 @@ google.setOnLoadCallback(function(){
     })
   
   $("#ticket-accordion h3 a").css("text-decoration", "none");
+
 
   $(".service").hover(function(){
     $(this).css({
@@ -53,7 +56,18 @@ google.setOnLoadCallback(function(){
 	})
  });
  jQuery.epc.mediaPanel = [0,0];
+
+  $("#phone1,#phone2,#phone3").keydown(function(e){
+    var data = "0123456789";
+    var c = String.fromCharCode(e.which)
+    console.log(e.which);
+    if((data.indexOf(c) == -1) && (e.which != 8) && (e.which != 9) && (e.which != 37)&& (e.which != 39)){
+      return false;
+    }
+  });
+
 });
+
 
 function onKeyupPhone(field)
 {
@@ -85,6 +99,27 @@ function displayServiceInfo(index)
       break;
   }
   $("#serviceInfo").html(html);
+}
+
+function validateName(name)
+{
+  var first = "";
+  var last = "";
+  name = name.split(" ");
+  console.log(name.length);
+  if(!isValidFirstAndLastName(name,"#name")){
+    return false;
+  }
+  first = name[0];
+  for(i=1; i<name.length;i++){
+    last += name[i];
+    if(i != name.length-1){
+      last += " ";
+    }
+  }
+  console.log(last+", "+first);
+
+  return true;
 }
 
 function validateServicePanel(index)
@@ -214,13 +249,14 @@ function checkCheck(sel)
       $("#specificFileTypeField").fadeOut("slow");
       $("#extraTypes").fadeOut("slow");
     }
-
+/*
     if(numChecked > 0){
       jQuery.epc.mediaPanel[2] = 1;
     }
     else {
       jQuery.epc.mediaPanel[2] = 0;
     }
+*/
     formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
 }
 

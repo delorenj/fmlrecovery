@@ -497,6 +497,16 @@ font-size:1em;
   width:25px;  
 }
 
+.ui-accordion-content {
+  zoom: 1;
+}
+
+.panelNav {
+  width: 100%;
+  display: block;
+  clear: both;
+}
+
 .accordion-control {
   width:30%;
   margin: 35px auto 0px auto;

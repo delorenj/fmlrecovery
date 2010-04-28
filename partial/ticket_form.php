@@ -25,7 +25,7 @@
 		<h3><a href="javascript: void(0)" class="ui-accordion-link">Tell us about your media<span class="loading" style="float:right;"></span></a></h3>
     <div id="mediaDiv" style="display:none;">
       <div>
-        <div class="lcolumn roundy-border" style="width:38%;margin-left:-20px; padding-left:20px;">
+        <div class="lcolumn">
           <div class="formfield">
             <div class="clearfix">
               <label for="mediaType">Select a type of media:</label>
@@ -56,70 +56,85 @@
             <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
           </div>
         </div>
-        <div class="rcolumn roundy-border" style="width:56%;margin-left:-20px; padding-left:20px;">
+        <div class="rcolumn">
           <div style="width:100%; margin-left: auto; margin-right: auto;">
             <div id="fileSelection">&nbsp;</div>
           </div>
         </div>
         <div class="clearfix"></div>
-        <div class="accordion-control">
-          <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(0); return false;"><< Back</button>
-          <button class="epc-button ui-state-disabled ui-corner-all" onClick="validateMediaPanel(); return false;" disabled>Next >></button>
+        <div class="panelNav">
+          <div class="accordion-control">
+            <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(0); return false;"><< Back</button>
+            <button class="epc-button ui-state-disabled ui-corner-all" onClick="validateMediaPanel(); return false;" disabled>Next >></button>
+          </div>
         </div>
       </div>
 		</div>
 		<h3><a href="javascript: void(0)" class="ui-accordion-link">Shipping Info<span class="loading" style="float:right;"></span></a></h3>
     <div id="shippingDiv" style="display:none;">
-      <form id="shippingForm" action="tickets.php" method="post">
-        <div class="lcolumn roundy-border" style="width:38%;margin-left:-20px; padding-left:20px;">
-          <div class="formfield">
-            <div class="clearfix">
-              <label for="address">Street</label>
-              <input type="text" size="30" name="address" class="epc-textfield float_left" />
-            </div>
-          </div>
-          <div class="formfield">
-            <div class="clearfix">
-              <label for="zip">Zip</label>
-              <input id="zip" type="text" size="5" name="zip" class="epc-textfield float_left" /><div class="fieldOK" style="position:relative; top:5px;"></div><span class="loading" style="float:right;"></span>
-            </div>
-          </div>
-          <div id="hiddenState" style="display:none;">
+      <div>
+        <form id="shippingForm" action="tickets.php" method="post">
+          <div class="lcolumn">
             <div class="formfield">
               <div class="clearfix">
-                <label for="city">City</label>
-                <input id="city" type="text" size="30" name="city" class="epc-textfield float_left" />
+                <label for="name">Name</label>
+                <input type="text" size="30" id="name" name="name" class="epc-textfield float_left" onBlur="validateName(this.value);"/>
+                <input type="hidden" id="nameLast" />
+                <input type="hidden" id="nameFirst" />
               </div>
             </div>
             <div class="formfield">
               <div class="clearfix">
-                <label for="state">State</label>
-                <input type="text" id="state" size="30" name="state" class="epc-textfield float_left" />
+                <label for="address">Street</label>
+                <input type="text" size="30" name="address" class="epc-textfield float_left" />
+              </div>
+            </div>
+            <div class="formfield">
+              <div class="clearfix">
+                <label for="zip">Zip</label>
+                <input id="zip" type="text" size="5" name="zip" class="epc-textfield float_left" /><div class="fieldOK" style="position:relative; top:5px;"></div><span class="loading" style="float:right;"></span>
+              </div>
+            </div>
+            <div id="hiddenState" style="display:none;">
+              <div class="formfield">
+                <div class="clearfix">
+                  <label for="city">City</label>
+                  <input id="city" type="text" size="30" name="city" class="epc-textfield float_left" />
+                </div>
+              </div>
+              <div class="formfield">
+                <div class="clearfix">
+                  <label for="state">State</label>
+                  <input type="text" id="state" size="30" name="state" class="epc-textfield float_left" />
+                </div>
+              </div>
+            </div>
+            <div class="formfield">
+              <div class="clearfix">
+                <label for="phone">Phone</label>
+                <input type="hidden" id="phone" />
+                <input type="text" id="phone1" size="3" maxlength="3" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/><span class="float_left" style="margin:0 -10px; font-weight:bold;line-height:2;">-</span>
+                <input type="text" id="phone2" size="3" maxlength="3" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/><span class="float_left" style="margin:0 -10px; font-weight:bold;line-height:2;">-</span>
+                <input type="text" id="phone3" size="4" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/>
               </div>
             </div>
           </div>
-          <div class="formfield">
-            <div class="clearfix">
-              <label for="phone">Phone</label>
-              <input type="hidden" id="phone" />
-              <input type="text" id="phone1" size="3" maxlength="3" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/><span class="float_left" style="margin:0 -10px; font-weight:bold;line-height:2;">-</span>
-              <input type="text" id="phone2" size="3" maxlength="3" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/><span class="float_left" style="margin:0 -10px; font-weight:bold;line-height:2;">-</span>
-              <input type="text" id="phone3" size="4" class="epc-textfield float_left" onKeyup="onKeyupPhone(this.id);"/>
+          <!--
+          <div class="rcolumn roundy-border" style="width:56%;margin-left:-20px; padding-left:20px;">
+            <div style="width:100%; margin-left: auto; margin-right: auto;">
+                                        <? include "login_form.php"; ?>
             </div>
           </div>
-
-        </div>
-        <div class="rcolumn roundy-border" style="width:56%;margin-left:-20px; padding-left:20px;">
-          <div style="width:100%; margin-left: auto; margin-right: auto;">
-            <? include "login_form.php"; ?>
+          -->
+          <div class="clearfix">&nbsp;</div>
+          <div class="panelNav">
+            <div class="accordion-control">
+              <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(1); return false;"><< Back</button>
+              <button type="submit" class="epc-button ui-state-disabled ui-corner-all" disabled>Next >></button>
+            </div>
           </div>
-        </div>
-        <div class="clearfix">&nbsp;</div>
-        <div class="accordion-control">
-          <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(1); return false;"><< Back</button>
-          <button type="submit" class="epc-button ui-state-disabled ui-corner-all" disabled>Next >></button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
 	</div>
 <!--</form>-->

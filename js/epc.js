@@ -190,6 +190,18 @@ function inBounds(val, l, r, msg, selector, exception)
 	return true;
 }
 
+function isValidFirstAndLastName(nameArray, selector)
+{
+  if(nameArray.length < 2){
+    fieldError("First and last name is required", selector)
+    return false
+  }
+  else{
+    fieldErrorOff(selector);
+    return true;
+  }
+}
+
 function notEmpty(val, msg, selector, exception)
 {
   if(val == exception) return true;
