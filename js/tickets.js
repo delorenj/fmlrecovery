@@ -64,8 +64,8 @@ google.setOnLoadCallback(function(){
     if((data.indexOf(c) == -1) && (e.which != 8) && (e.which != 9) && (e.which != 37)&& (e.which != 39)){
       return false;
     }
+  return true;
   });
-
 });
 
 
@@ -224,7 +224,9 @@ function validateMediaPanel()
   fileTypeArray = new Array;
   $("#fileSelection").find(".epc-checkbox:checked").each(function(){
     textval = $(this).attr("id");
-    if(textval == "other") return true;
+    if(textval == "other") {
+      return;
+    }
     fileTypeArray.push(textval);
   });
 
@@ -492,6 +494,6 @@ function formCompleteCheck(p, button)
     $(button).removeAttr("disabled").removeClass("ui-state-disabled").addClass("ui-state-default");
   }
   else {
-    $(button).attr("disabled","true").removeClass("ui-state-default").addClass("ui-state-disabled");;
+    $(button).attr("disabled","true").removeClass("ui-state-default").addClass("ui-state-disabled");
   }
 }
