@@ -88,16 +88,9 @@ function logout()
 
 function validateLoginForm()
 {
+	resetAjaxLoader("#loginButton");
 
-	$("#login-form-loading").ajaxStart(function(){
-		$(this).html("<img src='images/ajax-loader.gif' />");
-	});
-
-	$("#login-form-loading").ajaxComplete(function(){
-		$(this).html("");
-	});
-
-	$.post("authenticate.php", $("#login-form").serialize(),
+	$.post("authenticate.php", {action: "login", email: $("#email").val(), password: $("#password").val()},
 		function(data){
 			handleLoginResponse(data.split("|"));
 		});
@@ -188,6 +181,17 @@ function inBounds(val, l, r, msg, selector, exception)
 	}
 	fieldErrorOff(selector);
 	return true;
+}
+
+function isValidEmail(email, selector)
+{
+  var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+	if(!pattern.test(email)){
+    fieldError("Please enter a valid email address",selector);
+    return false;
+  }
+  fieldErrorOff(selector);
+  return true;
 }
 
 function isValidFirstAndLastName(nameArray, selector)

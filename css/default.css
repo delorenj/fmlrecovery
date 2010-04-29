@@ -480,6 +480,10 @@ font-size:1em;
   background-repeat: repeat-x;
 }
 
+.small {
+  font-size:0.7em;
+}
+
 .fieldOK {
   display:none;
   float:left;

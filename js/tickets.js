@@ -42,10 +42,11 @@ google.setOnLoadCallback(function(){
  });
 
  $("#zip").blur(function() {
+  if($("#zip").empty()) return;
 	var city = $("#city");
   var state = $("#state");
   resetAjaxLoader("#zip");
-	$.getJSON("http://www.geonames.org/postalCodeLookupJSON?&country=US&callback=?", {postalcode: this.value }, function(response) {
+	$.getJSON("http://www.geonames.org/postalCodeLookupJSON?&country=US&callback=?", {postalcode: this.value}, function(response) {
 		if (response && response.postalcodes.length && response.postalcodes[0].placeName) {
 			city.val(response.postalcodes[0].placeName);
 		}
@@ -100,8 +101,43 @@ function displayServiceInfo(index)
   $("#serviceInfo").html(html);
 }
 
+function alreadyHaveAnAccount()
+{
+  $("#passwordConfDiv").slideUp("slow", function(){
+    $("#passwordCaption").html("Password");
+    $("#shippingForm div.lcolumn").append("<div id='hiddenLogin'><div class='clearfix'></div><button id='loginButton' class='epc-button ui-state-default ui-corner-all' href='#' onClick='validateLoginForm(); return false;'>Log in</button> \n\
+          <a href='#' class='small' onClick='forgotPassword()'>Forgot Password</a> or <a href='#' class='small' onClick='createAnAccount()'>Create an Account</a></div>")
+  });
+}
+
+function createAnAccount()
+{
+  $("#hiddenLogin").fadeOut("slow", function(){
+    $(this).remove();
+    $("#passwordCaption").html("Choose a Password");
+    $("#passwordConfDiv").slideDown("slow");
+  });
+}
+
+function forgotPassword()
+{
+  if(!validateEmail()) return false;
+  //TODO: Send an email!
+  flashNotice("Your password has been sent to your email.")
+  return true;
+}
+
+function validateEmail()
+{
+  if(!isValidEmail($("#email").val(),"#email")){
+    return false;
+  }
+  return true;
+}
+
 function validateName(name)
 {
+  if($("#name").empty()) return false;
   var first = "";
   var last = "";
   name = name.split(" ");
@@ -295,28 +331,6 @@ function dontKnowMediaSize()
 
 function dontKnowMediaType()
 {
-  $("#mediaTypeHelpDialog").dialog({
-    autoOpen: false,
-    height: 300,
-    width: 350,
-    modal: true,
-    buttons: {
-/*
-      'Ok': function() {
-          $(this).dialog('close');
-
-      },
-      Cancel: function() {
-        $(this).dialog('close');
-      }
-*/
-    },
-    close: function() {
-      //TODO
-    }
-  });
-
-//  $("#mediaTypeHelpDialog").dialog("open");
   resetAjaxLoader("select[name='mediaType']");
   $.post("tickets.php", {action: "create", key: "mediaType", val: "idk"},
     function(data){
@@ -332,7 +346,6 @@ function dontKnowMediaType()
         flashError("Oops, something went wrong. Try Again.")
       }
     })
-
 }
 
 function specificFileType()
