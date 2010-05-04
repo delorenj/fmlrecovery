@@ -1,6 +1,10 @@
 <?php
 class User extends ActiveRecord\Model
 {
+  static $has_many = array(
+    array('Addresses')
+  );
+  
 	static $validates_presence_of = array(
 		array('first_name'),
 		array('last_name'),
