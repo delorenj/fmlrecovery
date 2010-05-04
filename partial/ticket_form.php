@@ -75,40 +75,49 @@
       <div>
         <form id="shippingForm" action="tickets.php" method="post">
           <div class="lcolumn">
-            <div class="formfield">
-              <div class="clearfix">
-                <label for="name">Email</label>
-                <input type="text" size="30" id="email" name="email" class="epc-textfield float_left" onBlur="validateEmail(this.value);"/>
+            <div id="shippingLogin">
+              <div class="formfield">
+                <div class="clearfix">
+                  <label for="name">Email</label>
+                  <input type="text" size="30" id="email" name="email" class="epc-textfield float_left" onBlur="validateEmail(this.value);"/>
+                </div>
+              </div>
+              <div class="formfield">
+                <div class="clearfix">
+                  <label for="name" id="passwordCaption">Choose a password</label>
+                  <input type="password" size="30" id="password" name="password" class="epc-textfield float_left" />
+                </div>
+              </div>
+              <div class="formfield" id="passwordConfDiv">
+                <div class="clearfix">
+                  <label for="name">Retype your password</label>
+                  <input type="password" size="30" id="passwordconf" name="passwordconf" class="epc-textfield float_left" onKeyup="onKeyupPassword();"/>
+                </div>
+                <a href="#" onClick="alreadyHaveAnAccount()">Already have an account?</a>
               </div>
             </div>
-            <div class="formfield">
-              <div class="clearfix">
-                <label for="name" id="passwordCaption">Choose a password</label>
-                <input type="password" size="30" id="password" name="password" class="epc-textfield float_left" onKeyup="onKeyupPassword(this.value);"/>
-              </div>
-            </div>
-            <div class="formfield" id="passwordConfDiv">
-              <div class="clearfix">
-                <label for="name">Retype your password</label>
-                <input type="password" size="30" id="passwordconf" name="passwordconf" class="epc-textfield float_left" onKeyup="onKeyupPassword(this.value);"/>
-              </div>
-              <a href="#" onClick="alreadyHaveAnAccount()">Already have an account?</a>
+            <div id="shippingHistory" style="display:none">
+              <h3>Account Info</h3>
             </div>
           </div>
           <div class="rcolumn">
             <div style="width:100%; margin-left: auto; margin-right: auto;">
               <div class="formfield">
                 <div class="clearfix">
-                  <label for="name">Name</label>
-                  <input type="text" size="30" id="name" name="name" class="epc-textfield float_left" onBlur="validateName(this.value);"/>
-                  <input type="hidden" id="nameLast" />
-                  <input type="hidden" id="nameFirst" />
+                  <div class="float_left">
+                    <label for="firstname">First Name</label>
+                    <input type="text" size="9" id="firstname" name="firstname" class="epc-textfield float_left" />
+                  </div>
+                  <div class="float_left">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" size="14" id="lastname" name="lastname" class="epc-textfield float_left" />
+                  </div>
                 </div>
               </div>
               <div class="formfield">
                 <div class="clearfix">
                   <label for="address">Street</label>
-                  <input type="text" size="30" name="address" class="epc-textfield float_left" />
+                  <input type="text" size="30" name="street" id="street" class="epc-textfield float_left" />
                 </div>
               </div>
               <div class="formfield">

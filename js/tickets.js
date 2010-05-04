@@ -21,6 +21,15 @@ google.setOnLoadCallback(function(){
   
   $("#ticket-accordion h3 a").css("text-decoration", "none");
 
+  $("#ticket-accordion").bind('accordionchange', function(event,ui){
+    switch(ui.newHeader.index()){
+      case 4:
+        $("#password").bind("keyup", function(){onKeyupPassword()});
+        postLoginProcessing();
+        break;
+       default:
+    }
+  });
 
   $(".service").hover(function(){
     $(this).css({
@@ -42,7 +51,7 @@ google.setOnLoadCallback(function(){
  });
 
  $("#zip").blur(function() {
-  if($("#zip").empty()) return;
+  if(!validateZip()) return;
 	var city = $("#city");
   var state = $("#state");
   resetAjaxLoader("#zip");
@@ -53,10 +62,22 @@ google.setOnLoadCallback(function(){
 		if (response && response.postalcodes.length && response.postalcodes[0].adminCode1) {
 			state.val(response.postalcodes[0].adminCode1);
 		}
-    $("#hiddenState").slideDown("slow");
+    $("#hiddenState").slideDown("slow", function(){
+      validateCity();
+      validateState();
+    });
 	})
  });
+
+ $("#firstname").blur(function(){validateFirstName()});
+ $("#lastname").blur(function(){validateLastName()});
+ $("#street").blur(function(){validateStreet()});
+ $("#city").blur(function(){validateCity()});
+ $("#state").blur(function(){validateState()});
+ $("#phone1, #phone2, #phone3").blur(function(){validatePhone()});
+ 
  jQuery.epc.mediaPanel = [0,0];
+ jQuery.epc.shippingPanel = [0,0,0,0,0,0,0,0,0];
 
   $("#phone1,#phone2,#phone3").keydown(function(e){
     var data = "0123456789";
@@ -82,6 +103,19 @@ function onKeyupPhone(field)
   $("#phone").val($("#phone1").val() + $("#phone2").val() + $("#phone3").val());
 }
 
+function onKeyupPassword()
+{
+  var npw = $("#password").val();
+  var pwc = $("#passwordconf").val();
+  if(npw == pwc){
+    jQuery.epc.shippingPanel[2] = 1;
+  }
+  else{
+    jQuery.epc.shippingPanel[2] = 0;
+  }
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+}
+
 function togglePanel(panel)
 {
   $("#ticket-accordion").accordion("activate", panel);
@@ -104,8 +138,9 @@ function displayServiceInfo(index)
 function alreadyHaveAnAccount()
 {
   $("#passwordConfDiv").slideUp("slow", function(){
+    $("#password").unbind("keyup");
     $("#passwordCaption").html("Password");
-    $("#shippingForm div.lcolumn").append("<div id='hiddenLogin'><div class='clearfix'></div><button id='loginButton' class='epc-button ui-state-default ui-corner-all' href='#' onClick='validateLoginForm(); return false;'>Log in</button> \n\
+    $("#shippingLogin").append("<div id='hiddenLogin'><div class='clearfix'></div><button id='loginButton' class='epc-button ui-state-default ui-corner-all' href='#' onClick='validateLoginForm(); postLoginProcessing(); return false;'>Log in</button> \n\
           <a href='#' class='small' onClick='forgotPassword()'>Forgot Password</a> or <a href='#' class='small' onClick='createAnAccount()'>Create an Account</a></div>")
   });
 }
@@ -114,9 +149,53 @@ function createAnAccount()
 {
   $("#hiddenLogin").fadeOut("slow", function(){
     $(this).remove();
+    $("#password").bind("keyup", function(){onKeyupPassword($(this).val());});
     $("#passwordCaption").html("Choose a Password");
     $("#passwordConfDiv").slideDown("slow");
   });
+}
+
+function showShippingHistory()
+{
+  $("#shippingLogin").fadeOut("slow",function(){
+    $("#shippingHistory").fadeIn("slow");
+  });
+}
+
+function showShippingLogin()
+{
+  $("#shippingHistory").fadeOut("slow",function(){
+    $("#shippingLogin").fadeIn("slow");
+  });
+}
+
+function postLoginProcessing()
+{
+  jQuery.epc.shippingPanel[0] = 1;
+  jQuery.epc.shippingPanel[1] = 1;
+  $.post("users.php", {action: "get", key: "defaultAddress"},
+    function(data){
+      if(data == null) return;
+      showShippingHistory();
+      $("#firstname").val(data.firstname);
+      $("#lastname").val(data.lastname);
+      $("#street").val(data.street);
+      $("#zip").val(data.zip);
+      $("#city").val(data.city);
+      $("#state").val(data.state);
+      $("#phone").val(data.phone);
+      $("#phone1").val(data.phone.substring(0,3));
+      $("#phone2").val(data.phone.substring(3,6));
+      $("#phone3").val(data.phone.substring(6,10));
+      $("#hiddenState").slideDown("slow");
+      validateFirstName();
+      validateLastName();
+      validateStreet();
+      validateZip();
+      validateCity();
+      validateState();
+      validatePhone();
+    },'json');
 }
 
 function forgotPassword()
@@ -130,28 +209,111 @@ function forgotPassword()
 function validateEmail()
 {
   if(!isValidEmail($("#email").val(),"#email")){
+    jQuery.epc.shippingPanel[0] = 0;
+    formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
     return false;
   }
+  jQuery.epc.shippingPanel[0] = 1;
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
   return true;
 }
 
-function validateName(name)
+function validateFirstName()
 {
-  if($("#name").empty()) return false;
-  var first = "";
-  var last = "";
-  name = name.split(" ");
-  if(!isValidFirstAndLastName(name,"#name")){
-    return false;
+  var pass = true;
+  if((!notEmpty($("#firstname").val(),"First name is required","#firstname"))){
+      jQuery.epc.shippingPanel[2] = 0;
+      pass = false;
   }
-  first = name[0];
-  for(i=1; i<name.length;i++){
-    last += name[i];
-    if(i != name.length-1){
-      last += " ";
-    }
+  else{
+    jQuery.epc.shippingPanel[2] = 1;
   }
-  return true;
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+  return pass
+}
+
+function validateLastName()
+{
+  var pass = true;
+  if((!notEmpty($("#lastname").val(),"Last name is required","#lastname"))){
+      jQuery.epc.shippingPanel[8] = 0;
+      pass = false;
+  }
+  else{
+    jQuery.epc.shippingPanel[8] = 1;
+  }
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+  return pass
+}
+
+function validateState(){
+  var pass = true;
+  if((!notEmpty($("#state").val(),"State is required","#state"))){
+      console.log($("#state").val()+":here");
+      jQuery.epc.shippingPanel[6] = 0;
+      pass = false;
+  }
+  else{
+    jQuery.epc.shippingPanel[6] = 1;
+  }
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+  return pass
+}
+
+function validateCity(){
+  var pass = true;
+  if((!notEmpty($("#city").val(),"City is required","#city"))){
+    jQuery.epc.shippingPanel[5] = 0;
+    pass = false;
+  }
+  else{
+    jQuery.epc.shippingPanel[5] = 1;
+  }
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+  return pass
+}
+
+function validateStreet(){
+  var pass = true;
+  if((!notEmpty($("#street").val(),"Street is required","#street"))){
+    jQuery.epc.shippingPanel[3] = 0;
+    pass = false;
+  }
+  else{
+    jQuery.epc.shippingPanel[3] = 1;
+  }
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+  return pass
+}
+
+function validatePhone(){
+  var pass = true;
+  if((!notEmpty($("#phone").val(),"Phone number is required","#phone1, #phone2, #phone3")) ||
+     (!inBounds($("#phone").val().length,10,10, "Not a valid phone number","#phone1, #phone2, #phone3"))
+  ){
+    jQuery.epc.shippingPanel[7] = 0;
+    pass = false;
+  }
+  else{
+    jQuery.epc.shippingPanel[7] = 1;
+  }
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+  return pass
+}
+
+function validateZip(){
+  var pass = true;
+  if((!notEmpty($("#zip").val(),"Zip code is required","#zip")) ||
+     (!notEmpty($("#zip").val(),"Zip code is required","#zip")) ||
+     (!isNumeric($("#zip").val(),"Not a valid zip code","#zip")) ){
+    jQuery.epc.shippingPanel[4] = 0;
+    pass = false;
+  }
+  else{
+    jQuery.epc.shippingPanel[4] = 1;
+  }
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+  return pass
 }
 
 function validateServicePanel(index)

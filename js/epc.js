@@ -83,6 +83,11 @@ function logout()
 	$.post("authenticate.php", {action: "logout"},
 		function(data){
 			$("#login-message").text("Welcome Guest").parent().children(':last').remove();
+      $("input", "#shippingForm").not(":button, :submit, :reset").val("").removeAttr("checked").removeAttr("selected");
+      showShippingLogin();
+      for(i in jQuery.epc.shippingPanel) {
+        jQuery.epc.shippingPanel[i] = 0;
+      };
 		});
 }
 
@@ -234,14 +239,14 @@ function fieldErrorOff(selector)
 
 function flashError(msg)
 {
-	$(".flash_error").html("<p class='message'>"+msg+"</p>").fadeIn();
-	setTimeout("$('.flash_error').fadeOut('slow')","8000");
+	$(".flash_error").append("<p class='message'>* "+msg+"</p>").fadeIn();
+	setTimeout("$('.flash_error').fadeOut('slow',function(){$(this).html('')})","8000");
 }
 
 function flashNotice(msg)
 {
-	$(".flash_notice").html("<p class='message'>"+msg+"</p>").fadeIn();
-	setTimeout("$('.flash_notice').fadeOut('slow')","8000");
+	$(".flash_notice").append("<p class='message'>"+msg+"</p>").fadeIn();
+	setTimeout("$('.flash_notice').fadeOut('slow',function(){$(this).html('')})","8000");
 }
 
 function resetAjaxLoader(selector)
