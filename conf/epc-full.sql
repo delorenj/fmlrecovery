@@ -30,21 +30,12 @@ CREATE TABLE `addresses` (
   `streetLines` varchar(200) NOT NULL,
   `city` varchar(100) NOT NULL,
   `stateOrProvinceCode` varchar(100) NOT NULL,
-  `postalCode` int(5) NOT NULL,
+  `postalCode` varchar(15) NOT NULL,
   `phoneNumber` varchar(10) NOT NULL,
   `default` binary(1) NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `addresses`
---
-
-LOCK TABLES `addresses` WRITE;
-/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `medias`
@@ -65,15 +56,6 @@ CREATE TABLE `medias` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `medias`
---
-
-LOCK TABLES `medias` WRITE;
-/*!40000 ALTER TABLE `medias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `medias` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `schema_migrations`
 --
 
@@ -85,15 +67,6 @@ CREATE TABLE `schema_migrations` (
   UNIQUE KEY `unique_schema_migrations` (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `schema_migrations`
---
-
-LOCK TABLES `schema_migrations` WRITE;
-/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `services`
@@ -113,15 +86,6 @@ CREATE TABLE `services` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=780919734 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `services`
---
-
-LOCK TABLES `services` WRITE;
-/*!40000 ALTER TABLE `services` DISABLE KEYS */;
-/*!40000 ALTER TABLE `services` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `tickets`
@@ -159,15 +123,6 @@ CREATE TABLE `tickets` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tickets`
---
-
-LOCK TABLES `tickets` WRITE;
-/*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `users`
 --
 
@@ -185,16 +140,6 @@ CREATE TABLE `users` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (7,'jaradd@gmail.com','$1$tVhwKGxm$CltqPKJ0pqpwsVIph8OhB.','2010-03-23 18:02:38','2010-03-23 18:02:38','jarad','delorenzo'),(8,'sheep@gmail.com','$1$XoeECqkb$FkEIFj5RREvckuESrTbZZ1','2010-03-23 18:11:37','2010-03-23 18:11:37','sheep','man'),(9,'sheep1@gmail.com','$1$bHXaMCEg$DHmmKvMeHezLXQ2RXvqqh0','2010-03-23 18:11:53','2010-03-23 18:11:53','sheep','man'),(10,'sheep2@gmail.com','$1$6bH.mrl2$VUGt8FeT/iqEcUOYpejMQ/','2010-03-23 18:12:26','2010-03-23 18:12:26','sheep','man'),(11,'beef@sheep.com','$1$zOPbPcHP$v/qfuqPuVj/9JzvBNJt5i0','2010-03-23 18:19:38','2010-03-23 18:19:38','jarad','man');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -205,4 +150,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-05-07 13:59:24
+-- Dump completed on 2010-05-07 16:24:21

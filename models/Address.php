@@ -5,6 +5,7 @@ class Address extends ActiveRecord\Model
     array('User')
   );
 
+  /*
 	static $validates_presence_of = array(
 		array('user_id'),
 		array('nickname'),
@@ -14,5 +15,7 @@ class Address extends ActiveRecord\Model
     array('postalCode'),
     array('phoneNumber')
 	);
+   * 
+   */
 }
 ?>
