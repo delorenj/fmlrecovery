@@ -22,19 +22,27 @@ function get()
 
   switch($key){
     case "defaultAddress":
-//      $result = array("firstname"=>"Test","lastname"=>"User", "street"=>"143 Penns Grant Dr", "zip"=>"19067","city"=>"Stanhope", "state"=>"NJ", "phone"=>"2152083549");
       $result = User::current_user()->addresses;
-      foreach($result as $r){        
-        if($r->default == "1"){
-          fb($r,"array dump");
-          $ajaxified_result = array("firstname"=>ucwords(User::current_user()->first_name),
-                                    "lastname"=>ucwords(User::current_user()->last_name),
+      $fname = User::current_user()->first_name;
+      $lname = User::current_user()->last_name;
+      if($result == null){
+        $ajaxified_result = array("firstname"=>ucwords($fname),
+                                  "lastname"=>ucwords($lname));
+        break;
+
+      } else {
+        foreach($result as $r){
+          if($r->default == "1"){
+            fb($r,"array dump");
+            $ajaxified_result = array("firstname"=>ucwords($fname),
+                                    "lastname"=>ucwords($lname),
                                     "street"=>ucwords($r->streetlines),
                                     "zip"=>$r->postalcode,
                                     "city"=>ucwords($r->city),
                                     "state"=>ucwords($r->stateorprovincecode),
                                     "phone"=>$r->phonenumber);
-          break;
+            break;
+          }
         }
       }
       break;

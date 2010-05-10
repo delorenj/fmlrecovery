@@ -73,8 +73,9 @@
 		<h3><a href="javascript: void(0)" class="ui-accordion-link">Shipping Info<span class="loading" style="float:right;"></span></a></h3>
     <div id="shippingDiv" style="display:none;">
       <div>
-        <form id="shippingForm" action="tickets.php" method="post">
+        <form id="shippingForm">          
           <div class="lcolumn">
+            <input type="hidden" name="action" value="create-account" />
             <div id="shippingLogin">
               <div class="formfield">
                 <div class="clearfix">
@@ -155,7 +156,7 @@
           <div class="panelNav">
             <div class="accordion-control">
               <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(1); return false;"><< Back</button>
-              <button type="submit" class="epc-button ui-state-disabled ui-corner-all" disabled>Next >></button>
+              <button type="submit" class="epc-button ui-state-disabled ui-corner-all" onClick="validateShippingPanel(); return false;" disabled>Next >></button>
             </div>
           </div>
         </form>

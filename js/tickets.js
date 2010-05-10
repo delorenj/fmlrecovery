@@ -25,7 +25,7 @@ google.setOnLoadCallback(function(){
     switch(ui.newHeader.index()){
       case 4:
         $("#password").bind("keyup", function(){onKeyupPassword()});
-        postLoginProcessing();
+        //postLoginProcessing();
         break;
        default:
     }
@@ -69,6 +69,7 @@ google.setOnLoadCallback(function(){
 	})
  });
 
+ $("#password").blur(function(){validatePassword()});
  $("#firstname").blur(function(){validateFirstName()});
  $("#lastname").blur(function(){validateLastName()});
  $("#street").blur(function(){validateStreet()});
@@ -107,11 +108,11 @@ function onKeyupPassword()
 {
   var npw = $("#password").val();
   var pwc = $("#passwordconf").val();
-  if(npw == pwc){
-    jQuery.epc.shippingPanel[2] = 1;
+  if((npw == pwc) && (npw != "") && (npw.length > 3)){
+    jQuery.epc.shippingPanel[1] = 1;
   }
   else{
-    jQuery.epc.shippingPanel[2] = 0;
+    jQuery.epc.shippingPanel[1] = 0;
   }
   formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
 }
@@ -221,7 +222,8 @@ function validateEmail()
 function validateFirstName()
 {
   var pass = true;
-  if((!notEmpty($("#firstname").val(),"First name is required","#firstname"))){
+//  if((!notEmpty($("#firstname").val(),"First name is required","#firstname"))){
+if($("#firstname").val() == ""){
       jQuery.epc.shippingPanel[2] = 0;
       pass = false;
   }
@@ -235,7 +237,8 @@ function validateFirstName()
 function validateLastName()
 {
   var pass = true;
-  if((!notEmpty($("#lastname").val(),"Last name is required","#lastname"))){
+  //if((!notEmpty($("#lastname").val(),"Last name is required","#lastname"))){
+  if($("#lastname").val() == ""){
       jQuery.epc.shippingPanel[8] = 0;
       pass = false;
   }
@@ -248,7 +251,8 @@ function validateLastName()
 
 function validateState(){
   var pass = true;
-  if((!notEmpty($("#state").val(),"State is required","#state"))){
+  //if((!notEmpty($("#state").val(),"State is required","#state"))){
+  if($("#state").val() == ""){
       console.log($("#state").val()+":here");
       jQuery.epc.shippingPanel[6] = 0;
       pass = false;
@@ -262,7 +266,8 @@ function validateState(){
 
 function validateCity(){
   var pass = true;
-  if((!notEmpty($("#city").val(),"City is required","#city"))){
+  //if((!notEmpty($("#city").val(),"City is required","#city"))){
+  if($("#city").val() == ""){
     jQuery.epc.shippingPanel[5] = 0;
     pass = false;
   }
@@ -275,7 +280,8 @@ function validateCity(){
 
 function validateStreet(){
   var pass = true;
-  if((!notEmpty($("#street").val(),"Street is required","#street"))){
+  //if((!notEmpty($("#street").val(),"Street is required","#street"))){
+  if($("#street").val() == ""){
     jQuery.epc.shippingPanel[3] = 0;
     pass = false;
   }
@@ -304,13 +310,25 @@ function validatePhone(){
 function validateZip(){
   var pass = true;
   if((!notEmpty($("#zip").val(),"Zip code is required","#zip")) ||
-     (!notEmpty($("#zip").val(),"Zip code is required","#zip")) ||
      (!isNumeric($("#zip").val(),"Not a valid zip code","#zip")) ){
     jQuery.epc.shippingPanel[4] = 0;
     pass = false;
   }
   else{
     jQuery.epc.shippingPanel[4] = 1;
+  }
+  formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
+  return pass
+}
+
+function validatePassword(){
+  var pass = true;
+  if(!inBounds($("#password").val().length,4,16,"Password must be at least 4 character in length","#password",0)){
+    jQuery.epc.shippingPanel[1] = 0;
+    pass = false;
+  }
+  else{
+    jQuery.epc.shippingPanel[1] = 1;
   }
   formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
   return pass
@@ -410,6 +428,47 @@ function validateMediaPanel()
   });
   return false;
 }
+
+function validateShippingPanel()
+{
+  $("#ticket-accordion h3:eq(2) a img").remove();
+  $(".loading").unbind("ajaxStart ajaxStop");
+  $("#ticket-accordion h3:eq(2) a span").ajaxStart(function(){
+    $(this).fadeIn("fast");
+  });
+  $("#ticket-accordion h3:eq(2) a span").ajaxStop(function(){
+    $(this).hide();
+  });
+
+  if($("#passwordConfDiv").is(":visible")) {
+    console.log("Creating Account");
+    $.post("authenticate.php", $("#shippingForm").serialize(),
+      function(data){
+        handleCreateAccountResponse(data.split("|"));
+        console.log("Creating a new ticket for new user");
+      }
+    );
+  } else {
+    console.log("User already logged in...");
+    console.log("Creating a new ticket for existing user");
+  }
+
+  
+/*
+  $.post("tickets.php", {action: "create", key: "shippingDetail", val: "fileTypes="+fileTypeArray+"|specificFiles="+specificFileArray},
+   function(data){
+    if(data == "FAILED"){
+      flashError("Oops, something went wrong. Try again.");
+    }
+    if(data.indexOf("SUCCESS") != -1){
+      $("#ticket-accordion h3:eq(1) a").append("<img src='images/accept.png' style='margin-top:-5px;float:right;'/>")
+      $("#ticket-accordion").accordion("activate", 2);
+    }
+  });
+*/
+  return false;
+}
+
 
 function addFile(file)
 {

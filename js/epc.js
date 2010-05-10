@@ -82,12 +82,13 @@ function logout()
 {
 	$.post("authenticate.php", {action: "logout"},
 		function(data){
-			$("#login-message").text("Welcome Guest").parent().children(':last').remove();
+			$("#login-message").text("Welcome Guest").parent().find("a").remove();
       $("input", "#shippingForm").not(":button, :submit, :reset").val("").removeAttr("checked").removeAttr("selected");
       showShippingLogin();
       for(i in jQuery.epc.shippingPanel) {
         jQuery.epc.shippingPanel[i] = 0;
       };
+      formCompleteCheck(jQuery.epc.shippingPanel, $("#shippingDiv").find(".accordion-control :last-child"));
 		});
 }
 
@@ -114,10 +115,10 @@ function handleLoginResponse(respArray)
   switch(xr(respArray))
   {
     case "0":
-      $("#login-message").text("Welcome "+respArray[3]).parent().append("<a href='#' onClick='logout()'>Log out</a>");
+      $("#login-message").html("Welcome "+respArray[3]+"<br /><a href='#' onClick='logout()'>Log out</a>");
       break;
     case "1":
-      alert(xm(respArray));
+      flashError(xm(respArray));
       break;
   }
 }
@@ -129,10 +130,11 @@ function handleCreateAccountResponse(respArray)
 	switch(result)
 	{
 		case "0":
-			alert(message);
+			flashNotice(message);
+      $("#login-message").html("Welcome "+respArray[3]+"<br /><a href='#' onClick='logout()'>Log out</a>");
 			break;
 		case "1":
-			alert(message);
+			flashError(message);
 			break;
 		default:
 			alert("Unkown Response from Server");
@@ -173,7 +175,10 @@ function isNumeric(strString, msg, selector, exception)
 
 function inBounds(val, l, r, msg, selector, exception)
 {
-  if(val == exception) return true;
+  if(val == exception) {
+    fieldErrorOff(selector);
+    return true;
+  }
   
 	if(!isNumeric(val, msg, selector))
 	{
@@ -190,6 +195,10 @@ function inBounds(val, l, r, msg, selector, exception)
 
 function isValidEmail(email, selector)
 {
+  if(email == ""){
+    fieldErrorOff(selector);
+    return false;
+  }
   var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 	if(!pattern.test(email)){
     fieldError("Please enter a valid email address",selector);

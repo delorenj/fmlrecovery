@@ -45,8 +45,8 @@ function login()
 
 function createAccount()
 {
-	$firstName = $_POST["first_name"];
-	$lastName = $_POST["last_name"];
+	$firstName = $_POST["firstname"];
+	$lastName = $_POST["lastname"];
 	$email = $_POST["email"];
 	$password = $_POST["password"];
   $cryptedPassword = crypt($password);
@@ -69,6 +69,7 @@ function createAccount()
 	{
 		$user->save();
 		$message = "Account Created";
+    $_SESSION['userid'] = $user->id;
 		$response.= "0|".$message;
 	}
 	echo $response;
