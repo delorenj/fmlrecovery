@@ -83,7 +83,7 @@ function logout()
 	$.post("authenticate.php", {action: "logout"},
 		function(data){
 			$("#login-message").text("Welcome Guest").parent().find("a").remove();
-      $("input", "#shippingForm").not(":button, :submit, :reset").val("").removeAttr("checked").removeAttr("selected");
+      $("input", "#shippingForm").not(":button, :submit, :reset, :hidden").val("").removeAttr("checked").removeAttr("selected");
       showShippingLogin();
       for(i in jQuery.epc.shippingPanel) {
         jQuery.epc.shippingPanel[i] = 0;
@@ -123,24 +123,6 @@ function handleLoginResponse(respArray)
   }
 }
 
-function handleCreateAccountResponse(respArray)
-{
-	var result = xr(respArray);
-	var message = xm(respArray);
-	switch(result)
-	{
-		case "0":
-			flashNotice(message);
-      $("#login-message").html("Welcome "+respArray[3]+"<br /><a href='#' onClick='logout()'>Log out</a>");
-			break;
-		case "1":
-			flashError(message);
-			break;
-		default:
-			alert("Unkown Response from Server");
-			break;
-	}
-}
 
 function extractResult(a) {return a[1];}
 function extractMessage(a) {return a[2];}

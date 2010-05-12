@@ -70,7 +70,7 @@ function createAccount()
 		$user->save();
 		$message = "Account Created";
     $_SESSION['userid'] = $user->id;
-		$response.= "0|".$message;
+		$response.= "0|".$message."|".$user->first_name;
 	}
 	echo $response;
 }

@@ -185,9 +185,11 @@ function postLoginProcessing()
       $("#city").val(data.city);
       $("#state").val(data.state);
       $("#phone").val(data.phone);
-      $("#phone1").val(data.phone.substring(0,3));
-      $("#phone2").val(data.phone.substring(3,6));
-      $("#phone3").val(data.phone.substring(6,10));
+      if(data.phone != null){
+        $("#phone1").val(data.phone.substring(0,3));
+        $("#phone2").val(data.phone.substring(3,6));
+        $("#phone3").val(data.phone.substring(6,10));
+      }
       $("#hiddenState").slideDown("slow");
       validateFirstName();
       validateLastName();
@@ -294,7 +296,7 @@ function validateStreet(){
 
 function validatePhone(){
   var pass = true;
-  if((!notEmpty($("#phone").val(),"Phone number is required","#phone1, #phone2, #phone3")) ||
+  if((($("#phone").val() == "")) ||
      (!inBounds($("#phone").val().length,10,10, "Not a valid phone number","#phone1, #phone2, #phone3"))
   ){
     jQuery.epc.shippingPanel[7] = 0;
@@ -309,8 +311,8 @@ function validatePhone(){
 
 function validateZip(){
   var pass = true;
-  if((!notEmpty($("#zip").val(),"Zip code is required","#zip")) ||
-     (!isNumeric($("#zip").val(),"Not a valid zip code","#zip")) ){
+  
+  if((!isNumeric($("#zip").val(),"Not a valid zip code","#zip")) || ($("#zip").val() == "")){
     jQuery.epc.shippingPanel[4] = 0;
     pass = false;
   }
@@ -664,6 +666,25 @@ function onChangeMediaType(val)
         })
       //no action
   }
+}
+
+function handleCreateAccountResponse(respArray)
+{
+	var result = xr(respArray);
+	var message = xm(respArray);
+	switch(result)
+	{
+		case "0":
+			flashNotice(message);
+      $("#login-message").html("Welcome "+respArray[3]+"<br /><a href='#' onClick='logout()'>Log out</a>");
+			break;
+		case "1":
+			flashError(message);
+			break;
+		default:
+			alert("Unkown Response from Server");
+			break;
+	}
 }
 
 function onChangeMediaTypeByTextbox()

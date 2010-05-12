@@ -73,9 +73,9 @@
 		<h3><a href="javascript: void(0)" class="ui-accordion-link">Shipping Info<span class="loading" style="float:right;"></span></a></h3>
     <div id="shippingDiv" style="display:none;">
       <div>
-        <form id="shippingForm">          
-          <div class="lcolumn">
-            <input type="hidden" name="action" value="create-account" />
+        <form id="shippingForm">
+          <input type="hidden" name="action" value="create-account" />
+          <div class="lcolumn">  
             <div id="shippingLogin">
               <div class="formfield">
                 <div class="clearfix">
