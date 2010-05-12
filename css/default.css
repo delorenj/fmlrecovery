@@ -524,7 +524,7 @@ font-size:1em;
   background-color:#dfebf3;
   -moz-box-shadow: 3px 3px 5px #051e5d;
   border: 1px solid #A9B2C7;
-  -moz-border-radius: 5%;
+/*  -moz-border-radius: 5%; */
   min-height:300px;
   width:70%;
   padding:8px;

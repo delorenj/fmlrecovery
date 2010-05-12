@@ -97,7 +97,7 @@
                 <a href="#" onClick="alreadyHaveAnAccount()">Already have an account?</a>
               </div>
             </div>
-            <div id="shippingHistory" style="display:none">
+            <div id="shippingHistory" style="display:none;">
               <h3>Account Info</h3>
             </div>
           </div>
@@ -165,3 +165,4 @@
 	</div>
 <!--</form>-->
 </div>
+<div id="maptest"></div>

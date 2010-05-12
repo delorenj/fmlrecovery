@@ -1,6 +1,5 @@
 google.setOnLoadCallback(function(){
 
-
 	$("#ticket-accordion").accordion({
 		autoHeight: false,
 		clearStyle: true,
@@ -159,7 +158,26 @@ function createAnAccount()
 function showShippingHistory()
 {
   $("#shippingLogin").fadeOut("slow",function(){
-    $("#shippingHistory").fadeIn("slow");
+    $("#shippingHistory").fadeIn("slow", function(){
+      initialize_google_map();
+//      codeAddress();
+        // Create a search control
+/*
+      var searchControl = new google.search.SearchControl();
+
+      // Add in a full set of searchers
+      var localSearch = new google.search.LocalSearch();
+      searchControl.addSearcher(localSearch);
+      // Set the Local Search center point
+      localSearch.setCenterPoint("07874");
+
+      // Tell the searcher to draw itself and tell it where to attach
+      searchControl.draw(document.getElementById("shippingHistory"));
+
+      // Execute an inital search
+      searchControl.execute("fedex");
+*/
+    });
   });
 }
 
