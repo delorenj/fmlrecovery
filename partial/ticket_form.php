@@ -98,7 +98,13 @@
               </div>
             </div>
             <div id="shippingHistory" style="display:none;">
-              <h3>Account Info</h3>
+              <h3>FedEx locations near you</h3>
+              <div style="width: 500px;">
+                <div style="position: absolute; left: 440px; display:none;">
+                  <div id="searchwell"></div>
+                </div>
+                <div id="map" style="height: 350px; width:265px;"></div>
+              </div>
             </div>
           </div>
           <div class="rcolumn">
@@ -165,4 +171,3 @@
 	</div>
 <!--</form>-->
 </div>
-<div id="maptest"></div>

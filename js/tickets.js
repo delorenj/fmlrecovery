@@ -23,6 +23,9 @@ google.setOnLoadCallback(function(){
   $("#ticket-accordion").bind('accordionchange', function(event,ui){
     switch(ui.newHeader.index()){
       case 4:
+        if($.cookie("userid") != ""){
+          postLoginProcessing();
+        }
         $("#password").bind("keyup", function(){onKeyupPassword()});
         //postLoginProcessing();
         break;
@@ -64,6 +67,7 @@ google.setOnLoadCallback(function(){
     $("#hiddenState").slideDown("slow", function(){
       validateCity();
       validateState();
+      init_google_map();
     });
 	})
  });
@@ -159,24 +163,7 @@ function showShippingHistory()
 {
   $("#shippingLogin").fadeOut("slow",function(){
     $("#shippingHistory").fadeIn("slow", function(){
-      initialize_google_map();
-//      codeAddress();
-        // Create a search control
-/*
-      var searchControl = new google.search.SearchControl();
-
-      // Add in a full set of searchers
-      var localSearch = new google.search.LocalSearch();
-      searchControl.addSearcher(localSearch);
-      // Set the Local Search center point
-      localSearch.setCenterPoint("07874");
-
-      // Tell the searcher to draw itself and tell it where to attach
-      searchControl.draw(document.getElementById("shippingHistory"));
-
-      // Execute an inital search
-      searchControl.execute("fedex");
-*/
+      init_google_map();
     });
   });
 }

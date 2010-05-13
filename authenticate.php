@@ -33,7 +33,7 @@ function login()
 	{
     $_SESSION['userid'] = $user->id;
 		$message = "Logged In!";
-    $response.="0|".$message."|".$user->first_name;
+    $response.="0|".$message."|".$user->first_name."|".$user->id;
 	}
 	else
 	{

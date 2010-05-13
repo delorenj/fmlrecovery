@@ -1,6 +1,5 @@
 //google.load("jquery", "1.4.2");
 //google.load("jqueryui", "1.8");
-google.load("search", "1");
 
 jQuery.namespace = function() {
     var a=arguments, o=null, i, j, d;
@@ -83,6 +82,7 @@ function logout()
 {
 	$.post("authenticate.php", {action: "logout"},
 		function(data){
+      $.cookie("userid","");
 			$("#login-message").text("Welcome Guest").parent().find("a").remove();
       $("input", "#shippingForm").not(":button, :submit, :reset, :hidden").val("").removeAttr("checked").removeAttr("selected");
       showShippingLogin();
@@ -116,6 +116,7 @@ function handleLoginResponse(respArray)
   switch(xr(respArray))
   {
     case "0":
+      $.cookie("userid", respArray[4]);
       $("#login-message").html("Welcome "+respArray[3]+"<br /><a href='#' onClick='logout()'>Log out</a>");
       break;
     case "1":
@@ -265,88 +266,4 @@ function getMethods(obj) {
     }
   }
   return result;
-}
-
-function initialize_google_map() {
-
-  jQuery.epc.geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
-  var myOptions = {
-    zoom: 10,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-  jQuery.epc.map = new google.maps.Map(document.getElementById("shippingHistory"), myOptions);
-
-  var searchControl = new google.search.SearchControl();
-  searcher = new google.search.LocalSearch(); // create the object
-  searcher.setCenterPoint(jQuery.epc.map); // bind the searcher to the map
-  var options = new google.search.SearcherOptions(); // create the object
-  options.setExpandMode(google.search.SearchControl.EXPAND_MODE_OPEN);
-  searchControl.addSearcher(searcher , options);
-/*
-  searchControl.setSearchCompleteCallback(searcher , function() {
-    jQuery.epc.map.clearOverlays();
-    var results = searcher.results; // Grab the results array
-    // We loop through to get the points
-    for (var i = 0; i < results.length; i++) {
-      var result = results[i]; // Get the specific result
-      console.log(result.lat + ":" + result.lng);
-      var markerLatLng = new google.maps.LatLng(parseFloat(result.lat),
-                                                parseFloat(result.lng));
-      var marker = new google.maps.Marker(markerLatLng); // Create the marker
-
-      // Bind information for the infoWindow aka the map marker popup
-      marker.bindInfoWindow(result.html.cloneNode(true));
-      result.marker = marker; // bind the marker to the result
-      jQuery.epc.map.addOverlay(marker); // add the marker to the map
-    }
-
-    // Store where the map should be centered
-    var center = searcher.resultViewport.center;
-
-    // Calculate what the zoom level should be
-    var ne = new google.maps.LatLng(searcher.resultViewport.ne.lat,
-                                    searcher.resultViewport.ne.lng);
-    var sw = new google.maps.LatLng(searcher.resultViewport.sw.lat,
-                                    searcher.resultViewport.sw.lng);
-    var bounds = new google.maps.LatLngBounds(sw, ne);
-    var zoom = jQuery.epc.map.getBoundsZoomLevel(bounds, new google.maps.Size(350, 350));
-
-    // Set the new center of the map
-    // parseFloat converts the lat/lng from a string to a float, which is what
-    // the LatLng constructor takes.
-    jQuery.epc.map.setCenter(new google.maps.LatLng(parseFloat(center.lat),
-                                         parseFloat(center.lng)),
-                                         zoom);
-  });
-*/
-  // Draw the control
-  //searchControl.draw(controlContainer);
-
-  // Set the map's center point and finish!
-//  jQuery.epc.map.setCenter(new google.maps.LatLng(37.443915 , -122.163610), 11);
-
- // Execute an initial search
-  searchControl.execute('fedex');
-}
-
-function codeAddress() {
-  //var address = document.getElementById("address").value;
-  var address = "fedex near 07874";
-  if (jQuery.epc.geocoder) {
-    jQuery.epc.geocoder.geocode( {
-      'address': address
-    }, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        jQuery.epc.map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-          map: jQuery.epc.map,
-          position: results[0].geometry.location
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
 }
