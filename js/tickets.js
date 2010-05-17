@@ -449,10 +449,21 @@ function validateShippingPanel()
 
   if($("#passwordConfDiv").is(":visible")) {
     console.log("Creating Account");
-    $.post("authenticate.php", $("#shippingForm").serialize(),
+    $.post("authenticate.php", {action: "create-account",
+                                firstname: $("#firstname").val(),
+                                lastname: $("#lastname").val(),
+                                email: $("#email").val(),
+                                password: $("#password").val()},
       function(data){
         handleCreateAccountResponse(data.split("|"));
-        console.log("Creating a new ticket for new user");
+        if(xr(data.split("|")) == "0") {
+          postLoginProcessing();
+          console.log("Creating a new ticket for new user");
+          $.post("tickets.php", {action: "finalize"}, function(datum){
+            handleFinalizeTicket(datum);
+          },'json');
+        }
+        else return;
       }
     );
   } else {
@@ -476,6 +487,15 @@ function validateShippingPanel()
   return false;
 }
 
+function handleFinalizeTicket(response)
+{
+  if(response.result == "0"){
+    flashNotice(response.message);
+  }
+  else {
+    flashError(response.message);
+  }
+}
 
 function addFile(file)
 {

@@ -74,7 +74,6 @@
     <div id="shippingDiv" style="display:none;">
       <div>
         <form id="shippingForm">
-          <input type="hidden" name="action" value="create-account" />
           <div class="lcolumn">  
             <div id="shippingLogin">
               <div class="formfield">

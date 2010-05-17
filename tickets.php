@@ -6,6 +6,10 @@
 		case "create":
 			create();
 			break;
+		case "finalize":
+			finalize();
+			break;
+
 	default:
 			echo "Unknown Action";
 	}
@@ -25,6 +29,17 @@ function create()
   $_SESSION["newticket"][$key] = $val;
   fb($key."=".$_SESSION["newticket"][$key]);
   echo $result;
+}
+
+function finalize()
+{
+  sleep(1);
+  $result = "0";
+  $message = "Ticket Created";
+  $ar = array("result" => $result,
+              "message" => $message);
+
+  echo json_encode($ar);
 }
 
 ?>
