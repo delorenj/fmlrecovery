@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	require_once('include/environment.inc');
+  require_once('include/fedex/epcshippinglabel.inc');
+  
 	switch($_POST["action"])
 	{
 		case "create":
@@ -33,7 +35,21 @@ function create()
 
 function finalize()
 {
-  sleep(1);
+  $label = new EpcShippingLabel();
+  $data = array(
+    "personName" => "Radion Khait",
+    "phoneNumber" => "9733052261",
+    "street" => "150 Parish Dr.",
+    "city" => "Wayne",
+    "state" => "NJ",
+    "zip" => "07470",
+    "weight" => 2.0,
+    "L" => 5,
+    "W" => 2,
+    "H" => 5
+  );
+  $label->init($data);
+  $label->create();
   $result = "0";
   $message = "Ticket Created";
   $ar = array("result" => $result,
