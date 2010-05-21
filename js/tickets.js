@@ -103,6 +103,11 @@ function onKeyupPhone(field)
         $("#"+field).focusNextInputField();
       }
       break;
+    case "phone3":
+      if($("#"+field).val().length == 4){
+        $("#shippingForm").find("button[type='submit']").focus();
+      }
+      break;
   }
   $("#phone").val($("#phone1").val() + $("#phone2").val() + $("#phone3").val());
 }
@@ -453,7 +458,12 @@ function validateShippingPanel()
                                 firstname: $("#firstname").val(),
                                 lastname: $("#lastname").val(),
                                 email: $("#email").val(),
-                                password: $("#password").val()},
+                                password: $("#password").val(),
+                                street: $("#street").val(),
+                                zip: $("#zip").val(),
+                                city: $("#city").val(),
+                                state: $("#state").val(),
+                                phone: $("#phone").val()},
       function(data){
         handleCreateAccountResponse(data.split("|"));
         if(xr(data.split("|")) == "0") {

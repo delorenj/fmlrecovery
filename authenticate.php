@@ -49,16 +49,20 @@ function createAccount()
 	$lastName = $_POST["lastname"];
 	$email = $_POST["email"];
 	$password = $_POST["password"];
-  $cryptedPassword = crypt($password);
+        $cryptedPassword = crypt($password);
+        $street = $_POST["street"];
+        $zip = $_POST["zip"];
+        $city = $_POST["city"];
+        $state = $_POST["state"];
+        $phone = $_POST["phone"];
 	$response = "CreateAccount|";
 	$message = null;
 	$user = new User(array(
 		'first_name' 				=> $firstName,
 		'last_name'  				=> $lastName,
 		'email'      				=> $email,
-		'crypted_password' 	=> $cryptedPassword
+		'crypted_password'                      => $cryptedPassword
 	));
-
 	if($user->is_invalid())
 	{
 		$message = "Error Creating Account!\n";
@@ -68,9 +72,27 @@ function createAccount()
 	else
 	{
 		$user->save();
-		$message = "Account Created";
-    $_SESSION['userid'] = $user->id;
-		$response.= "0|".$message."|".$user->first_name;
+                $addy = new Address(array(
+                        'user_id'                               => $user->id,
+                        'nickname'                              => "default",
+                        'streetlines' 				=> $street,
+                        'city'  				=> $city,
+                        'stateorprovincecode'      		=> $state,
+                        'postalcode'                     	=> $zip,
+                        'phonenumber'                     	=> $phone
+                ));
+                if($addy->is_invalid())
+                {
+                        $message = "Error saving shipping info!\n";
+                        $message.= $addy->errors->on("street");
+                        $response.= "1|".$message;
+                }
+                else {
+                    $addy->save();
+                    $message = "Account Created";
+                    $_SESSION['userid'] = $user->id;
+                    $response.= "0|".$message."|".$user->first_name;
+                }
 	}
 	echo $response;
 }

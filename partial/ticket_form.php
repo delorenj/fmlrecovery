@@ -8,15 +8,15 @@
         <div class="lcolumn">
           <div class="service">
             <div><label>Media Recovery</label></div>
+            <img src="images/polaroids.jpg" height=60% alt="image of polaroids"/>
             <p>I want to recover some, or all of my personal media, including photos, music, and documents.</p>
-            <img src="images/polaroids.jpg" height=60% style="float:right;text-align: right;" alt="image of polaroids"/>
           </div>
         </div>
         <div class="rcolumn">
           <div class="service float_right">
             <div><label>Full Recovery</label></div>
+            <img src="images/cabinet.jpg" height=60% alt="image of file cabinet"/>
             <p>I want to recover all of the data on my damaged media.</p>
-            <img src="images/cabinet.jpg" height=60% style="float:right;text-align: right;" alt="image of file cabinet"/>
           </div>
         </div>
       </div>

@@ -51,7 +51,7 @@ body {
 	text-align:center;
   background: #abc3df url('../images/bg.jpg') no-repeat 50% 0;
 	color: black;
-	font-family: verdana, helvetica, arial, sans-serif;
+	font-family: 'Yanone Kaffeesatz', 'Josefin Sans Std Light', verdana, helvetica, arial, sans-serif;
 	font-size: 73%;  /* Enables font size scaling in MSIE */
 	padding: 0;
 }
@@ -402,6 +402,12 @@ font-size:1em;
 }
 
 .service {
+  font-family: "Yanone Kaffeesatz", serif;
+  font-size: 1.4em;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
   background-image: url('../images/gradient1.jpg');
   background-repeat: repeat-x;
   padding: 5px 20px;
@@ -416,11 +422,17 @@ font-size:1em;
 
 .service:last-child {
   border-right:none;
-  border-bottom: 8px solid #051E5D
+  border-bottom: 8px solid #051E5D;
 }
 
-.service label {
-  font-size: large;
+.service img {
+    float: right;
+    text-align: right;
+    padding-top: 20px;
+}
+
+.service label {  
+  font-size: 30pt;
   height:50px;
 }
 
