@@ -366,7 +366,7 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
       if(data.indexOf("SUCCESS") != -1){
         $("#ticket-accordion h3:first-child a").append("<img src='images/accept.png' style='margin-top:-5px;float:right;'/>")
       }
-      $("#ticket-accordion").accordion("activate", 2);
+      $("#ticket-accordion").accordion("activate", 1);
     });
   switch(index){
     case 0: //Media
@@ -469,7 +469,16 @@ function validateShippingPanel()
         if(xr(data.split("|")) == "0") {
           postLoginProcessing();
           console.log("Creating a new ticket for new user");
-          $.post("tickets.php", {action: "finalize"}, function(datum){
+          $.post("tickets.php", {action: "finalize",
+                                firstname: $("#firstname").val(),
+                                lastname: $("#lastname").val(),
+                                email: $("#email").val(),
+                                password: $("#password").val(),
+                                street: $("#street").val(),
+                                zip: $("#zip").val(),
+                                city: $("#city").val(),
+                                state: $("#state").val(),
+                                phone: $("#phone").val()}, function(datum){
             handleFinalizeTicket(datum);
           },'json');
         }
