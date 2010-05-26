@@ -9,6 +9,7 @@ class EpcShippingLabel
   //Please include and reference in $path_to_wsdl variable.
   const path_to_wsdl = "include/fedex/wsdl/ShipService_v8.wsdl";
   const SHIP_LABEL = "labels/shipgroundlabel.pdf";  // PDF label file. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
+  const SHIP_IMAGE = "labels/shipgroundlabel.png";  // PDF label file. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
   protected $key;
   protected $password;
   protected $shipAccount;
@@ -107,12 +108,14 @@ class EpcShippingLabel
             $fp = fopen(self::SHIP_LABEL, 'wb');
             fwrite($fp, ($response->CompletedShipmentDetail->CompletedPackageDetails->Label->Parts->Image));
             fclose($fp);
-            echo '<a href="./'.self::SHIP_LABEL.'">'.self::SHIP_LABEL.'</a> was generated.';
-            fb("Label was generated succesfully");
+
+            $fp = fopen(self::SHIP_IMAGE, 'wb');
+            fwrite($fp, ($response->CompletedShipmentDetail->CompletedPackageDetails->Label->Parts->Image));
+            fclose($fp);
+            fb("Shipping label and image were generated");
         }
         else
         {
-            fb("Error creating label");
             printError($this->client, $response);
         }
 

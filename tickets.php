@@ -1,5 +1,6 @@
 <?php
 	session_start();
+   ob_start();
 	require_once('include/environment.inc');
    require_once('include/fedex/epcshippinglabel.inc');
   
@@ -13,7 +14,9 @@
 			break;
 
 	default:
-			echo "Unknown Action";
+			//echo "Unknown Action";
+     finalize();
+     break;
 	}
 
 function create()
@@ -59,12 +62,12 @@ function finalize()
   }
   $label = new EpcShippingLabel();
   $data = array(
-    "personName" => $_POST["firstname"]." ".$_POST["lastname"],
-    "phoneNumber" => $_POST["phone"],
-    "street" => $_POST["street"],
-    "city" => $_POST["city"],
-    "state" => $_POST["state"],
-    "zip" => $_POST["zip"],
+    "personName" => $_GET["firstname"]." ".$_GET["lastname"],
+    "phoneNumber" => $_GET["phone"],
+    "street" => $_GET["street"],
+    "city" => $_GET["city"],
+    "state" => $_GET["state"],
+    "zip" => $_GET["zip"],
     "weight" => $weight_estimate,
     "L" => $length_estimate,
     "W" => $width_estimate,
@@ -72,7 +75,10 @@ function finalize()
   );
   $label->init($data);
   $label->create();
-  $labelpath = "/labels/".User::current_user()->lastname.User::current_user()->firstname.time();
+  $labelpath = "labels/".User::current_user()->last_name.User::current_user()->first_name.time();
+  rename(EpcShippingLabel::SHIP_LABEL, $labelpath.".pdf");
+  rename(EpcShippingLabel::SHIP_IMAGE, $labelpath.".png");
+  fb("labelpath=$labelpath");
   $ticket = new Ticket(array(
 		'user_id'     => User::current_user()->id,
 		'service'     => $_SESSION["newticket"]["service"],
@@ -88,20 +94,21 @@ function finalize()
 	));
 	if($ticket->is_invalid())
 	{
-		$message = "Error Creating Ticket!\n";
-		//$message.= $user->errors->on("email");
-		$response.= "1|".$message;
+      $result = "1";
+      $message = "Error creating ticket!";
 	}
 	else
 	{
 		$ticket->save();
+      $result = "0";
+      $message = "Ticket Created";
    }
-  $result = "0";
-  $message = "Ticket Created";
-  $ar = array("result" => $result,
-              "message" => $message);
-
-  echo json_encode($ar);
+  fb($message);
+  echo "TEST RESULT";
+//  $ar = array("result" => "$result",
+//              "message" => "$message");
+//
+//  echo json_encode($ar);
 }
 
 ?>

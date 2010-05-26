@@ -452,62 +452,61 @@ function validateShippingPanel()
     $(this).hide();
   });
 
-  if($("#passwordConfDiv").is(":visible")) {
-    console.log("Creating Account");
-    $.post("authenticate.php", {action: "create-account",
-                                firstname: $("#firstname").val(),
-                                lastname: $("#lastname").val(),
-                                email: $("#email").val(),
-                                password: $("#password").val(),
-                                street: $("#street").val(),
-                                zip: $("#zip").val(),
-                                city: $("#city").val(),
-                                state: $("#state").val(),
-                                phone: $("#phone").val()},
-      function(data){
-        handleCreateAccountResponse(data.split("|"));
-        if(xr(data.split("|")) == "0") {
-          postLoginProcessing();
-          console.log("Creating a new ticket for new user");
-          $.post("tickets.php", {action: "finalize",
-                                firstname: $("#firstname").val(),
-                                lastname: $("#lastname").val(),
-                                email: $("#email").val(),
-                                password: $("#password").val(),
-                                street: $("#street").val(),
-                                zip: $("#zip").val(),
-                                city: $("#city").val(),
-                                state: $("#state").val(),
-                                phone: $("#phone").val()}, function(datum){
-            handleFinalizeTicket(datum);
-          },'json');
-        }
-        else return;
-      }
-    );
-  } else {
+  if($("#passwordConfDiv").is(":visible"))
+  {
+    console.log("Creating Account");    
+    
+    $.ajax({
+      type: "POST",
+      url:  "authenticate.php",
+      data: {action: "create-account",
+             firstname: $("#firstname").val(),
+             lastname: $("#lastname").val(),
+             email: $("#email").val(),
+             password: $("#password").val(),
+             street: $("#street").val(),
+             zip: $("#zip").val(),
+             city: $("#city").val(),
+             state: $("#state").val(),
+             phone: $("#phone").val()},
+      success:function(data){
+                  handleCreateAccountResponse(data.split("|"));
+                  if(xr(data.split("|")) == "0") {
+                    postLoginProcessing();
+                    console.log("Creating a new ticket for new user");
+                    $.ajax({
+                      type: "GET",
+                      url:  "tickets.php",
+                      data: {action: "finalize",
+                             firstname: $("#firstname").val(),
+                             lastname: $("#lastname").val(),
+                             email: $("#email").val(),
+                             password: $("#password").val(),
+                             street: $("#street").val(),
+                             zip: $("#zip").val(),
+                             city: $("#city").val(),
+                             state: $("#state").val(),
+                             phone: $("#phone").val()},
+                      success:function(msg){
+                        flashNotice(msg);
+                      }
+                    });
+                  }
+                  else return;
+                }
+    });
+  } 
+  else
+  {
     console.log("User already logged in...");
     console.log("Creating a new ticket for existing user");
   }
-
-  
-/*
-  $.post("tickets.php", {action: "create", key: "shippingDetail", val: "fileTypes="+fileTypeArray+"|specificFiles="+specificFileArray},
-   function(data){
-    if(data == "FAILED"){
-      flashError("Oops, something went wrong. Try again.");
-    }
-    if(data.indexOf("SUCCESS") != -1){
-      $("#ticket-accordion h3:eq(1) a").append("<img src='images/accept.png' style='margin-top:-5px;float:right;'/>")
-      $("#ticket-accordion").accordion("activate", 2);
-    }
-  });
-*/
   return false;
 }
 
 function handleFinalizeTicket(response)
 {
+  console.log("handleFinalizeTicket: " + response);
   if(response.result == "0"){
     flashNotice(response.message);
   }

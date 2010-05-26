@@ -33,7 +33,6 @@ function get()
       } else {
         foreach($result as $r){
           if($r->default == "1"){
-            fb($r,"array dump");
             $ajaxified_result = array("firstname"=>ucwords($fname),
                                     "lastname"=>ucwords($lname),
                                     "street"=>ucwords($r->streetlines),
