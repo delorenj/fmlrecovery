@@ -100,8 +100,6 @@ class EpcShippingLabel
 
         if ($response->HighestSeverity != 'FAILURE' && $response->HighestSeverity != 'ERROR')
         {
-            printSuccess($this->client, $response);
-
             // Create PNG or PDF label
             // Set LabelSpecification.ImageType to 'PNG' for generating a PNG label
 
@@ -116,7 +114,7 @@ class EpcShippingLabel
         }
         else
         {
-            printError($this->client, $response);
+//            printError($this->client, $response);
         }
 
     writeToLog($this->client);    // Write to log file
@@ -125,7 +123,7 @@ class EpcShippingLabel
     catch (SoapFault $exception)
     {
         fb("Soap Exception");
-        printFault($exception, $this->client);
+//        printFault($exception, $this->client);
     }
   }
 

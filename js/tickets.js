@@ -100,16 +100,18 @@ function onKeyupPhone(field)
     case "phone1":
     case "phone2":
       if($("#"+field).val().length == 3){
+        $("#phone").val($("#phone1").val() + $("#phone2").val() + $("#phone3").val());
         $("#"+field).focusNextInputField();
       }
       break;
     case "phone3":
       if($("#"+field).val().length == 4){
+        $("#phone").val($("#phone1").val() + $("#phone2").val() + $("#phone3").val());
+        validatePhone();
         $("#shippingForm").find("button[type='submit']").focus();
       }
       break;
   }
-  $("#phone").val($("#phone1").val() + $("#phone2").val() + $("#phone3").val());
 }
 
 function onKeyupPassword()
@@ -475,8 +477,9 @@ function validateShippingPanel()
                     postLoginProcessing();
                     console.log("Creating a new ticket for new user");
                     $.ajax({
-                      type: "GET",
+                      type: "POST",
                       url:  "tickets.php",
+                      dataType: "json",
                       data: {action: "finalize",
                              firstname: $("#firstname").val(),
                              lastname: $("#lastname").val(),
@@ -487,8 +490,8 @@ function validateShippingPanel()
                              city: $("#city").val(),
                              state: $("#state").val(),
                              phone: $("#phone").val()},
-                      success:function(msg){
-                        flashNotice(msg);
+                      success:function(data){
+                        handleFinalizeTicket(data);
                       }
                     });
                   }
@@ -506,13 +509,10 @@ function validateShippingPanel()
 
 function handleFinalizeTicket(response)
 {
-  console.log("handleFinalizeTicket: " + response);
-  if(response.result == "0"){
-    flashNotice(response.message);
-  }
-  else {
-    flashError(response.message);
-  }
+  flashNotice(response.message);
+  $("#shippingDiv").find(".panelNav").fadeOut("slow", function(){
+    $("#shippingLabels ul").append("<li><a href='"+ response.labelpath + ".pdf" +"'><p>Click here to download and print your pre-paid FedEx shipping label.</p></a><p>A copy will also be mailed to the email address you provided.</p></li>")
+  });
 }
 
 function addFile(file)

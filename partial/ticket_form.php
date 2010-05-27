@@ -164,6 +164,9 @@
               <button type="submit" class="epc-button ui-state-disabled ui-corner-all" onClick="validateShippingPanel(); return false;" disabled>Next >></button>
             </div>
           </div>
+          <div id="shippingLabels">
+            <ul></ul>
+          </div>
         </form>
       </div>
     </div>

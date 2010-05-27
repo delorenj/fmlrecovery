@@ -12,11 +12,9 @@
 		case "finalize":
 			finalize();
 			break;
-
-	default:
-			//echo "Unknown Action";
-     finalize();
-     break;
+      default:
+        echo "Unknown Action";
+        break;
 	}
 
 function create()
@@ -62,12 +60,12 @@ function finalize()
   }
   $label = new EpcShippingLabel();
   $data = array(
-    "personName" => $_GET["firstname"]." ".$_GET["lastname"],
-    "phoneNumber" => $_GET["phone"],
-    "street" => $_GET["street"],
-    "city" => $_GET["city"],
-    "state" => $_GET["state"],
-    "zip" => $_GET["zip"],
+    "personName" => $_POST["firstname"]." ".$_POST["lastname"],
+    "phoneNumber" => $_POST["phone"],
+    "street" => $_POST["street"],
+    "city" => $_POST["city"],
+    "state" => $_POST["state"],
+    "zip" => $_POST["zip"],
     "weight" => $weight_estimate,
     "L" => $length_estimate,
     "W" => $width_estimate,
@@ -104,11 +102,68 @@ function finalize()
       $message = "Ticket Created";
    }
   fb($message);
-  echo "TEST RESULT";
-//  $ar = array("result" => "$result",
-//              "message" => "$message");
-//
-//  echo json_encode($ar);
+  sendLabelViaEmail($labelpath.".pdf", User::current_user()->email);
+  $ar = array("result" => $result,
+              "message" => $message,
+              "labelpath" => $labelpath);
+
+  echo json_encode($ar);
+}
+
+function sendLabelViaEmail($labelpath, $email)
+{
+//define the receiver of the email
+$to = 'jaradd@gmail.com';
+//define the subject of the email
+$subject = 'Test email with attachment';
+//create a boundary string. It must be unique
+//so we use the MD5 algorithm to generate a random hash
+$random_hash = md5(date('r', time()));
+//define the headers we want passed. Note that they are separated with \r\n
+$headers = "From: webmaster@baesystems.com\r\nReply-To: webmaster@baesystems.com";
+//add boundary string and mime type specification
+$headers .= "\r\nContent-Type: multipart/mixed; boundary=\"PHP-mixed-".$random_hash."\"";
+//read the atachment file contents into a string,
+//encode it with MIME base64,
+//and split it into smaller chunks
+$attachment = chunk_split(base64_encode(file_get_contents($labelpath)));
+//define the body of the message.
+ob_start(); //Turn on output buffering
+?>
+--PHP-mixed-<?php fb($random_hash); ?>
+Content-Type: multipart/alternative; boundary="PHP-alt-<?php fb($random_hash); ?>"
+
+--PHP-alt-<?php fb($random_hash); ?>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+
+Hello World!!!
+This is simple text email message.
+
+--PHP-alt-<?php fb($random_hash); ?>
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+
+<h2>Hello World!</h2>
+<p>This is something with <b>HTML</b> formatting.</p>
+
+--PHP-alt-<?php fb($random_hash); ?>--
+
+--PHP-mixed-<?php fb($random_hash); ?>
+Content-Type: application/zip; name="attachment.zip"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment
+
+<?php fb($attachment); ?>
+--PHP-mixed-<?php fb($random_hash); ?>--
+
+<?php
+//copy current buffer contents into $message variable and delete current output buffer
+$message = ob_get_clean();
+//send the email
+$mail_sent = @mail( $to, $subject, $message, $headers );
+//if the message is sent successfully print "Mail sent". Otherwise print "Mail failed"
+fb($mail_sent ? "Mail sent" : "Mail failed");
 }
 
 ?>

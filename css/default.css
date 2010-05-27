@@ -560,5 +560,33 @@ font-size:1em;
   width: 50%;
 }
 
+#shippingLabels {
+  width: 100%;
+}
+
+#shippingLabels ul {
+  width: 100%;
+}
+
+#shippingLabels ul li {
+  padding:5px;
+  text-align: center;
+  line-height: 1.5em;
+  width: 100%;
+  background-color: #A9B2C7;
+  border: 2px solid black;
+  height: 50px;
+  font-family: "Josefin Sans Std Light", serif;
+  font-size: 1.4em;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+}
+
+#shippingLabels ul li:hover {
+  background-color: #AAB3C8;
+}
+
 html>body .ie-fix-button-height {position:relative;top:2px;}
 * html .ie-fix-button-height {height:1.85em;}
