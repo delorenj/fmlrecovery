@@ -148,10 +148,8 @@ html > body {
 #main-content h1 {
 	color: #051e5d;
 	background-color: transparent;
-	font-family: arial, verdana, helvetica, sans-serif;
 	font-size: 175%;
 	font-weight: bold;
-	font-style: italic;
 	text-align: left;
 	margin: 1em 0 0 0;
 	padding: 1em 0 0 0;
@@ -160,11 +158,13 @@ html > body {
 #main-content a {
 	color: #600;
 	background-color: transparent;
-	text-decoration: underline;
+   font-family: 'Josefin Sans Std Light', verdana, helvetica, arial, sans-serif;
+   font-size: 0.8em;
+	text-decoration: none;
 }
 
 #main-content a:hover {
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 /* ##### Header ##### */
@@ -586,6 +586,18 @@ font-size:1em;
 
 #shippingLabels ul li:hover {
   background-color: #AAB3C8;
+}
+
+.login-snippet {
+  margin-bottom:30px;
+  margin-left: 50%;
+  font-size: 1.4em;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+
+
 }
 
 html>body .ie-fix-button-height {position:relative;top:2px;}

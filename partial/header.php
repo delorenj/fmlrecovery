@@ -15,13 +15,15 @@
 					</div>
 					<div class="subHeader">
 						<? if(User::logged_in()){
-							echo "<a href='tickets.php?userid=".User::current_user()->id."'>My Tickets</a>";
-							echo "<a href='account.php?userid=".User::current_user()->id."'>Account Info</a>";
-						} else {
-							echo '<a href="#">Login</a>';
-							echo '<a href="#">Contact Us</a>';
-							echo '<a href="#">About</a>';
-						}?>
+//							echo "<a href='tickets.php?userid=".User::current_user()->id."'>My Tickets</a>";
+//							echo "<a href='account.php?userid=".User::current_user()->id."'>Account Info</a>";
+                    }
+
+                    echo '<a href="index.php">Home</a>';
+                    echo '<a href="account.php">My Account</a>';
+                    echo '<a href="contact.php">Contact Us</a>';
+                    echo '<a href="about.php">About</a>';
+                  ?>
 					</div>
 				</div>
 
