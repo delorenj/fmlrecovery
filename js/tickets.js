@@ -503,6 +503,24 @@ function validateShippingPanel()
   {
     console.log("User already logged in...");
     console.log("Creating a new ticket for existing user");
+    $.ajax({
+      type: "POST",
+      url:  "tickets.php",
+      dataType: "json",
+      data: {action: "finalize",
+             firstname: $("#firstname").val(),
+             lastname: $("#lastname").val(),
+             email: $("#email").val(),
+             password: $("#password").val(),
+             street: $("#street").val(),
+             zip: $("#zip").val(),
+             city: $("#city").val(),
+             state: $("#state").val(),
+             phone: $("#phone").val()},
+      success:function(data){
+        handleFinalizeTicket(data);
+      }
+    });
   }
   return false;
 }
@@ -511,7 +529,7 @@ function handleFinalizeTicket(response)
 {
   flashNotice(response.message);
   $("#shippingDiv").find(".panelNav").fadeOut("slow", function(){
-    $("#shippingLabels ul").append("<li><a href='"+ response.labelpath + ".pdf" +"'><p>Click here to download and print your pre-paid FedEx shipping label.</p></a><p>A copy will also be mailed to the email address you provided.</p></li>")
+    $("#shippingLabels ul").append("<li><a href='"+ response.labelpath + ".pdf" +"'><p>Click here to download and print your pre-paid FedEx shipping label.</p></a></li>")
   });
 }
 
@@ -781,4 +799,11 @@ function formCompleteCheck(p, button)
   else {
     $(button).attr("disabled","true").removeClass("ui-state-default").addClass("ui-state-disabled");
   }
+}
+
+function testMail()
+{
+  $.post("tickets.php", {action:"testMail"}, function(){
+    flashNotice("Test Mail Sent");
+  });
 }

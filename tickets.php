@@ -12,7 +12,10 @@
 		case "finalize":
 			finalize();
 			break;
-      default:
+    case "testMail":
+      sendLabelViaEmail("This is a test", "jaradd@gmail.com");
+      break;
+    default:
         echo "Unknown Action";
         break;
 	}
@@ -112,6 +115,10 @@ function finalize()
 
 function sendLabelViaEmail($labelpath, $email)
 {
+  mail( "jaradd@gmail.com", "Test Email", $labelpath, "From: test@etherealPC.com" );
+
+}
+/*
 //define the receiver of the email
 $to = 'jaradd@gmail.com';
 //define the subject of the email
@@ -120,7 +127,7 @@ $subject = 'Test email with attachment';
 //so we use the MD5 algorithm to generate a random hash
 $random_hash = md5(date('r', time()));
 //define the headers we want passed. Note that they are separated with \r\n
-$headers = "From: webmaster@baesystems.com\r\nReply-To: webmaster@baesystems.com";
+$headers = "From: admin@nardis.delonet\r\nReply-To: admin@nardis.delonet";
 //add boundary string and mime type specification
 $headers .= "\r\nContent-Type: multipart/mixed; boundary=\"PHP-mixed-".$random_hash."\"";
 //read the atachment file contents into a string,
@@ -165,5 +172,5 @@ $mail_sent = @mail( $to, $subject, $message, $headers );
 //if the message is sent successfully print "Mail sent". Otherwise print "Mail failed"
 fb($mail_sent ? "Mail sent" : "Mail failed");
 }
-
+*/
 ?>

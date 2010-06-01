@@ -86,6 +86,8 @@ function logout()
 			$("#login-message").text("Welcome Guest").parent().find("a").remove();
       $("input", "#shippingForm").not(":button, :submit, :reset, :hidden").val("").removeAttr("checked").removeAttr("selected");
       showShippingLogin();
+      togglePanel(0);
+      window.location.reload();
       for(i in jQuery.epc.shippingPanel) {
         jQuery.epc.shippingPanel[i] = 0;
       };
@@ -252,6 +254,11 @@ function resetAjaxLoader(selector)
   $(selector).siblings(".loading").ajaxStop(function(){
     $(this).hide();
   });
+}
+
+function clearAjaxLoaders()
+{
+  $(".loading").siblings("img").hide(); //doesn't work
 }
 
 function getMethods(obj) {

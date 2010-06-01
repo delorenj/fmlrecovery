@@ -4,6 +4,7 @@
 				<div id="header">
 					<div class="midHeader">
 						<div class="superHeader">
+              <!--<span><a href="#" onclick="testMail(); return 0;">Test Mail</a></span><br />-->
               <? if(User::logged_in()){
                 echo "<span id='login-message'>Welcome ".User::current_user()->first_name."</span><br />";
 								echo "<a href='#' onClick='logout()'>Log out</a>";
