@@ -43,7 +43,7 @@
               </select>
               <span class="fieldOK">&nbsp;</span><span class="loading">&nbsp;</span>
             </div>
-            <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaType()">I don't know</a>
+            <span class="fieldlink"><a href="#" onClick="dontKnowMediaType()">I don't know</a></span>
             <div class="clearfix"></div>
             <div id="mediaTypeByTextbox" class="float_left">&nbsp;</div>
             <div class="clearfix"></div>
@@ -53,7 +53,7 @@
               <label for="mediaSize">What size is your media: </label>
               <input type="text" size="5" name="mediaSizeInput" class="epc-textfield float_left" onBlur="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK" style="position:relative; top:5px;"></div><span class="loading" style="position:relative; top:5px;"></span>
             </div>
-            <a href="#" style="font-size: 0.8em;" onClick="dontKnowMediaSize()">I don't know</a>
+            <span class="fieldlink"><a href="#" onClick="dontKnowMediaSize()">I don't know</a></span>
           </div>
         </div>
         <div class="rcolumn">
@@ -93,7 +93,7 @@
                   <label for="name">Retype your password</label>
                   <input type="password" size="30" id="passwordconf" name="passwordconf" class="epc-textfield float_left" onKeyup="onKeyupPassword();"/>
                 </div>
-                <a href="#" onClick="alreadyHaveAnAccount()">Already have an account?</a>
+                <span class="fieldlink"><a href="#" onClick="alreadyHaveAnAccount()">Already have an account?</a></span>
               </div>
             </div>
             <div id="shippingHistory" style="display:none;">

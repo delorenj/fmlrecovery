@@ -159,7 +159,7 @@ html > body {
 	color: #600;
 	background-color: transparent;
    font-family: 'Josefin Sans Std Light', verdana, helvetica, arial, sans-serif;
-   font-size: 0.8em;
+   font-size: 1.3em;
 	text-decoration: none;
 }
 
@@ -502,6 +502,16 @@ font-size:1em;
   background-image: url('../images/accept.png');
   height: 25px;
   width:25px;
+}
+
+.fieldlink A:link, .fieldlink A:active, .fieldlink A:visited {
+  text-decoration: none !important;
+  font-weight: 400 !important;
+  font-size: 1em !important;
+}
+
+.fieldlink A:hover {
+  text-decoration: underline !important;
 }
 
 .loading {

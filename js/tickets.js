@@ -152,7 +152,7 @@ function alreadyHaveAnAccount()
     $("#password").unbind("keyup");
     $("#passwordCaption").html("Password");
     $("#shippingLogin").append("<div id='hiddenLogin'><div class='clearfix'></div><button id='loginButton' class='epc-button ui-state-default ui-corner-all' href='#' onClick='validateLoginForm(); postLoginProcessing(); return false;'>Log in</button> \n\
-          <a href='#' class='small' onClick='forgotPassword()'>Forgot Password</a> or <a href='#' class='small' onClick='createAnAccount()'>Create an Account</a></div>")
+          <span class='fieldlink'><a href='#' onClick='forgotPassword()'>Forgot Password</a> or <a href='#' class='small' onClick='createAnAccount()'>Create an Account</a></span></div>")
   });
 }
 
@@ -392,7 +392,7 @@ $.post("tickets.php", {action: "create", key: "service", val: index},
         <div class='clearfix'></div>\n\
         <div class='formfield'>\n\
           <div class='clearfix' id='fileSelectDiv'>\n\
-            <a href='#' onClick='doKnowFileNames()' style='font:normal 12px \"Lucida Grande\", Arial, sans-serif;'>I want to add specific files or directories</a>\n\
+            <span class='fieldlink'><a href='#' onClick='doKnowFileNames()'>I want to add specific files or directories</a></span>\n\
           </div>\n\
         </div>\n\
         <div id='fileSelectionResults'><ol></ol></div>\n\
@@ -680,7 +680,7 @@ function dontKnowFileNames()
 */
   $("#fileSelectionResults ol").children().fadeOut("slow");
   $("#fileSelectDiv").fadeOut("slow", function(){
-    $("#fileSelectDiv").html("<span class='epc-text'><p>No Specific Files</p></span><a href='#' onClick='doKnowFileNames()' style='font:normal 12px \"Lucida Grande\", Arial, sans-serif;'>I want to add specific files or directories</a>").fadeIn("slow");
+    $("#fileSelectDiv").html("<span class='epc-text'><p>No Specific Files</p></span><span class='fieldlink'><a href='#' onClick='doKnowFileNames()'>I want to add specific files or directories</a></span>").fadeIn("slow");
   });
 }
 
@@ -690,7 +690,7 @@ function doKnowFileNames()
     $("#fileSelectDiv").html("<label for='fileSelectInput'>Any specific files or directories you'd like recovered?</label>\n\
             <input type='text' size=25 maxlength=25 name='fileSelectInput' class='epc-textfield idleField' />\n\
             <button href='#' onClick='addFile(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add File</b></button><br />\n\
-            <a href='#' style='font-size: 0.8em;' onClick='dontKnowFileNames()'>Nevermind, I don't want to add specific files or directories</a>\n\
+            <span class='fieldlink'><a href='#'onClick='dontKnowFileNames()'>Nevermind, I don't want to add specific files or directories</a></span>\n\
             ").fadeIn("slow");
   });
 }
