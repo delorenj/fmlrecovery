@@ -596,8 +596,10 @@ font-size:1em;
   font-weight: 400;
   text-decoration: none;
   text-transform: none;
+}
 
-
+#login-box {
+  padding:0 20px;
 }
 
 html>body .ie-fix-button-height {position:relative;top:2px;}
