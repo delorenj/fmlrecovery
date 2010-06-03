@@ -528,9 +528,11 @@ function validateShippingPanel()
 function handleFinalizeTicket(response)
 {
   flashNotice(response.message);
-  $("#shippingDiv").find(".panelNav").fadeOut("slow", function(){
-    $("#shippingLabels ul").append("<li><a href='"+ response.labelpath + ".pdf" +"'><p>Click here to download and print your pre-paid FedEx shipping label.</p></a></li>")
-  });
+  if(response.result == "OK"){
+    $("#shippingDiv").find(".panelNav").fadeOut("slow", function(){
+      $("#shippingLabels ul").append("<li><a href='"+ response.labelpath + ".pdf" +"'><p>Click here to download and print your pre-paid FedEx shipping label.</p></a></li>")
+    });
+  }
 }
 
 function addFile(file)

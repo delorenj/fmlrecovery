@@ -77,8 +77,8 @@ function finalize()
   $label->init($data);
   $label->create();
   $labelpath = "labels/".User::current_user()->last_name.User::current_user()->first_name.time();
-  rename(EpcShippingLabel::SHIP_LABEL, $labelpath.".pdf");
-  rename(EpcShippingLabel::SHIP_IMAGE, $labelpath.".png");
+  $labelCreatedSuccessfully = rename(EpcShippingLabel::SHIP_LABEL, $labelpath.".pdf");
+  $picCreatedSuccessfully = rename(EpcShippingLabel::SHIP_IMAGE, $labelpath.".png");
   fb("labelpath=$labelpath");
   $ticket = new Ticket(array(
 		'user_id'     => User::current_user()->id,
@@ -93,19 +93,22 @@ function finalize()
       'shipping_cost' => "10.00",
       'labelpath'     => $labelpath
 	));
-	if($ticket->is_invalid())
+	if($ticket->is_invalid() || !$labelCreatedSuccessfully || !$picCreatedSuccessfully)
 	{
-      $result = "1";
-      $message = "Error creating ticket!";
+    $result = "FAILURE";
+    $message = "Error creating ticket";
+    if(!$labelCreatedSuccessfully || !$picCreatedSuccessfully) {
+      $message.=": Looks like FedEx Web Services are currently down. Try again later.";
+    }
 	}
 	else
 	{
 		$ticket->save();
-      $result = "0";
+      $result = "OK";
       $message = "Ticket Created";
+      sendLabelViaEmail($labelpath.".pdf", User::current_user()->email);
    }
-  fb($message);
-  sendLabelViaEmail($labelpath.".pdf", User::current_user()->email);
+  fb($message);  
   $ar = array("result" => $result,
               "message" => $message,
               "labelpath" => $labelpath);

@@ -84,10 +84,11 @@ function logout()
 		function(data){
       $.cookie("userid","");
 			$("#login-message").text("Welcome Guest").parent().find("a").remove();
+      window.location = "index.php"
       $("input", "#shippingForm").not(":button, :submit, :reset, :hidden").val("").removeAttr("checked").removeAttr("selected");
       showShippingLogin();
       togglePanel(0);
-      window.location.reload();
+      
       for(i in jQuery.epc.shippingPanel) {
         jQuery.epc.shippingPanel[i] = 0;
       };
@@ -95,13 +96,16 @@ function logout()
 		});
 }
 
-function validateLoginForm()
+function validateLoginForm(location)
 {
 	resetAjaxLoader("#loginButton");
 
 	$.post("authenticate.php", {action: "login", email: $("#email").val(), password: $("#password").val()},
 		function(data){
 			handleLoginResponse(data.split("|"));
+         if(location != null){
+           window.location = location;
+         }
 		});
 }
 

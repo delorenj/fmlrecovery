@@ -1,5 +1,5 @@
 				<div id="footer">
-			  	<p>etherealPC &copy; 2010. All Rights Reserved</p>
+			  	<p>FML Recovery &copy; 2010. All Rights Reserved</p>
 				</div>
      </div>
    </body>

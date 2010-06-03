@@ -8,7 +8,6 @@
   <div class="flash_notice"></div>
   <div class="flash_error"></div>
   <div id="login-box">
-    <!--<h1>login to my account</h1>-->
     <img src="images/loginheader.gif" style="float:left;"/>
     <div class="clearfix"></div>
     <div class="lcolumn">
@@ -26,16 +25,16 @@
         </div>
       </div>
       <div class="clearfix"></div>
-      <button id='loginButton' class='epc-button ui-state-default ui-corner-all' href='#' onClick='validateLoginForm(); return false;'>Log in</button>
+      <button id='loginButton' class='epc-button ui-state-default ui-corner-all' href='#' onClick='validateLoginForm("account.php"); return false;'>Log in</button>
     </div>
     <div class="rcolumn">
       <div class="login-snippet" style="padding-top:20px;">
         <h3>Don't have an account?</h3>
-        <a href="index.php">Just start creating a ticket!</a>
+        <span class="fieldlink" style="font-size: smaller;"><a href="index.php">Just start creating a ticket!</a></span>
       </div>
       <div class="login-snippet">
         <h3>Did you forget your password?</h3>
-        <a href="#">Recover it here.</a>
+        <span class="fieldlink" style="font-size: smaller;"><a href="#">Recover it here.</a></span>
       </div>
     </div>
     <div class="clearfix"></div>

@@ -30,6 +30,14 @@ h1{
 	font-size:14px;
 }
 
+.ui-state-active, .ui-widget-content .ui-state-active {
+  color:#600;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+  color:#600;
+}
+
 .focusField{
 	border:solid 2px #73A6FF;
 	background:#EFF5FF;
@@ -49,15 +57,11 @@ html {
 body {
 	min-width:850px;
 	text-align:center;
-  background: #abc3df url('../images/bg.jpg') no-repeat 50% 0;
+   background: #abc3df url('../images/bg.jpg') no-repeat 50% 0;
 	color: black;
 	font-family: 'Yanone Kaffeesatz', 'Josefin Sans Std Light', verdana, helvetica, arial, sans-serif;
 	font-size: 73%;  /* Enables font size scaling in MSIE */
 	padding: 0;
-}
-
-html > body {
-	font-size: 9pt;
 }
 
 #wrapper {
@@ -84,10 +88,6 @@ html > body {
 	color: #051E5D;
 	background-color: transparent;
 	font-weight: bold;
-}
-
-#header {
-	color: inherit;
 }
 
 .headerTitle {
@@ -156,9 +156,7 @@ html > body {
 }
 
 #main-content a {
-	color: #600;
 	background-color: transparent;
-   font-family: 'Josefin Sans Std Light', verdana, helvetica, arial, sans-serif;
    font-size: 1.3em;
 	text-decoration: none;
 }
@@ -506,12 +504,30 @@ font-size:1em;
 
 .fieldlink A:link, .fieldlink A:active, .fieldlink A:visited {
   text-decoration: none !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
   font-size: 1em !important;
+  font-family: 'Josefin Sans Std Light';
+  color: #600
 }
 
 .fieldlink A:hover {
   text-decoration: underline !important;
+}
+
+#openTicketsDiv ul li {
+  border: 2px solid #A9B2C7;
+  -moz-border-radius: 1%;
+  margin: 25px 0;
+  padding:10px;
+}
+.li-header {
+  font-family:  'Josefin Sans Std Light';
+  font-weight: 600;
+  font-size: 1.4em;
+}
+
+.li-key {
+  font-family:  'Josefin Sans Std Light';
 }
 
 .loading {

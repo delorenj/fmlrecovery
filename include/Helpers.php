@@ -1,10 +1,10 @@
 <?php
 
-function listMediaSizes()
+function redirect_if_not_logged_in($location)
 {
-	echo "<option value='1000'>Under 1GB</option>";
-	echo "<option value='16000'>16GB</option>";
-	echo "<option value='100000'>100GB</option>";
+  if(!User::logged_in()){
+    header("location:$location");
+  }
 }
 
 ?>

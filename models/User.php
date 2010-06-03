@@ -2,7 +2,8 @@
 class User extends ActiveRecord\Model
 {
   static $has_many = array(
-    array('Addresses')
+    array('Addresses'),
+    array('Tickets')
   );
   
 	static $validates_presence_of = array(
@@ -24,13 +25,26 @@ class User extends ActiveRecord\Model
       return false;
   }
 
-	function current_user()
-	{
-		if(User::logged_in())
-			return User::find_by_id($_SESSION['userid']);
-		else
-			return null;
-	}
+  static function openTickets()
+  {
+    $tickets = User::current_user()->tickets;
+    $opentix = array();
+    fb("num of tickets: ".count($tickets));
+    foreach($tickets as $k => $t){
+      if($t->status != "Complete"){
+        $opentix[] = $t;
+      }
+    }
+    return $opentix;
+  }
+
+  function current_user()
+  {
+	if(User::logged_in())
+    return User::find_by_id($_SESSION['userid']);
+   else
+    return null;
+  }
 
 }
 ?>
