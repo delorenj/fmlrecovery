@@ -38,17 +38,18 @@ CREATE TABLE  `epc`.`addresses` (
   `phoneNumber` varchar(10) NOT NULL,
   `default` binary(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `epc`.`addresses`
 --
-INSERT INTO `epc`.`addresses` (`id`,`user_id`,`nickname`,`companyName`,`streetLines`,`city`,`stateOrProvinceCode`,`postalCode`,`phoneNumber`,`default`) VALUES 
- (1,7,'Address 1','','9 Morris Rd.','Stanhope','NJ','07874','2152083549',0x31),
- (2,7,'Address 2','','143 Penns Grant Dr.','Morrisville','PA','19067','2157362235',0x30),
- (3,8,'Home','','437 Musket Dr.','Morrisville','PA','19067','2152956493',0x31),
- (4,15,'default',NULL,'OhOhOh St.','Stanhope','NJ','07874','2121212121',0x31),
- (5,16,'default',NULL,'10 Beef St.','Beverly Hills','CA','90210','2121212121',0x31);
+
+/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+LOCK TABLES `addresses` WRITE;
+INSERT INTO `epc`.`addresses` VALUES  (1,1,'default',NULL,'9 Morris Rd.','Stanhope','NJ','07874','2152083549',0x31);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
+
 
 --
 -- Definition of table `epc`.`schema_migrations`
@@ -64,6 +65,59 @@ CREATE TABLE  `epc`.`schema_migrations` (
 -- Dumping data for table `epc`.`schema_migrations`
 --
 
+/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+LOCK TABLES `schema_migrations` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+
+
+--
+-- Definition of table `epc`.`services`
+--
+
+DROP TABLE IF EXISTS `epc`.`services`;
+CREATE TABLE  `epc`.`services` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `epc`.`services`
+--
+
+/*!40000 ALTER TABLE `services` DISABLE KEYS */;
+LOCK TABLES `services` WRITE;
+INSERT INTO `epc`.`services` VALUES  (0,'Media Recovery','I want to recover some, or all of my personal media, including photos, music, and documents.'),
+ (1,'Full Recovery','I want to recover all of the data on my damaged media.');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `services` ENABLE KEYS */;
+
+
+--
+-- Definition of table `epc`.`ticket_comments`
+--
+
+DROP TABLE IF EXISTS `epc`.`ticket_comments`;
+CREATE TABLE  `epc`.`ticket_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `epc`.`ticket_comments`
+--
+
+/*!40000 ALTER TABLE `ticket_comments` DISABLE KEYS */;
+LOCK TABLES `ticket_comments` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `ticket_comments` ENABLE KEYS */;
+
+
 --
 -- Definition of table `epc`.`tickets`
 --
@@ -72,7 +126,7 @@ DROP TABLE IF EXISTS `epc`.`tickets`;
 CREATE TABLE  `epc`.`tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `service` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `service_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `media` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `megabytes` int(11) NOT NULL,
   `carrier` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'FedEx',
@@ -80,20 +134,29 @@ CREATE TABLE  `epc`.`tickets` (
   `length` int(11) DEFAULT NULL,
   `width` int(11) DEFAULT NULL,
   `height` int(11) DEFAULT NULL,
+  `service_fee` float DEFAULT NULL,
   `shipping_cost` decimal(8,2) DEFAULT NULL,
   `comments` text COLLATE utf8_unicode_ci,
-  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Pending Review',
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Media is not yet shipped',
   `labelpath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `rtc` datetime DEFAULT NULL,
   `etc` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `epc`.`tickets`
 --
+
+/*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
+LOCK TABLES `tickets` WRITE;
+INSERT INTO `epc`.`tickets` VALUES  (1,1,'0','Flash Card',16,'FedEx',2,5,2,5,199,'10.00','fileTypes=pictures,videos,ppt|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680177',NULL,NULL,'2010-06-04 15:36:17','2010-06-04 15:36:17'),
+ (2,1,'1','External Hard Drive',250,'FedEx',2,5,2,5,199,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680346',NULL,NULL,'2010-06-04 15:39:06','2010-06-04 15:39:06');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
+
 
 --
 -- Definition of table `epc`.`users`
@@ -109,22 +172,18 @@ CREATE TABLE  `epc`.`users` (
   `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `epc`.`users`
 --
-INSERT INTO `epc`.`users` (`id`,`email`,`crypted_password`,`created_at`,`updated_at`,`first_name`,`last_name`) VALUES 
- (7,'jaradd@gmail.com','$1$tVhwKGxm$CltqPKJ0pqpwsVIph8OhB.','2010-03-23 18:02:38','2010-03-23 18:02:38','jarad','delorenzo'),
- (8,'sheep@gmail.com','$1$XoeECqkb$FkEIFj5RREvckuESrTbZZ1','2010-03-23 18:11:37','2010-03-23 18:11:37','sheep','man'),
- (9,'sheep1@gmail.com','$1$bHXaMCEg$DHmmKvMeHezLXQ2RXvqqh0','2010-03-23 18:11:53','2010-03-23 18:11:53','sheep','man'),
- (10,'sheep2@gmail.com','$1$6bH.mrl2$VUGt8FeT/iqEcUOYpejMQ/','2010-03-23 18:12:26','2010-03-23 18:12:26','sheep','man'),
- (11,'beef@sheep.com','$1$zOPbPcHP$v/qfuqPuVj/9JzvBNJt5i0','2010-03-23 18:19:38','2010-03-23 18:19:38','jarad','man'),
- (12,'sheep@meadow.com','$1$qRSzWJF0$4HsrteiK7TRjSsND3dyhK1','2010-05-20 14:29:31','2010-05-20 14:29:31','jk','kj'),
- (13,'s1heep@meadow.com','$1$pXti2gLi$0Yaz76YtLLRlu92njqkiD.','2010-05-20 14:31:18','2010-05-20 14:31:18','lklk','lklk'),
- (14,'s12heep@meadow.com','$1$3.S6MAo7$DD/zyZhTy0Gkv0hM7VEu6.','2010-05-20 14:36:25','2010-05-20 14:36:25','Lklk','Lklk'),
- (15,'boots@man.man','$1$ajQpFfgE$TxoUu2CLkY6xTF/66/tyV0','2010-05-21 15:13:01','2010-05-21 15:13:01','Boot','Man'),
- (16,'toop@test.com','$1$c04Tp0Wt$r6A3HZ3rHoT1vgTKTlXrr.','2010-05-25 15:53:15','2010-05-25 15:53:15','Rock','Solid');
+
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+LOCK TABLES `users` WRITE;
+INSERT INTO `epc`.`users` VALUES  (1,'jaradd@gmail.com','$1$.J/EoDxq$FcWY/U72RLL5AuBBIpomK1','2010-06-04 15:36:15','2010-06-04 15:36:15','Jarad','DeLorenzo');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
 
 
 

@@ -72,7 +72,9 @@ function finalize()
     "weight" => $weight_estimate,
     "L" => $length_estimate,
     "W" => $width_estimate,
-    "H" => $height_estimate
+    "H" => $height_estimate,
+    "customerReference" => User::current_user()->id,
+    "transactionNumber" => Ticket::last()->id+1
   );
   $label->init($data);
   $label->create();
@@ -82,7 +84,7 @@ function finalize()
   fb("labelpath=$labelpath");
   $ticket = new Ticket(array(
 		'user_id'     => User::current_user()->id,
-		'service'     => $_SESSION["newticket"]["service"],
+		'service_id'     => $_SESSION["newticket"]["service"],
       'media'       => $_SESSION["newticket"]["mediaType"],
 		'megabytes'   => $_SESSION["newticket"]["mediaSize"],
       'comments'    => $_SESSION["newticket"]["mediaDetail"],

@@ -152,7 +152,7 @@ function alreadyHaveAnAccount()
     $("#password").unbind("keyup");
     $("#passwordCaption").html("Password");
     $("#shippingLogin").append("<div id='hiddenLogin'><div class='clearfix'></div><button id='loginButton' class='epc-button ui-state-default ui-corner-all' href='#' onClick='validateLoginForm(); postLoginProcessing(); return false;'>Log in</button> \n\
-          <span class='fieldlink'><a href='#' onClick='forgotPassword()'>Forgot Password</a> or <a href='#' class='small' onClick='createAnAccount()'>Create an Account</a></span></div>")
+          <span class='fieldlink'><a href='#' onClick='forgotPassword()'>Forgot Password</a> or <a href='#' onClick='createAnAccount()'>Create an Account</a></span></div>")
   });
 }
 

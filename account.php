@@ -21,11 +21,38 @@
               echo "<ul>";
               foreach($openTickets as $key => $t) {
                 ?>
-          <li id="openticket<? echo $key+1; ?>">
-            <span class="li-header">Ticket Number: <? echo $t->user_id.$t->id; ?></span><br />
-            <span class="li-key">Status:</span><span class="fieldlink"><a href="#" title="<?echo $t->status;?>"><? echo $t->status; ?></a></span><br />
-            <span class="li-key">Shipping Label:</span><span class="fieldlink"><a href='<? echo $t->labelpath; ?>'>Download</a></span>
-          </li>
+                  <li id="openticket<? echo $key+1; ?>">
+                    <span class="li-header li-header-left">Ticket Number: <? echo $t->id; ?></span>
+                    <span class="li-header li-header-right fieldlink"><a href="#" title="<?echo $t->status;?>"><? echo $t->status; ?></a></span>
+                    <div class="clearfix"></div>
+                    <span class="li-key">Created On: </span><span><? echo date_format($t->created_at,"m/d/Y"); ?></span>
+                    <div class="clearfix"></div>
+                    <span class="li-key">Service: </span><span><? echo $t->megabytes."MB ".$t->media.", ".$t->service->name; ?></span>
+                    <?if($t->etc != NULL) {?>
+                      <? $etcDate = date_format($t->etc,"m/d/Y"); ?>
+                      <div class="clearfix"></div>
+                      <span class="li-key">Estimated Completion Date: </span><span><? echo $etcDate; ?></span>
+                    <? } ?>
+                    <?if($t->service_fee != NULL) {?>
+                      <div class="clearfix"></div>
+                      <span class="li-key">Service Fee: </span><span><? echo "$".$t->service_fee; ?></span>
+                    <? } ?>
+
+                    <div class="clearfix"></div>
+                    <span class="li-key" style="margin-top:5px;">Questions or Comments:</span>
+                    <span class="fieldlink"><a href="#" onclick="toggleCommentBox(<?echo $key+1;?>); return false;">Comment</a></span>
+                    <div class="clearfix"></div>
+                    <div id="openticketcomments<?echo $key+1;?>"></div>
+                    <div class="clearfix"></div>
+                    <div id="openticketcommentinput<?echo $key+1;?>" style="display:none; width:60%;">
+                      <textarea rows="4" cols="50"></textarea>
+                      <div class="clearfix"></div>
+                      <button class="epc-button ui-state-default ui-corner-all" onClick="addComment(<?echo $key+1;?>); return false;">Comment</button>
+                    </div>
+                    <div class="clearfix" style="margin-top:25px;"></div>
+                    <button class="epc-button ui-state-default ui-corner-all" onClick="cancelTicket(<?echo $key+1;?>); return false;">Cancel Ticket</button>
+                    <button class="epc-button ui-state-default ui-corner-all" onClick="window.location='<? echo $t->labelpath; ?>';">Download Shipping Label</button>
+                  </li>
                 <?
               }
               echo "</ul>";

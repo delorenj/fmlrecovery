@@ -31,14 +31,13 @@
               <label for="mediaType">Select a type of media:</label>
               <select name="mediaType" class="epc-select float_left" onChange="onChangeMediaType(this.value)">
                 <option value="none">--Choose one--</option>
-                <option value="external">External Hard Drive</option>
-                <option value="internal">Internal Hard Drive</option>
-                <option value="desktop">Desktop</option>
-                <option value="laptop">Laptop</option>
-                <option value="usb">USB Stick</option>
-                <option value="flash">Flash Card</option>
-                <option value="phone">Phone</option>
-                <option value="other">Other</option>
+                <option value="External Hard Drive">External Hard Drive</option>
+                <option value="Desktop Hard Drive">Desktop Hard Drive</option>
+                <option value="Laptop Hard Drive">Laptop Hard Drive</option>
+                <option value="USB Stick">USB Stick</option>
+                <option value="Flash Card">Flash Card</option>
+                <option value="Phone">Phone</option>
+                <option value="Other">Other</option>
                 <option value="idk">I don't know</option>
               </select>
               <span class="fieldOK">&nbsp;</span><span class="loading">&nbsp;</span>

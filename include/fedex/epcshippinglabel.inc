@@ -54,7 +54,7 @@ class EpcShippingLabel
     $this->request['WebAuthenticationDetail'] = array('UserCredential' =>
                                                           array('Key' => $this->key, 'Password' => $this->password));
     $this->request['ClientDetail'] = array('AccountNumber' => $this->shipAccount, 'MeterNumber' => $this->meter);
-    $this->request['TransactionDetail'] = array('CustomerTransactionId' => '*** Ground Domestic Shipping Request v8 using PHP ***');
+    $this->request['TransactionDetail'] = array('CustomerTransactionId' => '*** Ticket Number '.$data["transactionNumber"].' ***');
     $this->request['Version'] = array('ServiceId' => 'ship', 'Major' => '8', 'Intermediate' => '0', 'Minor' => '0');
     $this->request['RequestedShipment'] = array('ShipTimestamp' => date('c'),
                                             'DropoffType' => 'REGULAR_PICKUP', // valid values REGULAR_PICKUP, REQUEST_COURIER, DROP_BOX, BUSINESS_SERVICE_CENTER and STATION
@@ -88,7 +88,9 @@ class EpcShippingLabel
                                                                          'Dimensions' => array('Length' => $data["L"],
                                                                                                'Width' => $data["W"],
                                                                                                'Height' => $data["H"],
-                                                                                               'Units' => 'IN'))));
+                                                                                               'Units' => 'IN'),
+                                                                         'CustomerReferences' => array('0' => array('CustomerReferenceType' => 'CUSTOMER_REFERENCE', 'Value' => $data["customerReference"]),
+                                                                                                       '1' => array('CustomerReferenceType' => 'INVOICE_NUMBER', 'Value' => $data["transactionNumber"])))));
 
     fb("Label initialized with shipping data");
   }//End Function: init()

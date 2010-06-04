@@ -28,6 +28,7 @@ class User extends ActiveRecord\Model
   static function openTickets()
   {
     $tickets = User::current_user()->tickets;
+    $tickets = array_reverse($tickets);
     $opentix = array();
     fb("num of tickets: ".count($tickets));
     foreach($tickets as $k => $t){
