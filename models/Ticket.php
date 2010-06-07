@@ -6,5 +6,9 @@ class Ticket extends ActiveRecord\Model
     array('Service')
   );
 
+  static $has_many = array(
+    array('Ticket_Comments')
+  );
+
 }
 ?>

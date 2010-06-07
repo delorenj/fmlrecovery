@@ -25,6 +25,11 @@ class User extends ActiveRecord\Model
       return false;
   }
 
+  static function is_admin()
+  {
+    return User::current_user()->admin;
+  }
+
   static function openTickets()
   {
     $tickets = User::current_user()->tickets;

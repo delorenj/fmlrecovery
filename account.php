@@ -42,12 +42,26 @@
                     <span class="li-key" style="margin-top:5px;">Questions or Comments:</span>
                     <span class="fieldlink"><a href="#" onclick="toggleCommentBox(<?echo $key+1;?>); return false;">Comment</a></span>
                     <div class="clearfix"></div>
-                    <div id="openticketcomments<?echo $key+1;?>"></div>
+                    <div id="openticketcomments<?echo $key+1;?>">
+                      <?
+                        if($t->ticket_comments != NULL) {
+                          foreach($t->ticket_comments as $c){
+                            echo "<p class='commentType".$c->admin."'>";
+                            if($c->admin) {
+                              echo "  A. ";
+                            } else {
+                              echo "Q. ";
+                            }
+                            echo $c->comment."</p>";
+                          }
+                        }
+                      ?>
+                    </div>
                     <div class="clearfix"></div>
                     <div id="openticketcommentinput<?echo $key+1;?>" style="display:none; width:60%;">
                       <textarea rows="4" cols="50"></textarea>
                       <div class="clearfix"></div>
-                      <button class="epc-button ui-state-default ui-corner-all" onClick="addComment(<?echo $key+1;?>); return false;">Comment</button>
+                      <button class="epc-button ui-state-default ui-corner-all" onClick="addComment(<?echo $key+1;?>, <?echo $t->id;?>); return false;">Comment</button>
                     </div>
                     <div class="clearfix" style="margin-top:25px;"></div>
                     <button class="epc-button ui-state-default ui-corner-all" onClick="cancelTicket(<?echo $key+1;?>); return false;">Cancel Ticket</button>
