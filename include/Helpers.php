@@ -7,4 +7,11 @@ function redirect_if_not_logged_in($location)
   }
 }
 
+function redirect_if_not_admin($location)
+{
+  if(!User::is_admin()){
+    header("location:$location");
+  }
+}
+
 ?>

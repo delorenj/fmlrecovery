@@ -35,7 +35,7 @@ function create()
     $message = "Comment posted";
   }
 
-  $response = array("message" => $message, "result" => $result);
+  $response = array("message" => $message, "result" => $result, "commentType" => User::is_admin());
   echo json_encode($response);
 }
 

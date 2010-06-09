@@ -10,5 +10,12 @@ class Ticket extends ActiveRecord\Model
     array('Ticket_Comments')
   );
 
+  static function openTickets()
+  {
+    $tickets = Ticket::all(array('conditions' => 'state = "OPEN"'));
+    $tickets = array_reverse($tickets);
+    return $tickets;
+  }
+
 }
 ?>

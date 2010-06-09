@@ -30,8 +30,16 @@ function cancelTicket(id) {
 
 function handleAddCommentResponse(data, comment, id){
   if(data.result == "OK") {
-    $("#openticketcomments" + id).append(comment).fadeIn("slow");
+    var prefix;
+    if(data.commentType == "0") {
+      prefix = "Q. "
+    }
+    else{
+      prefix = "A. "
+    }
+    $("#openticketcomments" + id).append("<p class='commentType"+data.commentType+"'>"+prefix+comment+"</p>").fadeIn("slow");
     toggleCommentBox(id);
+    flashNotice("Your question has been posted successfully! You can expect a response within the hour.")
   }
   else {
     flashError(data.message);

@@ -1,6 +1,6 @@
 <? session_start(); ?>
 <?require_once('include/environment.inc');?>
-<? redirect_if_not_logged_in("login.php"); ?>
+<?redirect_if_not_admin("login.php");?>
 <? include "partial/head.php"; ?>
 <script type="text/javascript" src="js/account.js"></script>
 <? include "partial/header.php"; ?>
@@ -8,14 +8,14 @@
 <div id="main-content">
 		<div class="flash_notice"></div>
 		<div class="flash_error"></div>
-      <h1>Account Info</h1>
+      <h1>Site Administration</h1>
       <div id="account-accordion" class="ui-accordion-container" style="padding-top: 10px; clear: both;">
         <h3><a href="javascript: void(0)" class="ui-accordion-link">Open Tickets</a></h3>
         <div id="openTicketsDiv">
           <?
-            $openTickets = User::openTickets();
+            $openTickets = Ticket::openTickets();
             if(count($openTickets) == 0){
-              echo "<p>No Open Tickets</p><p><a href='index.php'>Click here to start a new one!</a></p>";
+              echo "<h3>No Open Tickets! Your company must suck!</h3";
             }
             else {
               echo "<ul>";
@@ -40,7 +40,7 @@
 
                     <div class="clearfix"></div>
                     <span class="li-key" style="margin-top:5px;">Ticket Inquiry: </span>
-                    <span class="fieldlink" style="text-decoration:underline;"><a href="#" onclick="toggleCommentBox(<?echo $key+1;?>); return false;">Ask a question</a></span>
+                    <span class="fieldlink" style="text-decoration:underline;"><a href="#" onclick="toggleCommentBox(<?echo $key+1;?>); return false;">Reply</a></span>
                     <div class="clearfix"></div>
                     <div id="openticketcomments<?echo $key+1;?>">
                       <?
@@ -73,9 +73,28 @@
             }
           ?>
         </div>
-        <h3><a href="javascript: void(0)" class="ui-accordion-link">Order History</a></h3>
-        <div id="orderHistoryDiv">
-          <p>Order history goes here...</p>
+        <h3><a href="javascript: void(0)" class="ui-accordion-link">Account Management</a></h3>
+        <div id="accountManagementDiv">
+          <?
+            $users = User::all();
+            echo '<ul>';
+            foreach($users as $u){
+              
+              ?>
+                  <li id="userbox<? echo $key+1; ?>">
+                    <span class="li-header li-header-left">Account Number: <? echo $u->id; ?></span>
+                    <span class="li-header li-header-right fieldlink">Open Tickets: (todo)</span>
+                    <div class="clearfix"></div>
+                    <span class="li-key">Name: </span><span><? echo $u->first_name." ".$u->last_name; ?></span>
+                    <div class="clearfix"></div>
+                    <span class="li-key">Email: </span><span><? echo $u->email; ?></span>
+                    <div class="clearfix" style="margin-top:25px;"></div>
+                    <button class="epc-button ui-state-default ui-corner-all" onClick="deleteAccount(<?echo $key+1;?>); return false;">Delete Account</button>
+                  </li>
+              <?
+            }
+            echo '</ul>';
+          ?>
         </div>
         <h3><a href="javascript: void(0)" class="ui-accordion-link">Personal Info</a></h3>
         <div id="personalInfoDiv">
@@ -86,3 +105,4 @@
 
 </div>
 <? include "partial/footer.php" ?>
+

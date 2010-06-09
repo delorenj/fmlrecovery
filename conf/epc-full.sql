@@ -38,13 +38,14 @@ CREATE TABLE  `epc`.`addresses` (
   `phoneNumber` varchar(10) NOT NULL,
   `default` binary(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `epc`.`addresses`
 --
 INSERT INTO `epc`.`addresses` (`id`,`user_id`,`nickname`,`companyName`,`streetLines`,`city`,`stateOrProvinceCode`,`postalCode`,`phoneNumber`,`default`) VALUES 
- (1,1,'default',NULL,'9 Morris Rd.','Stanhope','NJ','07874','2152083549',0x31);
+ (1,1,'default',NULL,'9 Morris Rd.','Stanhope','NJ','07874','2152083549',0x31),
+ (2,2,'default',NULL,'10 Man Ln.','Morrisville','PA','19067','2152223333',0x31);
 
 --
 -- Definition of table `epc`.`schema_migrations`
@@ -91,7 +92,7 @@ CREATE TABLE  `epc`.`ticket_comments` (
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `epc`.`ticket_comments`
@@ -107,7 +108,11 @@ INSERT INTO `epc`.`ticket_comments` (`id`,`ticket_id`,`comment`,`admin`,`created
  (8,2,'in your horse! holmes...',0,'2010-06-07 13:48:33'),
  (9,2,'GWATS!',1,'2010-06-07 14:08:52'),
  (10,2,'Sheep men notwithstanding',1,'2010-06-07 16:27:18'),
- (11,1,'Where\'s my shizz?',1,'2010-06-07 16:35:05');
+ (11,1,'Where\'s my shizz?',1,'2010-06-07 16:35:05'),
+ (12,3,'When will it be done?',0,'2010-06-08 10:36:32'),
+ (13,1,'in my ass',1,'2010-06-08 13:29:55'),
+ (14,3,'sheep?',0,'2010-06-08 13:30:29'),
+ (15,3,'Never',1,'2010-06-09 16:29:14');
 
 --
 -- Definition of table `epc`.`tickets`
@@ -132,17 +137,19 @@ CREATE TABLE  `epc`.`tickets` (
   `labelpath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `rtc` datetime DEFAULT NULL,
   `etc` datetime DEFAULT NULL,
+  `state` enum('OPEN','CLOSED') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'OPEN',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `epc`.`tickets`
 --
-INSERT INTO `epc`.`tickets` (`id`,`user_id`,`service_id`,`media`,`megabytes`,`carrier`,`weight`,`length`,`width`,`height`,`service_fee`,`shipping_cost`,`comments`,`status`,`labelpath`,`rtc`,`etc`,`created_at`,`updated_at`) VALUES 
- (1,1,'0','Flash Card',16,'FedEx',2,5,2,5,199,'10.00','fileTypes=pictures,videos,ppt|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680177',NULL,NULL,'2010-06-04 15:36:17','2010-06-04 15:36:17'),
- (2,1,'1','External Hard Drive',250,'FedEx',2,5,2,5,199,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680346',NULL,NULL,'2010-06-04 15:39:06','2010-06-04 15:39:06');
+INSERT INTO `epc`.`tickets` (`id`,`user_id`,`service_id`,`media`,`megabytes`,`carrier`,`weight`,`length`,`width`,`height`,`service_fee`,`shipping_cost`,`comments`,`status`,`labelpath`,`rtc`,`etc`,`state`,`created_at`,`updated_at`) VALUES 
+ (1,1,'0','Flash Card',16,'FedEx',2,5,2,5,199,'10.00','fileTypes=pictures,videos,ppt|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680177',NULL,NULL,'OPEN','2010-06-04 15:36:17','2010-06-04 15:36:17'),
+ (2,1,'1','External Hard Drive',250,'FedEx',2,5,2,5,199,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680346',NULL,NULL,'OPEN','2010-06-04 15:39:06','2010-06-04 15:39:06'),
+ (3,2,'1','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/TestJoe1276007758',NULL,NULL,'OPEN','2010-06-08 10:35:58','2010-06-08 10:35:58');
 
 --
 -- Definition of table `epc`.`users`
@@ -159,13 +166,14 @@ CREATE TABLE  `epc`.`users` (
   `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `epc`.`users`
 --
 INSERT INTO `epc`.`users` (`id`,`email`,`crypted_password`,`created_at`,`updated_at`,`first_name`,`last_name`,`admin`) VALUES 
- (1,'jaradd@gmail.com','$1$.J/EoDxq$FcWY/U72RLL5AuBBIpomK1','2010-06-04 15:36:15','2010-06-04 15:36:15','Jarad','DeLorenzo',1);
+ (1,'jaradd@gmail.com','$1$.J/EoDxq$FcWY/U72RLL5AuBBIpomK1','2010-06-04 15:36:15','2010-06-04 15:36:15','Jarad','DeLorenzo',1),
+ (2,'test@test.com','$1$sgjCQwL9$E7blwM/r5LfOkRK92Gx8C0','2010-06-08 10:35:55','2010-06-08 10:35:55','Joe','Test',0);
 
 
 
