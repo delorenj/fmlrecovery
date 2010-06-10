@@ -10,9 +10,14 @@ class Ticket extends ActiveRecord\Model
     array('Ticket_Comments')
   );
 
-  static function openTickets()
+  static function openTickets($uId = null)
   {
-    $tickets = Ticket::all(array('conditions' => 'state = "OPEN"'));
+    if($uId == null){
+      $tickets = Ticket::all(array('conditions' => 'state = "OPEN"'));
+    }
+    else {
+      $tickets = Ticket::all(array('conditions' => array('state = "OPEN" AND user_id = ?', $uId)));
+    }
     $tickets = array_reverse($tickets);
     return $tickets;
   }

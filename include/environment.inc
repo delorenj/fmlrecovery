@@ -1,11 +1,17 @@
 <?
-require_once('FirePHPCore/fb.php');
+set_include_path(implode(PATH_SEPARATOR, array(
+    get_include_path(),
+    dirname(__FILE__),
+    dirname(__FILE__)."/../"
+)));
 
+require_once('FirePHPCore/fb.php');
+fb(get_include_path());
 require_once 'php-activerecord/ActiveRecord.php';
 ActiveRecord\Config::initialize(function($cfg) {
-            $cfg->set_model_directory('models');
+            $cfg->set_model_directory(dirname(__FILE__).'/../models');
             $cfg->set_connections(array('development' => 'mysql://epc:Iree3cam@localhost/epc'));
         });
 
-require_once 'include/Helpers.php';
+require_once 'Helpers.php';
 ?>

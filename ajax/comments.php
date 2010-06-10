@@ -1,7 +1,7 @@
 <?php
 	session_start();
    ob_start();
-	require_once('include/environment.inc');
+	require_once('../include/environment.inc');
 
 	switch($_POST["action"])
 	{
@@ -27,15 +27,15 @@ function create()
 
   if($comment->is_invalid()){
     $message = "Oops, that's an invalid comment";
-    $result = "INVALID_COMMENT";
+    $OK = false;
   }
   else {
     $comment->save();
-    $result = "OK";
+    $OK = true;
     $message = "Comment posted";
   }
 
-  $response = array("message" => $message, "result" => $result, "commentType" => User::is_admin());
+  $response = array("message" => $message, "OK" => $OK, "commentType" => User::is_admin());
   echo json_encode($response);
 }
 

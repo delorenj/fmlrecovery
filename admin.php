@@ -79,17 +79,17 @@
             $users = User::all();
             echo '<ul>';
             foreach($users as $u){
-              
+              $numOpenTix = count(Ticket::openTickets($u->id));
               ?>
                   <li id="userbox<? echo $key+1; ?>">
                     <span class="li-header li-header-left">Account Number: <? echo $u->id; ?></span>
-                    <span class="li-header li-header-right fieldlink">Open Tickets: (todo)</span>
+                    <span class="li-header li-header-right fieldlink">Open Tickets: <?echo $numOpenTix;?></span>
                     <div class="clearfix"></div>
                     <span class="li-key">Name: </span><span><? echo $u->first_name." ".$u->last_name; ?></span>
                     <div class="clearfix"></div>
                     <span class="li-key">Email: </span><span><? echo $u->email; ?></span>
                     <div class="clearfix" style="margin-top:25px;"></div>
-                    <button class="epc-button ui-state-default ui-corner-all" onClick="deleteAccount(<?echo $key+1;?>); return false;">Delete Account</button>
+                    <button class="epc-button ui-state-default ui-corner-all" onClick="deleteAccount(<?echo $key+1;?>, <? echo $u->id;?>); return false;">Delete Account</button>
                   </li>
               <?
             }

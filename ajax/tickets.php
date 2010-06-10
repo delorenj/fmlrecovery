@@ -1,8 +1,8 @@
 <?php
 	session_start();
    ob_start();
-	require_once('include/environment.inc');
-   require_once('include/fedex/epcshippinglabel.inc');
+	require_once('../include/environment.inc');
+   require_once('fedex/epcshippinglabel.inc');
   
 	switch($_POST["action"])
 	{
@@ -79,8 +79,8 @@ function finalize()
   $label->init($data);
   $label->create();
   $labelpath = "labels/".User::current_user()->last_name.User::current_user()->first_name.time();
-  $labelCreatedSuccessfully = rename(EpcShippingLabel::SHIP_LABEL, $labelpath.".pdf");
-  $picCreatedSuccessfully = rename(EpcShippingLabel::SHIP_IMAGE, $labelpath.".png");
+  $labelCreatedSuccessfully = rename(dirname(__FILE__)."/../".EpcShippingLabel::SHIP_LABEL, dirname(__FILE__)."/../".$labelpath.".pdf");
+  $picCreatedSuccessfully = rename(dirname(__FILE__)."/../".EpcShippingLabel::SHIP_IMAGE, dirname(__FILE__)."/../".$labelpath.".png");
   fb("labelpath=$labelpath");
   $ticket = new Ticket(array(
 		'user_id'     => User::current_user()->id,

@@ -38,9 +38,9 @@ function printFault($exception, $client) {
  * SOAP request/response logging to a file
  */                                  
 function writeToLog($client){  
-if (!$logfile = fopen(TRANSACTIONS_LOG_FILE, "a"))
+if (!$logfile = fopen(dirname(__FILE__)."/../../".TRANSACTIONS_LOG_FILE, "a"))
 {
-   error_func("Cannot open " . TRANSACTIONS_LOG_FILE . " file.\n", 0);
+   error_func("Cannot open " . dirname(__FILE__)."/../../".TRANSACTIONS_LOG_FILE . " file.\n", 0);
    exit(1);
 }
 

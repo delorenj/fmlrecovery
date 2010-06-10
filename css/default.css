@@ -302,6 +302,10 @@ padding-left:1px;
 font-size:1em;
 }
 
+.contact-block {
+
+}
+
 .epc-text {
   color:#051E5D;
   font-family: "Lucida Grande", Arial, sans-serif;
@@ -311,11 +315,18 @@ font-size:1em;
 }
 
 .epc-textfield{
-	height: 20px;
+  height: 20px;
   padding: 3px;
   font-family: "Lucida Grande", Arial, sans-serif;
   font-weight: bold;
   font-size:20px;
+}
+
+.epc-textarea{
+  padding: 3px;
+  font-family: "Lucida Grande", Arial, sans-serif;
+  font-weight: bold;
+  font-size:14px;
 }
 
 .epc-checkbox{

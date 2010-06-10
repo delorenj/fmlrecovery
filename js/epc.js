@@ -34,8 +34,8 @@ google.setOnLoadCallback(function(){
           console = {log: function() { }};
       }
       
-			$('.epc-textfield, .epc-select, .epc-checkbox').addClass("idleField");
-  		$('.epc-textfield, .epc-select, .epc-checkbox').live('focus',function() {
+			$('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').addClass("idleField");
+  		$('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').live('focus',function() {
    			$(this).removeClass("idleField").addClass("focusField");
   	    if (this.value == this.defaultValue){ 
   	    	this.value = '';
@@ -44,7 +44,7 @@ google.setOnLoadCallback(function(){
 //	    			this.select();
 //	   		}
    		});
-   		$('.epc-textfield, .epc-select, .epc-checkbox').live('blur', function() {
+   		$('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').live('blur', function() {
    			$(this).removeClass("focusField").addClass("idleField");
    	    if ($.trim(this.value) == ''){
 			   	this.value = (this.defaultValue ? this.defaultValue : '');
@@ -80,7 +80,7 @@ google.setOnLoadCallback(function(){
 
 function logout()
 {
-	$.post("authenticate.php", {action: "logout"},
+	$.post("ajax/authenticate.php", {action: "logout"},
 		function(data){
       $.cookie("userid","");
 			$("#login-message").text("Welcome Guest").parent().find("a").remove();
@@ -100,7 +100,7 @@ function validateLoginForm(location)
 {
 	resetAjaxLoader("#loginButton");
 
-	$.post("authenticate.php", {action: "login", email: $("#email").val(), password: $("#password").val()},
+	$.post("ajax/authenticate.php", {action: "login", email: $("#email").val(), password: $("#password").val()},
 		function(data){
 			handleLoginResponse(data.split("|"));
          if(location != null){

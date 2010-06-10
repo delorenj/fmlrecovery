@@ -186,7 +186,7 @@ function postLoginProcessing()
 {
   jQuery.epc.shippingPanel[0] = 1;
   jQuery.epc.shippingPanel[1] = 1;
-  $.post("users.php", {action: "get", key: "defaultAddress"},
+  $.post("ajax/users.php", {action: "get", key: "defaultAddress"},
     function(data){
       if(data == null) return;
       showShippingHistory();
@@ -359,7 +359,7 @@ function validateServicePanel(index)
     $(this).hide();
   });
 
-$.post("tickets.php", {action: "create", key: "service", val: index},
+$.post("ajax/tickets.php", {action: "create", key: "service", val: index},
     function(data){
       if(data == "FAILED"){
         flashError("Oops, something went wrong. Try again.");
@@ -430,7 +430,7 @@ function validateMediaPanel()
     fileval = fileval.substring(0,fileval.length - 1);
     specificFileArray.push(fileval);
   });
-  $.post("tickets.php", {action: "create", key: "mediaDetail", val: "fileTypes="+fileTypeArray+"|specificFiles="+specificFileArray},
+  $.post("ajax/tickets.php", {action: "create", key: "mediaDetail", val: "fileTypes="+fileTypeArray+"|specificFiles="+specificFileArray},
    function(data){
     if(data == "FAILED"){
       flashError("Oops, something went wrong. Try again.");
@@ -460,8 +460,8 @@ function validateShippingPanel()
     
     $.ajax({
       type: "POST",
-      url:  "authenticate.php",
-      data: {action: "create-account",
+      url:  "ajax/users.php",
+      data: {action: "create",
              firstname: $("#firstname").val(),
              lastname: $("#lastname").val(),
              email: $("#email").val(),
@@ -478,7 +478,7 @@ function validateShippingPanel()
                     console.log("Creating a new ticket for new user");
                     $.ajax({
                       type: "POST",
-                      url:  "tickets.php",
+                      url:  "ajax/tickets.php",
                       dataType: "json",
                       data: {action: "finalize",
                              firstname: $("#firstname").val(),
@@ -505,7 +505,7 @@ function validateShippingPanel()
     console.log("Creating a new ticket for existing user");
     $.ajax({
       type: "POST",
-      url:  "tickets.php",
+      url:  "ajax/tickets.php",
       dataType: "json",
       data: {action: "finalize",
              firstname: $("#firstname").val(),
@@ -600,7 +600,7 @@ function removeFile(index)
 function dontKnowMediaSize()
 {
   resetAjaxLoader("input[name='mediaSizeInput']");
-  $.post("tickets.php", {action: "create", key: "mediaSize", val: "0"},
+  $.post("ajax/tickets.php", {action: "create", key: "mediaSize", val: "0"},
     function(data){
       if(data.indexOf("SUCCESS") != -1){
         flashNotice("That's Ok - We'll discuss that later");
@@ -620,7 +620,7 @@ function dontKnowMediaSize()
 function dontKnowMediaType()
 {
   resetAjaxLoader("select[name='mediaType']");
-  $.post("tickets.php", {action: "create", key: "mediaType", val: "idk"},
+  $.post("ajax/tickets.php", {action: "create", key: "mediaType", val: "idk"},
     function(data){
       if(data.indexOf("SUCCESS") != -1){
         flashNotice("That's Ok - We'll discuss that later");
@@ -715,7 +715,7 @@ function onChangeMediaType(val)
       break;
     default:
       $("#mediaTypeByTextbox").slideUp("slow");
-      $.post("tickets.php", {action: "create", key: "mediaType", val: val},
+      $.post("ajax/tickets.php", {action: "create", key: "mediaType", val: val},
         function(data){
           if(data.indexOf("SUCCESS") != -1){
             $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
@@ -752,7 +752,7 @@ function handleCreateAccountResponse(respArray)
 
 function onChangeMediaTypeByTextbox()
 {
-  $.post("tickets.php", {action: "create", key: "mediaType", val: $("input[name='mediaTypeByTextbox']").val()},
+  $.post("ajax/tickets.php", {action: "create", key: "mediaType", val: $("input[name='mediaTypeByTextbox']").val()},
     function(data){
       if(data.indexOf("SUCCESS") != -1){
         $("input[name='mediaTypeByTextbox']").siblings(".fieldOK").fadeIn("slow");
@@ -779,7 +779,7 @@ function onChangeMediaSize(size)
 
   resetAjaxLoader("input[name='mediaSizeInput']");
 
-  $.post("tickets.php",{action: "create", key: "mediaSize", val: size},
+  $.post("ajax/tickets.php",{action: "create", key: "mediaSize", val: size},
     function(data){
       if(data.indexOf("SUCCESS") != -1){
         $("input[name='mediaSizeInput']").siblings(".fieldOK").fadeIn("slow");
@@ -805,7 +805,7 @@ function formCompleteCheck(p, button)
 
 function testMail()
 {
-  $.post("tickets.php", {action:"testMail"}, function(){
+  $.post("ajax/tickets.php", {action:"testMail"}, function(){
     flashNotice("Test Mail Sent");
   });
 }

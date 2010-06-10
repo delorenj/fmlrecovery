@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.1.41-3ubuntu12.1
+-- Server version	5.1.41-3ubuntu12.3
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -92,7 +92,7 @@ CREATE TABLE  `epc`.`ticket_comments` (
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `epc`.`ticket_comments`
@@ -112,7 +112,9 @@ INSERT INTO `epc`.`ticket_comments` (`id`,`ticket_id`,`comment`,`admin`,`created
  (12,3,'When will it be done?',0,'2010-06-08 10:36:32'),
  (13,1,'in my ass',1,'2010-06-08 13:29:55'),
  (14,3,'sheep?',0,'2010-06-08 13:30:29'),
- (15,3,'Never',1,'2010-06-09 16:29:14');
+ (15,3,'Never',1,'2010-06-09 16:29:14'),
+ (16,4,'Huh?',1,'2010-06-10 15:13:32'),
+ (17,4,'Gwats.',1,'2010-06-10 15:13:51');
 
 --
 -- Definition of table `epc`.`tickets`
@@ -141,7 +143,7 @@ CREATE TABLE  `epc`.`tickets` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `epc`.`tickets`
@@ -149,7 +151,8 @@ CREATE TABLE  `epc`.`tickets` (
 INSERT INTO `epc`.`tickets` (`id`,`user_id`,`service_id`,`media`,`megabytes`,`carrier`,`weight`,`length`,`width`,`height`,`service_fee`,`shipping_cost`,`comments`,`status`,`labelpath`,`rtc`,`etc`,`state`,`created_at`,`updated_at`) VALUES 
  (1,1,'0','Flash Card',16,'FedEx',2,5,2,5,199,'10.00','fileTypes=pictures,videos,ppt|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680177',NULL,NULL,'OPEN','2010-06-04 15:36:17','2010-06-04 15:36:17'),
  (2,1,'1','External Hard Drive',250,'FedEx',2,5,2,5,199,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680346',NULL,NULL,'OPEN','2010-06-04 15:39:06','2010-06-04 15:39:06'),
- (3,2,'1','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/TestJoe1276007758',NULL,NULL,'OPEN','2010-06-08 10:35:58','2010-06-08 10:35:58');
+ (3,2,'1','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/TestJoe1276007758',NULL,NULL,'OPEN','2010-06-08 10:35:58','2010-06-08 10:35:58'),
+ (4,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1276196900',NULL,NULL,'OPEN','2010-06-10 15:08:20','2010-06-10 15:08:20');
 
 --
 -- Definition of table `epc`.`users`

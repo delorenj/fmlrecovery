@@ -1,13 +1,13 @@
 <?php
 
+require_once(dirname(__FILE__)."/../environment.inc");
 require_once('fedex-common.php5');
-require_once('include/environment.inc');
 
 class EpcShippingLabel
 {
   //The WSDL is not included with the sample code.
   //Please include and reference in $path_to_wsdl variable.
-  const path_to_wsdl = "include/fedex/wsdl/ShipService_v8.wsdl";
+  //const path_to_wsdl = "include/fedex/wsdl/ShipService_v8.wsdl";
   const SHIP_LABEL = "labels/shipgroundlabel.pdf";  // PDF label file. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
   const SHIP_IMAGE = "labels/shipgroundlabel.png";  // PDF label file. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
   protected $key;
@@ -43,7 +43,7 @@ class EpcShippingLabel
     }
 
     ini_set("soap.wsdl_cache_enabled", "0");
-    $this->client = new SoapClient(self::path_to_wsdl, array('trace' => 1)); // Refer to http://us3.php.net/manual/en/ref.soap.php for more information
+    $this->client = new SoapClient(dirname(__FILE__)."/wsdl/ShipService_v8.wsdl", array('trace' => 1)); // Refer to http://us3.php.net/manual/en/ref.soap.php for more information
     fb("key=$this->key\nbillAccount=$this->billAccount");
   }//End Constructor()
 
@@ -105,11 +105,11 @@ class EpcShippingLabel
             // Create PNG or PDF label
             // Set LabelSpecification.ImageType to 'PNG' for generating a PNG label
 
-            $fp = fopen(self::SHIP_LABEL, 'wb');
+            $fp = fopen(dirname(__FILE__)."/../../".self::SHIP_LABEL, 'wb');
             fwrite($fp, ($response->CompletedShipmentDetail->CompletedPackageDetails->Label->Parts->Image));
             fclose($fp);
 
-            $fp = fopen(self::SHIP_IMAGE, 'wb');
+            $fp = fopen(dirname(__FILE__)."/../../".self::SHIP_IMAGE, 'wb');
             fwrite($fp, ($response->CompletedShipmentDetail->CompletedPackageDetails->Label->Parts->Image));
             fclose($fp);
             fb("Shipping label and image were generated");

@@ -1,7 +1,7 @@
 		<form id="create-user-form">
 			<fieldset>
 				<legend>Create an Account</legend>
-				<input type="hidden" name="action" value="create-account"/>
+				<input type="hidden" name="action" value="create"/>
 				<div class="formfield clearfix">
 					<label for="first_name">First Name</label>
 					<input name="first_name" type="text" class="epc-textfield"/>

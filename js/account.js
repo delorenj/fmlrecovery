@@ -15,21 +15,35 @@ function toggleCommentBox(id) {
 
 function addComment(id, ticketId) {
   var comment = $("#openticketcommentinput" + id + " textarea").val();
-  $.post("comment.php", {action: "create", text: comment, ticketId: ticketId}, 
+  $.post("ajax/comments.php", {action: "create", text: comment, ticketId: ticketId},
     function(data){
       handleAddCommentResponse(data, comment, id);
   }, "json");
 
 }
 
-function cancelTicket(id) {
-  $("#openticket" + id).fadeOut("slow",function(){
-    $("#openticket" + id).remove();
+function cancelTicket(key) {
+  $("#openticket" + key).fadeOut("slow",function(){
+    $("#openticket" + key).remove();
   });
 }
 
+function deleteAccount(key, uId) {
+  $.post("ajax/users.php", {action: "delete", id: uId},
+    function(data) {
+      if(data.OK) {
+        $("#userbox"+key).fadeOut("slow");
+      }
+      else {
+        flashError("Error deleting user account!");
+      }
+    },
+    "json"
+  );
+}
+
 function handleAddCommentResponse(data, comment, id){
-  if(data.result == "OK") {
+  if(data.OK) {
     var prefix;
     if(data.commentType == "0") {
       prefix = "Q. "
