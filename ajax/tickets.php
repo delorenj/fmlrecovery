@@ -9,6 +9,9 @@
 		case "create":
 			create();
 			break;
+		case "delete":
+			delete();
+			break;
 		case "finalize":
 			finalize();
 			break;
@@ -20,10 +23,18 @@
         break;
 	}
 
+function delete()
+{
+  $id = $_POST["id"];
+  $t = Ticket::find($id);
+  $t->delete();
+  echo json_encode(array("OK" => true));
+}
+
 function create()
 {
   sleep(0);
-	$key = $_POST["key"];
+  $key = $_POST["key"];
   $val = $_POST["val"];
   if(!isset ($_SESSION["newticket"])) { fb("New Ticket Started"); }
   if(!isset ($_SESSION["newticket"][$key])){

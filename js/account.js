@@ -22,11 +22,16 @@ function addComment(id, ticketId) {
 
 }
 
-function cancelTicket(key) {
-  $("#openticket" + key).fadeOut("slow",function(){
-    $("#openticket" + key).remove();
-  });
-}
+function cancelTicket(key, id) {
+  $.post("ajax/tickets.php", {action:"delete", id: id}, function(data){
+    if(data.OK) {
+      $("#openticket" + key).fadeOut("slow",function(){
+        $("#openticket" + key).remove();
+      });
+    }
+   },"json");
+ }
+
 
 function deleteAccount(key, uId) {
   $.post("ajax/users.php", {action: "delete", id: uId},

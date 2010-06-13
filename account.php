@@ -64,7 +64,7 @@
                       <button class="epc-button ui-state-default ui-corner-all" onClick="addComment(<?echo $key+1;?>, <?echo $t->id;?>); return false;">Comment</button>
                     </div>
                     <div class="clearfix" style="margin-top:25px;"></div>
-                    <button class="epc-button ui-state-default ui-corner-all" onClick="cancelTicket(<?echo $key+1;?>); return false;">Cancel Ticket</button>
+                    <button class="epc-button ui-state-default ui-corner-all" onClick="cancelTicket(<?echo $key+1;?>, <?echo $t->id;?>); return false;">Cancel Ticket</button>
                     <button class="epc-button ui-state-default ui-corner-all" onClick="window.location='<? echo $t->labelpath; ?>';">Download Shipping Label</button>
                   </li>
                 <?
