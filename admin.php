@@ -96,11 +96,6 @@
             echo '</ul>';
           ?>
         </div>
-        <h3><a href="javascript: void(0)" class="ui-accordion-link">Personal Info</a></h3>
-        <div id="personalInfoDiv">
-          <p>Personal info goes here...</p>
-        </div>
-
       </div>
 
 </div>

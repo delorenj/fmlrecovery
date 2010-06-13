@@ -79,8 +79,24 @@
         </div>
         <h3><a href="javascript: void(0)" class="ui-accordion-link">Personal Info</a></h3>
         <div id="personalInfoDiv">
-          <p>Personal info goes here...</p>
+        <div class="formfield" style="overflow:hidden;">
+          <div class="clearfix">
+            <label for="name">First Name </label>
+            <input type="text" size="20" id="first_name" class="epc-textfield float_left" />
+          </div>
         </div>
+        <div class="formfield">
+          <div class="clearfix">
+            <label for="name">Last Name </label>
+            <input type="text" size="20" id="last_name" class="epc-textfield float_left" />
+          </div>
+        </div>
+        <div class="formfield">
+          <div class="clearfix">
+            <label for="name">Email </label>
+            <input type="text" size="20" id="email" class="epc-textfield float_left" />
+          </div>
+        </div>        </div>
 
       </div>
 
