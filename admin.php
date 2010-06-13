@@ -78,7 +78,7 @@
           <?
             $users = User::all();
             echo '<ul>';
-            foreach($users as $u){
+            foreach($users as $key=>$u){
               $numOpenTix = count(Ticket::openTickets($u->id));
               ?>
                   <li id="userbox<? echo $key+1; ?>">
