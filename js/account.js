@@ -27,6 +27,9 @@ function cancelTicket(key, id) {
     if(data.OK) {
       $("#openticket" + key).fadeOut("slow",function(){
         $("#openticket" + key).remove();
+        if($("#openTicketsDiv ul").children().length == 0){
+          $("#openTicketsDiv").html("<p>No Open Tickets</p><p><a href='index.php'>Click here to start a new one!</a></p>")
+        }
       });
     }
    },"json");
@@ -45,6 +48,27 @@ function deleteAccount(key, uId) {
     },
     "json"
   );
+}
+
+function updateAccount(uId)
+{
+  $.post("ajax/users.php", {action:"update", id: uId,
+      first_name: $("#first_name").val(),
+      last_name: $("#last_name").val(),
+      email: $("#email").val(),
+      street: $("#street").val(),
+      city: $("#city").val(),
+      state: $("#state").val(),
+      zip: $("#zip").val(),
+      phone: $("#phone").val()},
+    function(data){
+      if(data.OK){
+        flashNotice(data.message);
+      }
+      else {
+        flashError(data.message);
+      }
+    },"json");
 }
 
 function handleAddCommentResponse(data, comment, id){

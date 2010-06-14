@@ -12,6 +12,9 @@
 		case "delete":
 			delete();
 			break;
+		case "update":
+			update();
+			break;
 	default:
 			echo "Unknown Action";
 	}
@@ -29,6 +32,43 @@ function delete()
   }
 
   echo json_encode(array("OK" => $OK));
+}
+
+function update()
+{
+  $id = $_POST["id"];
+  $user = User::find($id);
+  $address = Address::first(array('conditions' => array('user_id = ?', $user->id)));
+  $user->first_name = $_POST["first_name"];
+  $user->last_name = $_POST["last_name"];
+  $user->email = $_POST["email"];
+  $address->streetlines = $_POST["street"];
+  $address->city = $_POST["city"];
+  $address->stateorprovincecode = $_POST["state"];
+  $address->postalcode = $_POST["zip"];
+  $address->phonenumber = $_POST["phone"];
+  if($user->is_invalid() || $address->is_invalid()){
+    $OK = false;
+    if($address->is_invalid()){
+      if($address->errors->on('streetlines')) $message .= "* ".$address->errors->on("streetlines")."<br/>";
+      if($address->errors->on('city')) $message .= "* ".$address->errors->on("city")."<br/>";
+      if($address->errors->on('stateorprovincecode')) $message .= "* ".$address->errors->on("stateorprovincecode")."<br/>";
+      if($address->errors->on('postalcode')) $message .= "* ".$address->errors->on("postalcode")."<br/>";
+      if($address->errors->on('phonenumber')) $message .= "* ".$address->errors->on("phonenumber")."<br/>";
+    }
+    if($user->is_invalid()){
+      if($user->errors->on('first_name')) $message .= "* ".$user->errors->on("first_name")."<br/>";
+      if($user->errors->on('last_name')) $message .= "* ".$user->errors->on("last_name")."<br/>";
+      if($user->errors->on('email')) $message .= "* ".$user->errors->on("email")."<br/>";
+    }
+  }
+  else {
+    $user->save();
+    $address->save();
+    $OK = true;
+    $message = "Your account info has been updated successfully!";
+  }
+  echo json_encode(array("OK" => $OK, "message" => $message) );
 }
 
 function create()
