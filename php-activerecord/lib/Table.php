@@ -299,7 +299,7 @@ class Table
 	{
 		foreach ($hash as $name => &$value)
 		{
-			// TODO this will probably need to be changed for oracle
+			// 2-DO this will probably need to be changed for oracle
 			if ($value instanceof DateTime)
 				$hash[$name] = $value->format('Y-m-d H:i:s T');
 			else

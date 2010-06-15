@@ -442,7 +442,7 @@ class HasOne extends HasMany
 };
 
 /**
- * @todo implement me
+ * @2-do implement me
  * @package ActiveRecord
  * @see http://www.phpactiverecord.org/guides/associations
  */

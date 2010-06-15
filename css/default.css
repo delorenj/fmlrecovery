@@ -659,6 +659,20 @@ font-size:1em;
   padding:0 20px;
 }
 
+#myPhone {
+  color: #051E5D;
+  width:100%;
+  margin-bottom: 10px;
+  font-family: "Reenie Beanie", serif;
+  font-size: 7em;
+  font-style:normal;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none
+  text-align:center;
+}
+
 .commentType0 {
   color:black;
   font-weight: 800;

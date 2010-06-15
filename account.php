@@ -134,4 +134,5 @@
       </div>
     </div>
   </div>
+</div>
 <? include "partial/footer.php" ?>

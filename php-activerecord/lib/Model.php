@@ -1239,7 +1239,7 @@ class Model
 	 * <ul>
 	 * <li><b>select:</b> A SQL fragment for what fields to return such as: '*', 'people.*', 'first_name, last_name, id'</li>
 	 * <li><b>joins:</b> A SQL join fragment such as: 'JOIN roles ON(roles.user_id=user.id)' or a named association on the model</li>
-	 * <li><b>include:</b> TODO not implemented yet</li>
+	 * <li><b>include:</b> !! not implemented yet</li>
 	 * <li><b>conditions:</b> A SQL fragment such as: 'id=1', array('id=1'), array('name=? and id=?','Tito',1), array('name IN(?)', array('Tito','Bob')),
 	 * array('name' => 'Tito', 'id' => 1)</li>
 	 * <li><b>limit:</b> Number of records to limit the query to</li>

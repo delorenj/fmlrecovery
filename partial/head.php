@@ -24,6 +24,5 @@
         <script type="text/javascript" src="js/plugins/cookies.js"></script>
 				<script type="text/javascript" src="js/ui.multiselect.js"></script>
         <script type="text/javascript" src="js/epc.js"></script>
-        <script src="js/fedexmap.js"></script>
     </head>
 

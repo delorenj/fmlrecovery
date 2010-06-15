@@ -6,7 +6,6 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 require_once('FirePHPCore/fb.php');
-fb(get_include_path());
 require_once 'php-activerecord/ActiveRecord.php';
 ActiveRecord\Config::initialize(function($cfg) {
             $cfg->set_model_directory(dirname(__FILE__).'/../models');
