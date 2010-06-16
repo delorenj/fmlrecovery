@@ -2,6 +2,7 @@
 /* ethereal Blue:  00027C */
 /* ethereal Light Blue: A9B2C7 */
 /* ethereal Text Blue: 051E5D */
+/* ethereal Burgundy: 600 */
 .clearfix:after {
   content:".";
   display:block;
@@ -158,6 +159,7 @@ body {
 #main-content a {
 	background-color: transparent;
    font-size: 1.3em;
+   color: #600;
 	text-decoration: none;
 }
 
@@ -227,8 +229,8 @@ body {
 }
 
 .formfield {
-	margin-top: 15px;
-	margin-bottom:15px;
+  margin-top: 15px;
+  margin-bottom:15px;
 }
 
 .formfield label{
@@ -302,12 +304,9 @@ padding-left:1px;
 font-size:1em;
 }
 
-.contact-block {
-}
-
 .epc-text {
   color:#051E5D;
-  font-family: "Lucida Grande", Arial, sans-serif;
+  font-family: "Josefin Sans Std Light", Arial, sans-serif;
   font-weight: bold;
   /*font-size:15px;  */
   font-size:1.2em;
@@ -316,14 +315,14 @@ font-size:1em;
 .epc-textfield{
   height: 20px;
   padding: 3px;
-  font-family: "Lucida Grande", Arial, sans-serif;
+  font-family: "Josefin Sans Std Light", Arial, sans-serif;
   font-weight: bold;
   font-size:20px;
 }
 
 .epc-textarea{
   padding: 3px;
-  font-family: "Lucida Grande", Arial, sans-serif;
+  font-family: "Josefin Sans Std Light", Arial, sans-serif;
   font-weight: bold;
   font-size:14px;
 }
@@ -336,7 +335,7 @@ font-size:1em;
 
 .epc-checkbox-group {
   color:#051E5D;
-  font-family: "Lucida Grande", Arial, sans-serif;
+  font-family: "Josefin Sans Std Light", Arial, sans-serif;
   font-weight: bold;
   font-size:15px;
 }
@@ -669,8 +668,60 @@ font-size:1em;
   letter-spacing: 0.05em;
   font-weight: 400;
   text-decoration: none;
-  text-transform: none
-  text-align:center;
+  text-transform: none;
+}
+
+#myEmail {
+  color: #051E5D;
+  width:100%;
+  margin-bottom: 10px;
+  font-family: 'Yanone Kaffeesatz', serif;
+  font-size: 2em;
+  font-style:italic;
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+  margin-top: -10px;
+}
+
+#myEmail a {
+  color: #051E5D;
+}
+#myEmail a:hover {
+  text-decoration: none;
+  color: #600;
+}
+
+#myLocation {
+  position:relative;
+  z-index: 100;
+  width:100%;
+  height:400px;
+  text-align:right;
+  border:2px solid black;
+}
+#contactForm {
+  width: 80%;
+  margin-top: -20px;
+  margin-right: auto;
+  margin-bottom: 25px;
+}
+
+.contactBlock {
+  color: #051E5D;
+  width: 60%;
+  padding: 30px;
+  font-family: 'Yanone Kaffeesatz', serif;
+  font-size: 3em;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+}
+
+#contactUsHeader {
+  font-size:7em;
+  color: #051E5D;
 }
 
 .commentType0 {

@@ -4,7 +4,7 @@ google.setOnLoadCallback(function(){
 
 function initializeMyLocationMap()
 {
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var latlng = new google.maps.LatLng(40.9, -74.7);
   var myOptions = {
     zoom: 10,
     center: latlng,
