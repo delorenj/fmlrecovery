@@ -278,3 +278,8 @@ function getMethods(obj) {
   }
   return result;
 }
+
+
+function comingSoon() {
+  flashNotice("<h1 style='text-align:center; line-height:3.5em;'>Feature coming soon!</h1>");
+}
