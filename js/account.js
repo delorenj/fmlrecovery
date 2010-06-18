@@ -23,6 +23,8 @@ function addComment(id, ticketId) {
 }
 
 function cancelTicket(key, id) {
+  //TODO: Add a confirm dialog when deleting an account
+  //TODO: Make ticket "inactive" instead of deleting from database
   $.post("ajax/tickets.php", {action:"delete", id: id}, function(data){
     if(data.OK) {
       $("#openticket" + key).fadeOut("slow",function(){
