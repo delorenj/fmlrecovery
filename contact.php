@@ -1,7 +1,6 @@
 <? session_start(); ?>
 <?require_once('include/environment.inc');?>
 <? include "partial/head.php"; ?>
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Reenie+Beanie" />
 <script type="text/javascript" src="js/contact.js"></script>
 <? include "partial/header.php"; ?>
 
@@ -15,7 +14,6 @@
         <a href="#" onclick="comingSoon();"><img src="images/twitter-icon.png" /></a>
         <a href="#" onclick="comingSoon();"><img src="images/facebook-icon.png" /></a>
         <a href="#" onclick="comingSoon();"><img src="images/linkedin-icon.png" /></a>
-        <span style="font-family:'Reenie Beanie'; font-size: 2.5em; color:#051e5d; position:relative; top:-15px;"> <-- and follow us too!</span>
       </div>
     </div>
     <div class="rcolumn">
@@ -55,15 +53,7 @@
           </div>
         </div>
       </div>
-      <!--
-      <div class="contactBlock">
-        <p>FML Recovery &copy</p>
-        <p style="font-size: smaller;">9 Morris Rd.</p>
-        <p style="font-size: smaller;">Stanhope, NJ 07874</p>
-        <p style="font-size: smaller;">1-973-440-8809</p>
-      </div>
-      -->
-      <p><object type="application/x-shockwave-flash" data="https://clients4.google.com/voice/embed/webCallButton" width="230" height="85"><param name="movie" value="https://clients4.google.com/voice/embed/webCallButton" /><param name="wmode" value="transparent" /><param name="FlashVars" value="id=6d140f190b9719697367cdd2d271cdc3e2369e4e&style=0" /></object></p>
+      <p><object type="application/x-shockwave-flash" data="https://clients4.google.com/voice/embed/webCallButton" width="400" height="120"><param name="movie" value="https://clients4.google.com/voice/embed/webCallButton" /><param name="wmode" value="transparent" /><param name="FlashVars" value="id=6d140f190b9719697367cdd2d271cdc3e2369e4e&style=0" /></object></p>
 
     </div>
     <div class="rcolumn">

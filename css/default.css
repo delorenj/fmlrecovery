@@ -20,15 +20,24 @@
 *{
 	margin:0;
 	padding:0;
-	font:bold 12px "Lucida Grande", Arial, sans-serif;
 }
 
 body {
 	padding: 10px;
+  font-family: arial, sans-serif;
+  word-spacing: normal !important;
 }
 
 h1{
 	font-size:14px;
+}
+
+h2 {
+  font-size:13px;
+}
+
+h3 {
+  font-size:12px;
 }
 
 .ui-state-active, .ui-widget-content .ui-state-active {
@@ -58,10 +67,8 @@ html {
 body {
 	min-width:850px;
 	text-align:center;
-   background: #abc3df url('../images/bg.jpg') no-repeat 50% 0;
+  background: #abc3df url('../images/bg.jpg') no-repeat 50% 0;
 	color: black;
-	font-family: 'Yanone Kaffeesatz', 'Josefin Sans Std Light', verdana, helvetica, arial, sans-serif;
-	font-size: 73%;  /* Enables font size scaling in MSIE */
 	padding: 0;
 }
 
@@ -89,6 +96,7 @@ body {
 	color: #051E5D;
 	background-color: transparent;
 	font-weight: bold;
+  font-size: 0.8em;
 }
 
 .headerTitle {
@@ -100,13 +108,11 @@ body {
 	color: black;
 	background-color: transparent;
 	text-decoration: none;
-	font-size: 110%;  /* For MSIE */
 	font-weight: bold;
 	font-style: italic;
 }
 
 .headerTitle > a {
-	font-size: 138%;  /* For fully standards-compliant user agents */
 }
 
 .headerTitle span {
@@ -119,7 +125,6 @@ body {
 	color: #D2D3DD;
 	height: 40px;
 	background: #FFFFFF url('../images/banner_bot.gif') no-repeat top right;
-	font-size: 109%;
 	margin: 0;
 	padding: 10px 0 0 20px;
 	text-align:left;
@@ -149,7 +154,6 @@ body {
 #main-content h1 {
 	color: #051e5d;
 	background-color: transparent;
-	font-size: 175%;
 	font-weight: bold;
 	text-align: left;
 	margin: 1em 0 0 0;
@@ -158,8 +162,7 @@ body {
 
 #main-content a {
 	background-color: transparent;
-   font-size: 1.3em;
-   color: #600;
+  color: #600;
 	text-decoration: none;
 }
 
@@ -176,13 +179,11 @@ body {
 }
 
 .headerTitle {
-	font-size: 300%;
 	margin: 0;
 	padding: 0;
 }
 
 .headerSubTitle {
-	font-size: 151%;
 	font-weight: normal;
 	font-style: italic;
 	margin: 0 0 1ex 0;
@@ -306,7 +307,6 @@ font-size:1em;
 
 .epc-text {
   color:#051E5D;
-  font-family: "Josefin Sans Std Light", Arial, sans-serif;
   font-weight: bold;
   /*font-size:15px;  */
   font-size:1.2em;
@@ -315,14 +315,12 @@ font-size:1em;
 .epc-textfield{
   height: 20px;
   padding: 3px;
-  font-family: "Josefin Sans Std Light", Arial, sans-serif;
   font-weight: bold;
   font-size:20px;
 }
 
 .epc-textarea{
   padding: 3px;
-  font-family: "Josefin Sans Std Light", Arial, sans-serif;
   font-weight: bold;
   font-size:14px;
 }
@@ -335,7 +333,6 @@ font-size:1em;
 
 .epc-checkbox-group {
   color:#051E5D;
-  font-family: "Josefin Sans Std Light", Arial, sans-serif;
   font-weight: bold;
   font-size:15px;
 }
@@ -382,7 +379,6 @@ font-size:1em;
 }
 
 #fileSelectionResults ol li {
- font-family: arial;
  font-weight: bold;
  font-size: 1.3em;
  list-style: decimal inside;
@@ -409,8 +405,7 @@ font-size:1em;
 }
 
 .service {
-  font-family: "Yanone Kaffeesatz", serif;
-  font-size: 1.4em;
+  font-size: 1em;
   font-style: normal;
   font-weight: 400;
   text-decoration: none;
@@ -439,7 +434,8 @@ font-size:1em;
 }
 
 .service label {  
-  font-size: 30pt;
+  font-size: 2em;
+  letter-spacing: -0.1em;
   height:50px;
 }
 
@@ -460,7 +456,6 @@ font-size:1em;
 .select-result {
 	line-height: 127px;
 	color: #AAAAAA;
-	font-family: sans-serif;
 	font-style: italic;
 	font-weight: bold;
 	font-size: 1.3em;
@@ -513,9 +508,8 @@ font-size:1em;
 
 .fieldlink A:link, .fieldlink A:active, .fieldlink A:visited {
   text-decoration: none !important;
-  font-weight: 600 !important;
-  font-size: 1em !important;
-  font-family: 'Josefin Sans Std Light';
+  font-size: 0.8em !important;
+  font-style:normal !important;
   color: #600
 }
 
@@ -538,7 +532,6 @@ font-size:1em;
 }
 
 .li-header {
-  font-family:  'Josefin Sans Std Light';
   font-weight: 600;
   font-size: 1.4em;
 }
@@ -555,7 +548,6 @@ font-size:1em;
 }
 
 .li-key {
-  font-family:  'Josefin Sans Std Light';
   font-weight: 400;
   font-size: 1.3em;
 }
@@ -580,7 +572,7 @@ font-size:1em;
 }
 
 .accordion-control {
-  width:30%;
+  width:40%;
   margin: 35px auto 0px auto;
 }
 
@@ -592,17 +584,16 @@ font-size:1em;
   background-color:#dfebf3;
   -moz-box-shadow: 3px 3px 5px #051e5d;
   border: 1px solid #A9B2C7;
-/*  -moz-border-radius: 5%; */
   min-height:300px;
   width:70%;
   padding:8px;
 }
 
-#shippingHistory h3 {
+#shippingHistory span {
   font-weight: bold;
-  font-size:1.4em;
   color: #051e5d;
 }
+
 #mediaTypeHelpDialog {
   display:none;
   text-align: left;
@@ -625,31 +616,27 @@ font-size:1em;
 }
 
 #shippingLabels ul li {
-  padding:5px;
+  padding:15px;
   text-align: center;
   line-height: 1.5em;
   width: 100%;
   background-color: #A9B2C7;
   border: 2px solid black;
   height: 50px;
-  font-family: "Josefin Sans Std Light", serif;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-style: normal;
   font-weight: 400;
-  text-decoration: none;
-  text-transform: none;
 }
 
-#shippingLabels ul li:hover {
-  background-color: #AAB3C8;
+#shippingLabels ul li a:hover {
+  color: yellow;
 }
 
 .login-snippet {
   margin-bottom:30px;
   margin-left: 50%;
-  font-size: 1.4em;
-  font-style: normal;
-  font-weight: 400;
+  font-size: 1em;
+  font-weight: 600;
   text-decoration: none;
   text-transform: none;
 }
@@ -659,14 +646,13 @@ font-size:1em;
 }
 
 #myPhone {
+  padding: 20px 0;
   color: #051E5D;
   width:100%;
-  margin-bottom: 10px;
-  font-family: "Reenie Beanie", serif;
-  font-size: 7em;
+  font-size: 3.5em;
   font-style:normal;
-  letter-spacing: 0.05em;
-  font-weight: 400;
+  letter-spacing: -0.1em;
+  font-weight: 100;
   text-decoration: none;
   text-transform: none;
 }
@@ -674,22 +660,14 @@ font-size:1em;
 #myEmail {
   color: #051E5D;
   width:100%;
-  margin-bottom: 10px;
-  font-family: 'Yanone Kaffeesatz', serif;
-  font-size: 2em;
-  font-style:italic;
-  letter-spacing: 0.3em;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: none;
-  margin-top: -10px;
+  font-size: 1em;
+  font-weight:800;
 }
 
 #myEmail a {
   color: #051E5D;
 }
 #myEmail a:hover {
-  text-decoration: none;
   color: #600;
 }
 
@@ -712,19 +690,11 @@ font-size:1em;
   margin: 0 2px;
 }
 
-.contactBlock {
-  color: #051E5D;
-  width: 60%;
-  padding: 30px;
-  font-family: 'Yanone Kaffeesatz', serif;
-  font-size: 3em;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: none;
-}
-
 #contactUsHeader {
-  font-size:7em;
+  padding: 20px 0;
+  font-size:60px;
+  font-weight:800;
+  letter-spacing:-0.1em;
   color: #051E5D;
 }
 

@@ -27,7 +27,6 @@ $.fn.focusNextInputField = function() {
 
 jQuery.namespace("jQuery.epc");
 
-//$(document).ready(function() {
 google.setOnLoadCallback(function(){
       //Set console.log to 'undefined' when firebug is not active
       if(typeof console === "undefined") {

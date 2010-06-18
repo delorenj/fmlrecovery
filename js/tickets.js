@@ -530,7 +530,7 @@ function handleFinalizeTicket(response)
   flashNotice(response.message);
   if(response.result == "OK"){
     $("#shippingDiv").find(".panelNav").fadeOut("slow", function(){
-      $("#shippingLabels ul").append("<li><a href='"+ response.labelpath + ".pdf" +"'><p>Click here to download and print your pre-paid FedEx shipping label.</p></a></li>")
+      $("#shippingLabels ul").append("<li><a href='"+ response.labelpath + ".pdf" +"'>Click here to download and print your pre-paid FedEx shipping label.</a></li>")
     });
   }
 }

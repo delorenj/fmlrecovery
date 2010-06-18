@@ -96,7 +96,7 @@
               </div>
             </div>
             <div id="shippingHistory" style="display:none;">
-              <h3>FedEx locations near you</h3>
+              <span>FedEx locations near you</span>
               <div style="width: 500px;">
                 <div style="position: absolute; left: 440px; display:none;">
                   <div id="searchwell"></div>
