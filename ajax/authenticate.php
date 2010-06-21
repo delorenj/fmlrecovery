@@ -20,12 +20,17 @@ function logout()
 
 function login()
 {
+	$myFile = "testFile.txt";
+	$fh = fopen($myFile, 'w') or die("can't open file");
+
 	$email = $_POST["email"];
 	$pw = $_POST["password"];
 	$user = User::find_by_email($email);
 	$cryptedPassword = $user->crypted_password;
-  $response = "Login|";
-  $message = null;
+	fwrite($fh, $cryptedPassword);
+	fclose($fh);
+	$response = "Login|";
+	$message = null;
 	if(crypt($pw, $cryptedPassword) == $cryptedPassword)
 	{
     $_SESSION['userid'] = $user->id;

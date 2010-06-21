@@ -65,7 +65,7 @@
                     </div>
                     <div class="clearfix" style="margin-top:25px;"></div>
                     <button class="epc-button ui-state-default ui-corner-all" onClick="cancelTicket(<?echo $key+1;?>); return false;">Cancel Ticket</button>
-                    <button class="epc-button ui-state-default ui-corner-all" onClick="window.location='<? echo $t->labelpath; ?>';">Download Shipping Label</button>
+                    <button class="epc-button ui-state-default ui-corner-all" onClick="window.location='<? echo $t->labelpath; ?>.pdf';">Download Shipping Label</button>
                   </li>
                 <?
               }

@@ -98,7 +98,6 @@ function logout()
 function validateLoginForm(location)
 {
 	resetAjaxLoader("#loginButton");
-
 	$.post("ajax/authenticate.php", {action: "login", email: $("#email").val(), password: $("#password").val()},
 		function(data){
 			handleLoginResponse(data.split("|"));

@@ -15,18 +15,18 @@
 
 
 --
--- Create schema epc
+-- Create schema fmladmin_epc
 --
 
-CREATE DATABASE IF NOT EXISTS epc;
-USE epc;
+CREATE DATABASE IF NOT EXISTS fmladmin_epc;
+USE fmladmin_epc;
 
 --
--- Definition of table `epc`.`addresses`
+-- Definition of table `fmladmin_epc`.`addresses`
 --
 
-DROP TABLE IF EXISTS `epc`.`addresses`;
-CREATE TABLE  `epc`.`addresses` (
+DROP TABLE IF EXISTS `fmladmin_epc`.`addresses`;
+CREATE TABLE  `fmladmin_epc`.`addresses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `nickname` varchar(40) NOT NULL,
@@ -41,32 +41,32 @@ CREATE TABLE  `epc`.`addresses` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `epc`.`addresses`
+-- Dumping data for table `fmladmin_epc`.`addresses`
 --
-INSERT INTO `epc`.`addresses` (`id`,`user_id`,`nickname`,`companyName`,`streetLines`,`city`,`stateOrProvinceCode`,`postalCode`,`phoneNumber`,`default`) VALUES 
+INSERT INTO `fmladmin_epc`.`addresses` (`id`,`user_id`,`nickname`,`companyName`,`streetLines`,`city`,`stateOrProvinceCode`,`postalCode`,`phoneNumber`,`default`) VALUES 
  (1,1,'default',NULL,'9 Morris Rd.','Stanhope','NJ','07874','2152083549',0x31),
  (2,2,'default',NULL,'10 Man Ln.','Morrisville','PA','19067','2152223333',0x31);
 
 --
--- Definition of table `epc`.`schema_migrations`
+-- Definition of table `fmladmin_epc`.`schema_migrations`
 --
 
-DROP TABLE IF EXISTS `epc`.`schema_migrations`;
-CREATE TABLE  `epc`.`schema_migrations` (
+DROP TABLE IF EXISTS `fmladmin_epc`.`schema_migrations`;
+CREATE TABLE  `fmladmin_epc`.`schema_migrations` (
   `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `epc`.`schema_migrations`
+-- Dumping data for table `fmladmin_epc`.`schema_migrations`
 --
 
 --
--- Definition of table `epc`.`services`
+-- Definition of table `fmladmin_epc`.`services`
 --
 
-DROP TABLE IF EXISTS `epc`.`services`;
-CREATE TABLE  `epc`.`services` (
+DROP TABLE IF EXISTS `fmladmin_epc`.`services`;
+CREATE TABLE  `fmladmin_epc`.`services` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `description` text NOT NULL,
@@ -74,18 +74,18 @@ CREATE TABLE  `epc`.`services` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `epc`.`services`
+-- Dumping data for table `fmladmin_epc`.`services`
 --
-INSERT INTO `epc`.`services` (`id`,`name`,`description`) VALUES 
+INSERT INTO `fmladmin_epc`.`services` (`id`,`name`,`description`) VALUES 
  (0,'Media Recovery','I want to recover some, or all of my personal media, including photos, music, and documents.'),
  (1,'Full Recovery','I want to recover all of the data on my damaged media.');
 
 --
--- Definition of table `epc`.`ticket_comments`
+-- Definition of table `fmladmin_epc`.`ticket_comments`
 --
 
-DROP TABLE IF EXISTS `epc`.`ticket_comments`;
-CREATE TABLE  `epc`.`ticket_comments` (
+DROP TABLE IF EXISTS `fmladmin_epc`.`ticket_comments`;
+CREATE TABLE  `fmladmin_epc`.`ticket_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_id` int(11) NOT NULL,
   `comment` text NOT NULL,
@@ -95,9 +95,9 @@ CREATE TABLE  `epc`.`ticket_comments` (
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `epc`.`ticket_comments`
+-- Dumping data for table `fmladmin_epc`.`ticket_comments`
 --
-INSERT INTO `epc`.`ticket_comments` (`id`,`ticket_id`,`comment`,`admin`,`created_at`) VALUES 
+INSERT INTO `fmladmin_epc`.`ticket_comments` (`id`,`ticket_id`,`comment`,`admin`,`created_at`) VALUES 
  (1,2,'Where\'s the clam?',0,'2010-06-07 13:41:04'),
  (2,2,'Where\'s the clam?',1,'2010-06-07 13:44:01'),
  (3,2,'Where\'s the clam?',0,'2010-06-07 13:44:35'),
@@ -117,11 +117,11 @@ INSERT INTO `epc`.`ticket_comments` (`id`,`ticket_id`,`comment`,`admin`,`created
  (17,4,'Gwats.',1,'2010-06-10 15:13:51');
 
 --
--- Definition of table `epc`.`tickets`
+-- Definition of table `fmladmin_epc`.`tickets`
 --
 
-DROP TABLE IF EXISTS `epc`.`tickets`;
-CREATE TABLE  `epc`.`tickets` (
+DROP TABLE IF EXISTS `fmladmin_epc`.`tickets`;
+CREATE TABLE  `fmladmin_epc`.`tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `service_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -144,22 +144,22 @@ CREATE TABLE  `epc`.`tickets` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+ALTER TABLE `fmladmin_epc`.`tickets` AUTO_INCREMENT = 219913;
 --
--- Dumping data for table `epc`.`tickets`
+-- Dumping data for table `fmladmin_epc`.`tickets`
 --
-INSERT INTO `epc`.`tickets` (`id`,`user_id`,`service_id`,`media`,`megabytes`,`carrier`,`weight`,`length`,`width`,`height`,`service_fee`,`shipping_cost`,`comments`,`status`,`labelpath`,`rtc`,`etc`,`state`,`created_at`,`updated_at`) VALUES 
+INSERT INTO `fmladmin_epc`.`tickets` (`id`,`user_id`,`service_id`,`media`,`megabytes`,`carrier`,`weight`,`length`,`width`,`height`,`service_fee`,`shipping_cost`,`comments`,`status`,`labelpath`,`rtc`,`etc`,`state`,`created_at`,`updated_at`) VALUES 
  (1,1,'0','Flash Card',16,'FedEx',2,5,2,5,199,'10.00','fileTypes=pictures,videos,ppt|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680177',NULL,NULL,'OPEN','2010-06-04 15:36:17','2010-06-04 15:36:17'),
  (2,1,'1','External Hard Drive',250,'FedEx',2,5,2,5,199,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680346',NULL,NULL,'OPEN','2010-06-04 15:39:06','2010-06-04 15:39:06'),
  (3,2,'1','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/TestJoe1276007758',NULL,NULL,'OPEN','2010-06-08 10:35:58','2010-06-08 10:35:58'),
  (4,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1276196900',NULL,NULL,'OPEN','2010-06-10 15:08:20','2010-06-10 15:08:20');
 
 --
--- Definition of table `epc`.`users`
+-- Definition of table `fmladmin_epc`.`users`
 --
 
-DROP TABLE IF EXISTS `epc`.`users`;
-CREATE TABLE  `epc`.`users` (
+DROP TABLE IF EXISTS `fmladmin_epc`.`users`;
+CREATE TABLE  `fmladmin_epc`.`users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `crypted_password` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -171,10 +171,11 @@ CREATE TABLE  `epc`.`users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+ALTER TABLE `fmladmin_epc`.`users` AUTO_INCREMENT = 191144;
 --
--- Dumping data for table `epc`.`users`
+-- Dumping data for table `fmladmin_epc`.`users`
 --
-INSERT INTO `epc`.`users` (`id`,`email`,`crypted_password`,`created_at`,`updated_at`,`first_name`,`last_name`,`admin`) VALUES 
+INSERT INTO `fmladmin_epc`.`users` (`id`,`email`,`crypted_password`,`created_at`,`updated_at`,`first_name`,`last_name`,`admin`) VALUES 
  (1,'jaradd@gmail.com','$1$.J/EoDxq$FcWY/U72RLL5AuBBIpomK1','2010-06-04 15:36:15','2010-06-04 15:36:15','Jarad','DeLorenzo',1),
  (2,'test@test.com','$1$sgjCQwL9$E7blwM/r5LfOkRK92Gx8C0','2010-06-08 10:35:55','2010-06-08 10:35:55','Joe','Test',0);
 

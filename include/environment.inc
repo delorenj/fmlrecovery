@@ -5,11 +5,15 @@ set_include_path(implode(PATH_SEPARATOR, array(
     dirname(__FILE__)."/../"
 )));
 
-require_once('FirePHPCore/fb.php');
+//require_once('FirePHPCore/fb.php');
+function fb($message) {
+	//
+}
+
 require_once 'php-activerecord/ActiveRecord.php';
 ActiveRecord\Config::initialize(function($cfg) {
             $cfg->set_model_directory(dirname(__FILE__).'/../models');
-            $cfg->set_connections(array('development' => 'mysql://epc:Iree3cam@localhost/epc'));
+            $cfg->set_connections(array('development' => 'mysql://fmladmin:Mog43yo...@localhost/fmladmin_epc'));
         });
 
 require_once 'Helpers.php';
