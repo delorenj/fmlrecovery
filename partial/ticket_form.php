@@ -22,7 +22,7 @@
       </div>
       <div id="serviceInfo"></div>
     </div>
-		<h3><a href="javascript: void(0)" class="ui-accordion-link">Tell us about your media<span class="loading" style="float:right;"></span></a></h3>
+    <h3><a href="javascript: void(0)" class="ui-accordion-link">Tell us about your media<span class="loading" style="float:right;"></span></a></h3>
     <div id="mediaDiv" style="display:none;">
       <div>
         <div class="lcolumn">

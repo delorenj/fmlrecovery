@@ -2,7 +2,9 @@
 	session_start();
    ob_start();
 	require_once('../include/environment.inc');
-   require_once('fedex/epcshippinglabel.inc');
+require_once('fedex/epcshippinglabel.inc');
+	include('Mail.php');
+	include('Mail/mime.php');
   
 	switch($_POST["action"])
 	{
@@ -16,7 +18,7 @@
 			finalize();
 			break;
     case "testMail":
-      sendLabelViaEmail("This is a test", "jaradd@gmail.com");
+      sendLabelViaEmail("../labels/DeLorenzoJarad1275680177.pdf", "jaradd@gmail.com");
       break;
     default:
         echo "Unknown Action";
@@ -131,19 +133,44 @@ function finalize()
 
 function sendLabelViaEmail($labelpath, $email)
 {
-  mail( "jaradd@gmail.com", "Test Email", $labelpath, "From: test@etherealPC.com" );
+$text = User::current_user()->first_name.', your order is being processed.  Attached you will find you pre-paid FedEx shipping label';
+$html = '<html>
+	  			<body> 
+					<div style="padding:0;font-family:arial; font-size:2.4em; color:#00027C"><h1 style="margin:0; padding:0;"><span style="color:#93CD02;">fml</span>Recovery</h1></div>
+					<div style="padding-top: -40px; color: #00027C; font-size:1.8em; font-family:arial;">Bringing Data Back To Life</div>
+						<p>Dear '.User::current_user()->first_name.', <br /><br />Your order is being processed.  Attached you will find your pre-paid FedEx shipping label.<br />For instructions on how to package your media, please see the links below.</p>
+						<div">
+						 	<span style="font-weight: 800; color: #93CD02;">fml</span><span style="color:#00027C;">Recovery &trade;</span><br />
+							1-973-440-8809<br />
+						</div>
+					</body>
+				 </html>';
+$file = $labelpath;
+$crlf = "\n";
+$hdrs = array('From' => 'tickets@fmlrecovery.com', 'Subject' => 'Your fmlRecovery shipping label: Order #'.User::current_user()->tickets[0]->id);
 
-}
+$mime = new Mail_mime($crlf);
+
+$mime->setTXTBody($text);
+$mime->setHTMLBody($html);
+$mime->addAttachment($file, 'application/pdf');
+
+//do not ever try to call these lines in reverse order
+$body = $mime->get();
+$hdrs = $mime->headers($hdrs);
+
+$mail =& Mail::factory('mail');
+$mail->send($email, $hdrs, $body);
 /*
 //define the receiver of the email
-$to = 'jaradd@gmail.com';
+$to = $email;
 //define the subject of the email
 $subject = 'Test email with attachment';
 //create a boundary string. It must be unique
 //so we use the MD5 algorithm to generate a random hash
 $random_hash = md5(date('r', time()));
 //define the headers we want passed. Note that they are separated with \r\n
-$headers = "From: admin@nardis.delonet\r\nReply-To: admin@nardis.delonet";
+$headers = "From: jarad@fmlrecovery.com\r\nReply-To: info@fmlrecovery.com";
 //add boundary string and mime type specification
 $headers .= "\r\nContent-Type: multipart/mixed; boundary=\"PHP-mixed-".$random_hash."\"";
 //read the atachment file contents into a string,
@@ -186,7 +213,8 @@ $message = ob_get_clean();
 //send the email
 $mail_sent = @mail( $to, $subject, $message, $headers );
 //if the message is sent successfully print "Mail sent". Otherwise print "Mail failed"
-fb($mail_sent ? "Mail sent" : "Mail failed");
+//fb($mail_sent ? "Mail sent" : "Mail failed");
+ */
 }
-*/
+
 ?>

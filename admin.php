@@ -27,7 +27,7 @@
                     <div class="clearfix"></div>
                     <span class="li-key">Created On: </span><span><? echo date_format($t->created_at,"m/d/Y"); ?></span>
                     <div class="clearfix"></div>
-                    <span class="li-key">Service: </span><span><? echo $t->megabytes."MB ".$t->media.", ".$t->service->name; ?></span>
+                    <span class="li-key">Service: </span><span><? echo $t->megabytes."GB ".$t->media.", ".$t->service->name; ?></span>
                     <?if($t->etc != NULL) {?>
                       <? $etcDate = date_format($t->etc,"m/d/Y"); ?>
                       <div class="clearfix"></div>
