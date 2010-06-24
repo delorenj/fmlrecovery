@@ -338,9 +338,10 @@ font-size:1em;
 }
 
 .epc-select{
-  height:30px;
-  padding:5px;
-  width:200px;
+  font-size: 0.8em !important;
+  height:30px !important;
+  padding:5px !important;
+  width:200px !important;
 }
 
 #ticket-form {
@@ -399,44 +400,22 @@ font-size:1em;
   color:#AAAAFF;
 }
 
-#serviceContainer {
-  width: 100%;
-  margin: 0 auto;
+#media-service {
+  float: left;
+  background: url('../images/media_service.png') no-repeat 0 0;
+  width: 335px;
+  height: 190px;
+}
+
+#full-service {
+  float:right;
+  background: url('../images/full_service.png') no-repeat 0 0;
+  width: 335px;
+  height: 190px;
 }
 
 .service {
-  font-size: 1em;
-  font-style: normal;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: none;
-  background-image: url('../images/gradient1.jpg');
-  background-repeat: repeat-x;
-  padding: 5px 20px;
-  float:left;
-  height:175px;
-  width: 80%;
-  border-right:1px solid #DDDDDD;
-  border-bottom: 8px solid #051E5D;
   cursor:pointer;
-  -moz-border-radius: 5%;
-}
-
-.service:last-child {
-  border-right:none;
-  border-bottom: 8px solid #051E5D;
-}
-
-.service img {
-    float: right;
-    text-align: right;
-    padding-top: 20px;
-}
-
-.service label {  
-  font-size: 2em;
-  letter-spacing: -0.1em;
-  height:50px;
 }
 
 .float_left {

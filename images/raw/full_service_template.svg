@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="335"
+   height="380"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="full_service_template.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3633">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop3635" />
+      <stop
+         id="stop3641"
+         offset="0.82973325"
+         style="stop-color:#c5c5c5;stop-opacity:0.5372549;" />
+      <stop
+         style="stop-color:#8c8c8c;stop-opacity:1"
+         offset="1"
+         id="stop3637" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <inkscape:perspective
+       id="perspective3619"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3838"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3852"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3877"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4031"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3633-1"
+       id="linearGradient3639-7"
+       x1="182.35715"
+       y1="932.57648"
+       x2="183.35715"
+       y2="861.86218"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient3633-1">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop3635-3" />
+      <stop
+         id="stop3641-1"
+         offset="0.82973325"
+         style="stop-color:#c5c5c5;stop-opacity:0.5372549;" />
+      <stop
+         style="stop-color:#8c8c8c;stop-opacity:1"
+         offset="1"
+         id="stop3637-3" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3633-1"
+       id="linearGradient4040"
+       x1="182.35715"
+       y1="932.57648"
+       x2="183.35715"
+       y2="861.86218"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient4042">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop4044" />
+      <stop
+         id="stop4046"
+         offset="0.82973325"
+         style="stop-color:#c5c5c5;stop-opacity:0.5372549;" />
+      <stop
+         style="stop-color:#8c8c8c;stop-opacity:1"
+         offset="1"
+         id="stop4048" />
+    </linearGradient>
+    <inkscape:perspective
+       id="perspective2897"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <linearGradient
+       gradientTransform="matrix(0.9949001,0,0,1.0000158,0.05708445,-0.01658272)"
+       y2="861.86218"
+       x2="183.35715"
+       y1="932.57648"
+       x1="182.35715"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient4072-3"
+       xlink:href="#linearGradient3633-1-3"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient3633-1-3">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop3635-3-8" />
+      <stop
+         id="stop3641-1-0"
+         offset="0.82973325"
+         style="stop-color:#c5c5c5;stop-opacity:0.5372549;" />
+      <stop
+         style="stop-color:#8c8c8c;stop-opacity:1"
+         offset="1"
+         id="stop3637-3-5" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="matrix(0.9949001,0,0,1.0000158,0.05708445,-0.01658272)"
+       y2="861.86218"
+       x2="183.35715"
+       y1="932.57648"
+       x1="182.35715"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient4074-6"
+       xlink:href="#linearGradient3633-1-3"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient2907">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop2909" />
+      <stop
+         id="stop2911"
+         offset="0.82973325"
+         style="stop-color:#c5c5c5;stop-opacity:0.5372549;" />
+      <stop
+         style="stop-color:#8c8c8c;stop-opacity:1"
+         offset="1"
+         id="stop2913" />
+    </linearGradient>
+    <inkscape:perspective
+       id="perspective3025"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <linearGradient
+       gradientTransform="matrix(0.9949001,0,0,1.0000158,0.05708445,-190.01661)"
+       y2="861.86218"
+       x2="183.35715"
+       y1="932.57648"
+       x1="182.35715"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient4072-3-9"
+       xlink:href="#linearGradient3633-1-3-7"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient3633-1-3-7">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop3635-3-8-8" />
+      <stop
+         id="stop3641-1-0-5"
+         offset="0.82973325"
+         style="stop-color:#c5c5c5;stop-opacity:0.5372549;" />
+      <stop
+         style="stop-color:#8c8c8c;stop-opacity:1"
+         offset="1"
+         id="stop3637-3-5-3" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="matrix(0.9949001,0,0,1.0000158,0.05708445,-190.01661)"
+       y2="861.86218"
+       x2="183.35715"
+       y1="932.57648"
+       x1="182.35715"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient4074-6-3"
+       xlink:href="#linearGradient3633-1-3-7"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient3035">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop3037" />
+      <stop
+         id="stop3039"
+         offset="0.82973325"
+         style="stop-color:#c5c5c5;stop-opacity:0.5372549;" />
+      <stop
+         style="stop-color:#8c8c8c;stop-opacity:1"
+         offset="1"
+         id="stop3041" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="238.86097"
+     inkscape:cy="106.61427"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1125"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-672.36218)">
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="242.5"
+       y="47.5"
+       id="text3672"
+       transform="translate(0,862.36218)"><tspan
+         sodipodi:role="line"
+         id="tspan3674"
+         x="242.5"
+         y="47.5" /></text>
+    <text
+       transform="translate(0,862.36218)"
+       id="text4003"
+       y="47.5"
+       x="242.5"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         id="tspan4005"
+         sodipodi:role="line"
+         x="242.5"
+         y="47.5" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="243.09541"
+       y="718.0163"
+       id="text3672-5"
+       transform="scale(0.99743891,1.0025677)"><tspan
+         y="718.0163"
+         x="243.09541"
+         sodipodi:role="line"
+         id="tspan3674-1" /></text>
+    <text
+       id="text4003-9"
+       y="718.0163"
+       x="243.09541"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(0.99743891,1.0025677)"><tspan
+         y="718.0163"
+         x="243.09541"
+         id="tspan4005-6"
+         sodipodi:role="line" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="241.34753"
+       y="1101.8622"
+       id="text3672-6"><tspan
+         sodipodi:role="line"
+         id="tspan3674-4"
+         x="241.34753"
+         y="1101.8622" /></text>
+    <text
+       id="text4003-0"
+       y="1101.8622"
+       x="241.34753"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         id="tspan4005-0"
+         sodipodi:role="line"
+         x="241.34753"
+         y="1101.8622" /></text>
+    <rect
+       style="fill:url(#linearGradient4072-3);fill-opacity:1;stroke:none"
+       id="rect2816-8-4"
+       width="333.29153"
+       height="190.00301"
+       x="0.05708608"
+       y="862.35919"
+       rx="19.898003"
+       ry="20.000317" />
+    <path
+       style="fill:#051e5d;fill-opacity:1;stroke:#051e5d;stroke-width:1.42493522;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 13.012444,1050.0166 c -1.92252,-0.7559 -4.5999396,-2.4296 -5.9498196,-3.7192 -2.67423,-2.5548 -5.8155,-8.5364 -5.82656,-11.0949 l -0.007,-1.6071 165.6686256,0 165.66864,0 -0.43774,2.1999 c -1.12322,5.645 -5.47131,11.2505 -10.77845,13.8954 -2.77362,1.3823 -5.25044,1.4073 -153.83063,1.5527 -147.531486,0.1443 -151.092176,0.1161 -154.507116,-1.2268 z"
+       id="path3592-5-6" />
+    <text
+       xml:space="preserve"
+       style="font-size:31.91854858px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:#051e5d;stroke-width:0.99745464;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="10.031786"
+       y="890.43048"
+       id="text3664-7-2"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         sodipodi:role="line"
+         id="tspan3666-0-6"
+         x="10.031786"
+         y="890.43048"
+         style="letter-spacing:-3.84224296;fill:#000000;fill-opacity:1;stroke:#051e5d;stroke-width:0.99745464;stroke-opacity:1"
+         dx="0 0 0 0 0 0 0 2.1374028 0 0.35623381 0 0.71246761 4.6310401"
+         dy="0 0 -0.35623381 0.71246761 0 0 0 -0.71246761 0.71246761 -0.71246761 0.71246761 -0.71246761 0.71246761">Full Recovery</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Charter"
+       x="10.031786"
+       y="921.56537"
+       id="text3668-8-7"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         sodipodi:role="line"
+         x="10.031786"
+         y="921.56537"
+         style="font-weight:normal;letter-spacing:-1.41710413;stroke:none;-inkscape-font-specification:Bitstream Charter"
+         id="tspan3863-8-5">I want to try and recover all of the </tspan><tspan
+         sodipodi:role="line"
+         x="10.031786"
+         y="941.51447"
+         style="font-weight:normal;letter-spacing:-1.41710413;stroke:none;-inkscape-font-specification:Bitstream Charter"
+         id="tspan3867-4-6">data on my damaged media</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="241.93999"
+       y="909.5246"
+       id="text3672-5-9"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         y="909.5246"
+         x="241.93999"
+         sodipodi:role="line"
+         id="tspan3674-1-8" /></text>
+    <rect
+       ry="20.000317"
+       rx="19.898003"
+       y="862.35919"
+       x="0.05708608"
+       height="190.00301"
+       width="333.29153"
+       id="rect3987-8-7"
+       style="fill:url(#linearGradient4074-6);fill-opacity:1;stroke:none" />
+    <path
+       id="path3989-8-2"
+       d="m 0.49768445,1033.0767 c 332.76516555,0 332.76516555,0 332.76516555,0"
+       style="fill:none;stroke:#051e5d;stroke-width:0.9953689px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3991-0-8"
+       d="m 13.012444,1050.0166 c -1.92252,-0.7559 -4.5999396,-2.4296 -5.9498196,-3.7192 -2.67423,-2.5548 -5.8155,-8.5364 -5.82656,-11.0949 l -0.007,-1.6071 165.6686256,0 165.66864,0 -0.43774,2.1999 c -1.12322,5.645 -5.47131,11.2505 -10.77845,13.8954 -2.77362,1.3823 -5.25044,1.4073 -153.83063,1.5527 -147.531486,0.1443 -151.092176,0.1161 -154.507116,-1.2268 z"
+       style="fill:#5e8af6;fill-opacity:1;stroke:#5e8af6;stroke-width:1.42493522000000006;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <text
+       id="text3993-1-2"
+       y="890.43048"
+       x="10.031786"
+       style="font-size:31.91854858px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:#051e5d;stroke-width:0.99745464;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         dy="0 0 -0.35623381 0.71246761 0 0 0 -0.71246761 0.71246761 -0.71246761 0.71246761 -0.71246761 0.71246761"
+         dx="0 0 0 0 0 0 0 2.1374028 0 0.35623381 0 0.71246761 4.6310401"
+         style="letter-spacing:-3.84224296;fill:#000000;fill-opacity:1;stroke:#051e5d;stroke-width:0.99745464;stroke-opacity:1"
+         y="890.43048"
+         x="10.031786"
+         id="tspan3995-0-9"
+         sodipodi:role="line">Full Recovery</tspan></text>
+    <text
+       id="text3997-4-9"
+       y="921.56537"
+       x="10.031786"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Charter"
+       xml:space="preserve"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         id="tspan3999-7-6"
+         style="font-weight:normal;letter-spacing:-1.41710413;stroke:none;-inkscape-font-specification:Bitstream Charter"
+         y="921.56537"
+         x="10.031786"
+         sodipodi:role="line">I want to try and recover all of the </tspan><tspan
+         id="tspan4001-6-0"
+         style="font-weight:normal;letter-spacing:-1.41710413;stroke:none;-inkscape-font-specification:Bitstream Charter"
+         y="941.51447"
+         x="10.031786"
+         sodipodi:role="line">data on my damaged media</tspan></text>
+    <text
+       id="text4003-9-2"
+       y="909.5246"
+       x="241.93999"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         y="909.5246"
+         x="241.93999"
+         id="tspan4005-6-7"
+         sodipodi:role="line" /></text>
+    <image
+       style="display:inline"
+       y="890.828"
+       x="257.45193"
+       id="image3879-3-6"
+       height="135.81944"
+       width="56.211853"
+       xlink:href="file:///var/www/etherealpc/images/inkscape_pasted_image_20100624_152333.png" />
+    <image
+       style="display:inline"
+       xlink:href="file:///var/www/etherealpc/images/inkscape_pasted_image_20100624_152333.png"
+       width="56.211853"
+       height="135.81944"
+       id="image4007-9-1"
+       x="257.45193"
+       y="890.828" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="242.5"
+       y="719.86218"
+       id="text3672-8"><tspan
+         sodipodi:role="line"
+         id="tspan3674-3"
+         x="242.5"
+         y="719.86218" /></text>
+    <text
+       id="text4003-7"
+       y="719.86218"
+       x="242.5"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         id="tspan4005-9"
+         sodipodi:role="line"
+         x="242.5"
+         y="719.86218" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="243.09541"
+       y="528.50287"
+       id="text3672-5-3"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         y="528.50287"
+         x="243.09541"
+         sodipodi:role="line"
+         id="tspan3674-1-7" /></text>
+    <text
+       id="text4003-9-8"
+       y="528.50287"
+       x="243.09541"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         y="528.50287"
+         x="243.09541"
+         id="tspan4005-6-74"
+         sodipodi:role="line" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="241.34753"
+       y="911.86218"
+       id="text3672-6-1"><tspan
+         sodipodi:role="line"
+         id="tspan3674-4-9"
+         x="241.34753"
+         y="911.86218" /></text>
+    <text
+       id="text4003-0-0"
+       y="911.86218"
+       x="241.34753"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         id="tspan4005-0-9"
+         sodipodi:role="line"
+         x="241.34753"
+         y="911.86218" /></text>
+    <rect
+       style="fill:url(#linearGradient4072-3-9);fill-opacity:1;stroke:none"
+       id="rect2816-8-4-8"
+       width="333.29153"
+       height="190.00301"
+       x="0.057086904"
+       y="672.35919"
+       rx="19.898003"
+       ry="20.000317" />
+    <path
+       style="fill:#051e5d;fill-opacity:1;stroke:#051e5d;stroke-width:1.42493522;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 13.012444,860.01657 c -1.92252,-0.7559 -4.5999396,-2.4296 -5.9498196,-3.7192 -2.67423,-2.5548 -5.8155,-8.5364 -5.82656,-11.0949 l -0.007,-1.6071 165.6686256,0 165.66863,0 -0.43774,2.1999 c -1.12322,5.645 -5.47131,11.2505 -10.77844,13.8954 -2.77362,1.3823 -5.25044,1.4073 -153.83063,1.5527 -147.531486,0.1443 -151.092176,0.1161 -154.507116,-1.2268 z"
+       id="path3592-5-6-8" />
+    <text
+       xml:space="preserve"
+       style="font-size:31.91854858px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:#051e5d;stroke-width:0.99745464;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="10.031792"
+       y="700.91711"
+       id="text3664-7-2-5"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         sodipodi:role="line"
+         id="tspan3666-0-6-8"
+         x="10.031792"
+         y="700.91711"
+         style="letter-spacing:-3.84224296;fill:#000000;fill-opacity:1;stroke:#051e5d;stroke-width:0.99745464;stroke-opacity:1"
+         dx="0 0 0 0 0 0 0 2.1374028 0 0.35623381 0 0.71246761 4.6310401"
+         dy="0 0 -0.35623381 0.71246761 0 0 0 -0.71246761 0.71246761 -0.71246761 0.71246761 -0.71246761 0.71246761">Full Recovery</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Charter"
+       x="10.031792"
+       y="732.052"
+       id="text3668-8-7-4"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         sodipodi:role="line"
+         x="10.031792"
+         y="732.052"
+         style="font-weight:normal;letter-spacing:-1.41710413;stroke:none;-inkscape-font-specification:Bitstream Charter"
+         id="tspan3863-8-5-3">I want to try and recover all of the </tspan><tspan
+         sodipodi:role="line"
+         x="10.031792"
+         y="752.0011"
+         style="font-weight:normal;letter-spacing:-1.41710413;stroke:none;-inkscape-font-specification:Bitstream Charter"
+         id="tspan3867-4-6-7">data on my damaged media</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="241.93999"
+       y="720.01123"
+       id="text3672-5-9-1"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         y="720.01123"
+         x="241.93999"
+         sodipodi:role="line"
+         id="tspan3674-1-8-3" /></text>
+    <rect
+       ry="20.000317"
+       rx="19.898003"
+       y="672.35919"
+       x="0.057086904"
+       height="190.00301"
+       width="333.29153"
+       id="rect3987-8-7-8"
+       style="fill:url(#linearGradient4074-6-3);fill-opacity:1;stroke:none" />
+    <path
+       id="path3989-8-2-0"
+       d="m 0.49768445,843.07667 c 332.76515555,0 332.76515555,0 332.76515555,0"
+       style="fill:none;stroke:#051e5d;stroke-width:0.9953689px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3991-0-8-9"
+       d="m 13.012444,860.01657 c -1.92252,-0.7559 -4.5999396,-2.4296 -5.9498196,-3.7192 -2.67423,-2.5548 -5.8155,-8.5364 -5.82656,-11.0949 l -0.007,-1.6071 165.6686256,0 165.66863,0 -0.43774,2.1999 c -1.12322,5.645 -5.47131,11.2505 -10.77844,13.8954 -2.77362,1.3823 -5.25044,1.4073 -153.83063,1.5527 -147.531486,0.1443 -151.092176,0.1161 -154.507116,-1.2268 z"
+       style="fill:#051e5d;fill-opacity:1;stroke:#051e5d;stroke-width:1.42493522;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <text
+       id="text3993-1-2-7"
+       y="700.91711"
+       x="10.031792"
+       style="font-size:31.91854858px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:#051e5d;stroke-width:0.99745464;stroke-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         dy="0 0 -0.35623381 0.71246761 0 0 0 -0.71246761 0.71246761 -0.71246761 0.71246761 -0.71246761 0.71246761"
+         dx="0 0 0 0 0 0 0 2.1374028 0 0.35623381 0 0.71246761 4.6310401"
+         style="letter-spacing:-3.84224296;fill:#000000;fill-opacity:1;stroke:#051e5d;stroke-width:0.99745464;stroke-opacity:1"
+         y="700.91711"
+         x="10.031792"
+         id="tspan3995-0-9-9"
+         sodipodi:role="line">Full Recovery</tspan></text>
+    <text
+       id="text3997-4-9-9"
+       y="732.052"
+       x="10.031792"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Charter"
+       xml:space="preserve"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         id="tspan3999-7-6-3"
+         style="font-weight:normal;letter-spacing:-1.41710413;stroke:none;-inkscape-font-specification:Bitstream Charter"
+         y="732.052"
+         x="10.031792"
+         sodipodi:role="line">I want to try and recover all of the </tspan><tspan
+         id="tspan4001-6-0-2"
+         style="font-weight:normal;letter-spacing:-1.41710413;stroke:none;-inkscape-font-specification:Bitstream Charter"
+         y="752.0011"
+         x="10.031792"
+         sodipodi:role="line">data on my damaged media</tspan></text>
+    <text
+       id="text4003-9-2-4"
+       y="720.01123"
+       x="241.93999"
+       style="font-size:15.95927429px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"
+       transform="scale(0.99743888,1.0025677)"><tspan
+         y="720.01123"
+         x="241.93999"
+         id="tspan4005-6-7-3"
+         sodipodi:role="line" /></text>
+    <image
+       style="display:inline"
+       y="700.828"
+       x="257.45193"
+       id="image3879-3-6-7"
+       height="135.81944"
+       width="56.211853"
+       xlink:href="file:///var/www/etherealpc/images/inkscape_pasted_image_20100624_152333.png" />
+    <image
+       style="display:inline"
+       xlink:href="file:///var/www/etherealpc/images/inkscape_pasted_image_20100624_152333.png"
+       width="56.211853"
+       height="135.81944"
+       id="image4007-9-1-1"
+       x="257.45193"
+       y="700.828" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="photots"
+     style="display:none"
+     transform="translate(0,190)">
+    <image
+       y="72.794228"
+       x="245.78572"
+       id="image3621"
+       height="87.318466"
+       width="78.785713"
+       xlink:href="file:///var/www/etherealpc/images/inkscape_pasted_image_20100624_143734.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="cabinet"
+     style="display:inline"
+     transform="translate(0,190)" />
+</svg>

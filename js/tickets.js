@@ -1,5 +1,5 @@
 google.setOnLoadCallback(function(){
-
+console.log("ass");
 	$("#ticket-accordion").accordion({
 		autoHeight: false,
 		clearStyle: true,
@@ -35,14 +35,14 @@ google.setOnLoadCallback(function(){
 
   $(".service").hover(function(){
     $(this).css({
-      borderBottom: '8px solid #8FA3C6'
+      backgroundPosition: '0 -190px'
     });
     //displayServiceInfo($(this).prevAll().length);
   }, function(){
     $(this).css({
-      borderBottom: '8px solid #051E5D'
+      backgroundPosition: '0 0'
     });
-    $("#serviceInfo > *").fadeOut();
+//    $("#serviceInfo > *").fadeOut();
    })
    .click(function(){
      validateServicePanel($(this).parent().prevAll().length);
@@ -377,12 +377,12 @@ $.post("ajax/tickets.php", {action: "create", key: "service", val: index},
           <div class='clearfix'>\n\
             <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>\n\
             <div class='epc-checkbox-group lcolumn'>\n\
-              <input type='checkbox' class='epc-checkbox' id='music'/>Music <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='documents'/>Text Documents <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='pictures'/>Pictures <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='videos'/>Videos <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='archives'/>Archived Files <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='other'/>Other <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='music'/><span style='position:relative; top:-1%;'>Music</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='documents'/><span style='position:relative; top:-1%;'>Text Documents</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='pictures'/><span style='position:relative; top:-1%;'>Pictures</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='videos'/><span style='position:relative; top:-1%;'>Videos</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='archives'/><span style='position:relative; top:-1%;'>Archived Files</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='other'/><span style='position:relative; top:-1%;'>Other</span> <br />\n\
             </div>\n\
             <div id='extraTypes' class='epc-checkbox-group lcolumn'></div>\n\
           </div>\n\
@@ -558,12 +558,12 @@ function checkCheck(sel)
 {
     var key = $(sel).prevAll().length/2;
     var val = $(sel).attr("checked");
-    var numChecked = $("#fileSelection").find("input[type='checkbox']:checked").length;
-    if((key == 5) && (val == 1)){ //Other
+    var numChecked = $("#fileSelection").find("input[type='checkbox']:checked").length;console.log(key+":"+val+":"+numChecked);
+    if((key == 7.5) && (val == 1)){ //Other
       specificFileType();
       numChecked--;
     }
-    else if((key == 5) && (val == 0)){
+    else if((key == 7.5) && (val == 0)){
       $("#specificFileTypeField").fadeOut("slow");
       $("#extraTypes").fadeOut("slow");
     }
