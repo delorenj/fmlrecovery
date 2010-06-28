@@ -138,7 +138,7 @@ $html = '<html>
 	  			<body> 
 					<div style="padding:0;font-family:arial; font-size:2.4em; color:#00027C"><h1 style="margin:0; padding:0;"><span style="color:#93CD02;">fml</span>Recovery</h1></div>
 					<div style="padding-top: -40px; color: #00027C; font-size:1.8em; font-family:arial;">Bringing Data Back To Life</div>
-						<p>Dear '.User::current_user()->first_name.', <br /><br />Your order is being processed.  Attached you will find your pre-paid FedEx shipping label.<br />For instructions on how to package your media, please see the links below.</p>
+						<p>'.User::current_user()->first_name.', <br /><br />Your order is being processed.  Attached you will find your pre-paid FedEx shipping label.<br /></p>
 						<div">
 						 	<span style="font-weight: 800; color: #93CD02;">fml</span><span style="color:#00027C;">Recovery &trade;</span><br />
 							1-973-440-8809<br />
@@ -161,60 +161,7 @@ $hdrs = $mime->headers($hdrs);
 
 $mail =& Mail::factory('mail');
 $mail->send($email, $hdrs, $body);
-/*
-//define the receiver of the email
-$to = $email;
-//define the subject of the email
-$subject = 'Test email with attachment';
-//create a boundary string. It must be unique
-//so we use the MD5 algorithm to generate a random hash
-$random_hash = md5(date('r', time()));
-//define the headers we want passed. Note that they are separated with \r\n
-$headers = "From: jarad@fmlrecovery.com\r\nReply-To: info@fmlrecovery.com";
-//add boundary string and mime type specification
-$headers .= "\r\nContent-Type: multipart/mixed; boundary=\"PHP-mixed-".$random_hash."\"";
-//read the atachment file contents into a string,
-//encode it with MIME base64,
-//and split it into smaller chunks
-$attachment = chunk_split(base64_encode(file_get_contents($labelpath)));
-//define the body of the message.
-ob_start(); //Turn on output buffering
-?>
---PHP-mixed-<?php fb($random_hash); ?>
-Content-Type: multipart/alternative; boundary="PHP-alt-<?php fb($random_hash); ?>"
 
---PHP-alt-<?php fb($random_hash); ?>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
-
-Hello World!!!
-This is simple text email message.
-
---PHP-alt-<?php fb($random_hash); ?>
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
-
-<h2>Hello World!</h2>
-<p>This is something with <b>HTML</b> formatting.</p>
-
---PHP-alt-<?php fb($random_hash); ?>--
-
---PHP-mixed-<?php fb($random_hash); ?>
-Content-Type: application/zip; name="attachment.zip"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment
-
-<?php fb($attachment); ?>
---PHP-mixed-<?php fb($random_hash); ?>--
-
-<?php
-//copy current buffer contents into $message variable and delete current output buffer
-$message = ob_get_clean();
-//send the email
-$mail_sent = @mail( $to, $subject, $message, $headers );
-//if the message is sent successfully print "Mail sent". Otherwise print "Mail failed"
-//fb($mail_sent ? "Mail sent" : "Mail failed");
- */
 }
 
 ?>
