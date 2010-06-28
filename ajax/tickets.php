@@ -147,7 +147,7 @@ $html = '<html>
 				 </html>';
 $file = $labelpath;
 $crlf = "\n";
-$hdrs = array('From' => 'tickets@fmlrecovery.com', 'Subject' => 'Your fmlRecovery shipping label: Order #'.User::current_user()->tickets[0]->id);
+$hdrs = array('From' => 'tickets@fmlrecovery.com', 'Subject' => 'Your fmlRecovery shipping label: Order #'.end(User::current_user()->tickets)->id);
 
 $mime = new Mail_mime($crlf);
 
