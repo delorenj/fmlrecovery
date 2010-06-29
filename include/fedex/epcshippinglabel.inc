@@ -4,12 +4,13 @@ require_once(dirname(__FILE__)."/../environment.inc");
 require_once('fedex-common.php5');
 
 class EpcShippingLabel
+//
+// This facade class wraps the FedEx Label Creation web service in a simple interface.
+//
 {
-  //The WSDL is not included with the sample code.
-  //Please include and reference in $path_to_wsdl variable.
-  //const path_to_wsdl = "include/fedex/wsdl/ShipService_v8.wsdl";
-  const SHIP_LABEL = "labels/shipgroundlabel.pdf";  // PDF label file. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
-  const SHIP_IMAGE = "labels/shipgroundlabel.png";  // PDF label file. Change to file-extension .png for creating a PNG label (e.g. shiplabel.png)
+
+  const SHIP_LABEL = "labels/shipgroundlabel.pdf";
+  const SHIP_IMAGE = "labels/shipgroundlabel.png";
   protected $key;
   protected $password;
   protected $shipAccount;
@@ -21,7 +22,6 @@ class EpcShippingLabel
 
   function __construct(){
     fb("Constructing EpcShippingLabel Object:");
-    //Set commonly used variables in fedex-common.php5.  Set check to true.
     if(setDefaults('check'))
     {
       $this->key=setDefaults('key');
@@ -31,7 +31,6 @@ class EpcShippingLabel
       $this->billAccount=setDefaults('billaccount');
       $this->dutyAccount=setDefaults('dutyaccount');
     }
-    //Set commonly used variables below.  Set check to false.
     else
     {
       $this->key='XXX';
@@ -43,7 +42,7 @@ class EpcShippingLabel
     }
 
     ini_set("soap.wsdl_cache_enabled", "0");
-    $this->client = new SoapClient(dirname(__FILE__)."/wsdl/ShipService_v8.wsdl", array('trace' => 1)); // Refer to http://us3.php.net/manual/en/ref.soap.php for more information
+    $this->client = new SoapClient(dirname(__FILE__)."/wsdl/ShipService_v8.wsdl", array('trace' => 1));
     fb("key=$this->key\nbillAccount=$this->billAccount");
   }//End Constructor()
 
@@ -57,9 +56,9 @@ class EpcShippingLabel
     $this->request['TransactionDetail'] = array('CustomerTransactionId' => '*** Ticket Number '.$data["transactionNumber"].' ***');
     $this->request['Version'] = array('ServiceId' => 'ship', 'Major' => '8', 'Intermediate' => '0', 'Minor' => '0');
     $this->request['RequestedShipment'] = array('ShipTimestamp' => date('c'),
-                                            'DropoffType' => 'REGULAR_PICKUP', // valid values REGULAR_PICKUP, REQUEST_COURIER, DROP_BOX, BUSINESS_SERVICE_CENTER and STATION
-                                            'ServiceType' => 'FEDEX_GROUND', // valid values STANDARD_OVERNIGHT, PRIORITY_OVERNIGHT, FEDEX_GROUND, ...
-                                            'PackagingType' => 'YOUR_PACKAGING', // valid values FEDEX_BOX, FEDEX_PAK, FEDEX_TUBE, YOUR_PACKAGING, ...
+                                            'DropoffType' => 'REGULAR_PICKUP',
+                                            'ServiceType' => 'FEDEX_GROUND',
+                                            'PackagingType' => 'YOUR_PACKAGING',
                                             'Shipper' => array('Contact' => array('PersonName' => $data["personName"],
                                                                                   'PhoneNumber' => $data["phoneNumber"]),
                                                                'Address' => array('StreetLines' => array($data["street"]),
@@ -74,17 +73,17 @@ class EpcShippingLabel
                                                                                     'StateOrProvinceCode' => 'NJ',
                                                                                     'PostalCode' => '07874',
                                                                                     'CountryCode' => 'US')),
-                                            'ShippingChargesPayment' => array('PaymentType' => 'SENDER', // valid values RECIPIENT, SENDER and THIRD_PARTY
+                                            'ShippingChargesPayment' => array('PaymentType' => 'SENDER',
                                                                               'Payor' => array('AccountNumber' => $this->billAccount,
                                                                                                'CountryCode' => 'US')),
-                                            'LabelSpecification' => array('LabelFormatType' => 'COMMON2D', // valid values COMMON2D, LABEL_DATA_ONLY
-                                                                          'ImageType' => 'PDF',  // valid values DPL, EPL2, PDF, ZPLII and PNG
+                                            'LabelSpecification' => array('LabelFormatType' => 'COMMON2D',
+                                                                          'ImageType' => 'PDF',
                                                                           'LabelStockType' => 'PAPER_7X4.75'),
-                                            'RateRequestTypes' => array('ACCOUNT'), // valid values ACCOUNT and LIST
+                                            'RateRequestTypes' => array('ACCOUNT'),
                                             'PackageCount' => 1,
                                             'PackageDetail' => 'INDIVIDUAL_PACKAGES',
                                             'RequestedPackageLineItems' => array('0' => array('SequenceNumber' => '1',
-                                                                         'Weight' => array('Value' => $data["weight"], 'Units' => 'LB'), // valid values LB or KG
+                                                                         'Weight' => array('Value' => $data["weight"], 'Units' => 'LB'),
                                                                          'Dimensions' => array('Length' => $data["L"],
                                                                                                'Width' => $data["W"],
                                                                                                'Height' => $data["H"],

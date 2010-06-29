@@ -2,7 +2,7 @@
 	session_start();
    ob_start();
 	require_once('../include/environment.inc');
-require_once('fedex/epcshippinglabel.inc');
+  require_once('fedex/epcshippinglabel.inc');
 	include('Mail.php');
 	include('Mail/mime.php');
   
@@ -51,6 +51,11 @@ function create()
 }
 
 function finalize()
+//
+// This AJAX method is implements the simultaneus lazy-registration and ticket creation for a
+// new client and client service, respectively. Both atomic actions must be successful to return an OK result.
+//
+// TODO: Extrapolate more accurate shipping estimates from the available data in the Ticket model
 {
   switch($_SESSION["newticket"]["mediaType"]){
     case "external":

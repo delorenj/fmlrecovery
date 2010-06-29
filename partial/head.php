@@ -21,6 +21,8 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 				<script type="text/javascript" src="js/plugins/localisation/jquery.localisation-min.js"></script>
 				<script type="text/javascript" src="js/plugins/scrollTo/jquery.scrollTo-min.js"></script>
+        <script type="text/javascript" src="js/plugins/jCounter/jquery.backgroundPosition.js"></script>
+        <script type="text/javascript" src="js/plugins/jCounter/jquery.jcounter.js"></script>
         <script type="text/javascript" src="js/plugins/cookies.js"></script>
 				<script type="text/javascript" src="js/ui.multiselect.js"></script>
         <script type="text/javascript" src="js/epc.js"></script>

@@ -1,5 +1,4 @@
 google.setOnLoadCallback(function(){
-console.log("ass");
 	$("#ticket-accordion").accordion({
 		autoHeight: false,
 		clearStyle: true,
@@ -91,6 +90,16 @@ console.log("ass");
     }
   return true;
   });
+
+  $("#priceTotal").jCounter({
+      count: 100,
+      currency: true,
+      counterBg: "http://localhost/etherealpc/js/plugins/jCounter/bg-counter.png",
+      counterImg: "http://localhost/etherealpc/js/plugins/jCounter/counter-numbers.png",
+      dollarImg: "http://localhost/etherealpc/js/plugins/jCounter/dollar.png",
+      duration: 100
+    });
+  
 });
 
 
@@ -377,11 +386,11 @@ $.post("ajax/tickets.php", {action: "create", key: "service", val: index},
           <div class='clearfix'>\n\
             <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>\n\
             <div class='epc-checkbox-group lcolumn'>\n\
-              <input type='checkbox' class='epc-checkbox' id='music'/><span style='position:relative; top:-1%;'>Music</span> <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='documents'/><span style='position:relative; top:-1%;'>Text Documents</span> <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='pictures'/><span style='position:relative; top:-1%;'>Pictures</span> <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='videos'/><span style='position:relative; top:-1%;'>Videos</span> <br />\n\
-              <input type='checkbox' class='epc-checkbox' id='archives'/><span style='position:relative; top:-1%;'>Archived Files</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='music'checked /><span style='position:relative; top:-1%;'>Music</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='documents' checked /><span style='position:relative; top:-1%;'>Text Documents</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='pictures' checked /><span style='position:relative; top:-1%;'>Pictures</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='videos' checked /><span style='position:relative; top:-1%;'>Videos</span> <br />\n\
+              <input type='checkbox' class='epc-checkbox' id='archives' checked /><span style='position:relative; top:-1%;'>Archived Files</span> <br />\n\
               <input type='checkbox' class='epc-checkbox' id='other'/><span style='position:relative; top:-1%;'>Other</span> <br />\n\
             </div>\n\
             <div id='extraTypes' class='epc-checkbox-group lcolumn'></div>\n\
@@ -608,6 +617,7 @@ function dontKnowMediaSize()
         $("input[name='mediaSizeInput']").attr("value","?");
         $("input[name='mediaSizeInput']").siblings(".fieldOK").fadeIn("slow");
         jQuery.epc.mediaPanel[1] = 1;
+        recalculatePrice();
         formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
       }
       else{
@@ -627,6 +637,7 @@ function dontKnowMediaType()
         $("select[name='mediaType']").attr("value","idk");
         $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
         jQuery.epc.mediaPanel[0] = 1;
+        recalculatePrice();
         formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
       }
       else{
@@ -700,8 +711,9 @@ function doKnowFileNames()
 function onChangeMediaType(val)
 {
   resetAjaxLoader("select[name='mediaType']");
+  console.log(val);
   switch(val){
-    case "other":
+    case "Other":
       $("#mediaTypeByTextbox").html("<div class='formfield'>\n\
                                       <label for='mediaTypeByTextbox'>Describe your media</label>\n\
                                       <input name='mediaTypeByTextbox' class='epc-textfield idleField float_left' type='text' onChange='onChangeMediaTypeByTextbox()' /><span class='fieldOK'></span>\n\
@@ -729,6 +741,7 @@ function onChangeMediaType(val)
         })
       //no action
   }
+  recalculatePrice();
 }
 
 function handleCreateAccountResponse(respArray)
@@ -758,6 +771,7 @@ function onChangeMediaTypeByTextbox()
         $("input[name='mediaTypeByTextbox']").siblings(".fieldOK").fadeIn("slow");
         $("select[name='mediaType']").siblings(".fieldOK").fadeIn("slow");
         jQuery.epc.mediaPanel[0] = 1;
+        recalculatePrice();
         formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
       }
       else {
@@ -784,6 +798,7 @@ function onChangeMediaSize(size)
       if(data.indexOf("SUCCESS") != -1){
         $("input[name='mediaSizeInput']").siblings(".fieldOK").fadeIn("slow");
        jQuery.epc.mediaPanel[1] = 1;
+       recalculatePrice();
        formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
       }
     });
@@ -808,4 +823,41 @@ function testMail()
   $.post("ajax/tickets.php", {action:"testMail"}, function(){
     flashNotice("Test Mail Sent");
   });
+}
+
+function recalculatePrice()
+{
+  total = 100;
+  fudge = 0;
+  mediaType = $("#mediaType").val().toLowerCase();
+  mediaSize = $("#mediaSize").val();
+
+  if( (mediaType == "external hard drive") ||
+      (mediaType == "desktop hard drive") ||
+      (mediaType == "laptop hard drive")) {
+      total += 30;
+  }
+  else if(  (mediaType == "phone") ) {
+    total += 50;
+  }
+  if((mediaSize >= 100) && (mediaSize < 300)) {
+    fudge += 30
+  }
+  else if((mediaSize >= 300) && (mediaSize < 500)) {
+    fudge += 40
+  }
+  else if((mediaSize >= 500)) {
+    fudge += 50
+  }
+
+  $("#priceTotal").jCounter({count: total+fudge});
+
+  if( (mediaType == "idk") ||
+      (mediaSize == "?") ||
+      (mediaSize >= 500 )){
+    $("#priceTotalModifier").fadeIn("slow");
+  }
+  else {
+    $("#priceTotalModifier").fadeOut("slow");
+  }
 }

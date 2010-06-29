@@ -1,5 +1,4 @@
 <?php unset($_SESSION["newticket"]); ?>
-<!--<form id="ticket-form" method="post" action="validateTicket.php">-->
 <div>
   <div id="ticket-accordion" class="ui-accordion-container" style="padding-top: 10px; clear: both;">
     <h3><a href="javascript: void(0)" class="ui-accordion-link">Choose a service<span class="loading" style="float:right;"></span></a></h3>
@@ -7,21 +6,9 @@
       <div id="serviceContainer">
         <div class="lcolumn">
           <div id="media-service" class="service"></div>
-<!--
-            <div><label>Media Recovery</label></div>
-            <img src="images/polaroids.jpg" height=60% alt="image of polaroids"/>
-            <p>I want to recover some, or all of my personal media, including photos, music, and documents.</p>
-          </div>
--->
         </div>
         <div class="rcolumn">
           <div id="full-service" class="service"></div>
-<!--
-            <div><label>Full Recovery</label></div>
-            <img src="images/cabinet.jpg" height=60% alt="image of file cabinet"/>
-            <p>I want to recover all of the data on my damaged media.</p>
-          </div>
--->
         </div>
       </div>
       <div id="serviceInfo"></div>
@@ -33,14 +20,14 @@
           <div class="formfield">
             <div class="clearfix">
               <label for="mediaType">Select a type of media:</label>
-              <select name="mediaType" class="epc-select float_left" onChange="onChangeMediaType(this.value)">
+              <select name="mediaType" id="mediaType" class="epc-select float_left" onChange="onChangeMediaType(this.value)">
                 <option value="none">--Choose one--</option>
                 <option value="External Hard Drive">External Hard Drive</option>
                 <option value="Desktop Hard Drive">Desktop Hard Drive</option>
                 <option value="Laptop Hard Drive">Laptop Hard Drive</option>
                 <option value="USB Stick">USB Stick</option>
                 <option value="Flash Card">Flash Card</option>
-                <option value="Phone">Phone</option>
+                <option value="Phone">iPhone</option>
                 <option value="Other">Other</option>
                 <option value="idk">I don't know</option>
               </select>
@@ -54,9 +41,13 @@
           <div class="formfield" style="overflow:hidden;">
             <div class="clearfix">
               <label for="mediaSize">What size is your media: </label>
-              <input type="text" size="5" name="mediaSizeInput" class="epc-textfield float_left" onBlur="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK" style="position:relative; top:5px;"></div><span class="loading" style="position:relative; top:5px;"></span>
+              <input type="text" size="5" name="mediaSizeInput" id="mediaSize" class="epc-textfield float_left" onBlur="onChangeMediaSize(this.value)" /> <span class="epc-text float_left" style="padding-top:5px;">GB</span><div class="fieldOK" style="position:relative; top:5px;"></div><span class="loading" style="position:relative; top:5px;"></span>
             </div>
             <span class="fieldlink"><a href="#" onClick="dontKnowMediaSize()">I don't know</a></span>
+          </div>
+          <div class="formfield" style="overflow:hidden">
+            <div id="priceTotal" style="width: 33px; height: 80px; border-right: 1px solid #EEEEEE; border-bottom:1px solid #EEEEEE;"></div>
+            <span id="priceTotalModifier" style='display:none; color:red; font-size:smaller;'>*Price subject to change</span>
           </div>
         </div>
         <div class="rcolumn">
