@@ -853,6 +853,7 @@ function recalculatePrice()
   $("#priceTotal").jCounter({count: total+fudge});
 
   if( (mediaType == "idk") ||
+      (mediaType == "other") ||
       (mediaSize == "?") ||
       (mediaSize >= 500 )){
     $("#priceTotalModifier").fadeIn("slow");
