@@ -94,9 +94,9 @@ google.setOnLoadCallback(function(){
   $("#priceTotal").jCounter({
       count: 100,
       currency: true,
-      counterBg: "http://localhost/etherealpc/js/plugins/jCounter/bg-counter.png",
-      counterImg: "http://localhost/etherealpc/js/plugins/jCounter/counter-numbers.png",
-      dollarImg: "http://localhost/etherealpc/js/plugins/jCounter/dollar.png",
+      counterBg: "http://www.fmlrecovery.com/js/plugins/jCounter/bg-counter.png",
+      counterImg: "http://www.fmlrecovery.com/js/plugins/jCounter/counter-numbers.png",
+      dollarImg: "http://www.fmlrecovery.com/js/plugins/jCounter/dollar.png",
       duration: 100
     });
   
