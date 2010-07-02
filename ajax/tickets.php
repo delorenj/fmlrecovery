@@ -81,8 +81,11 @@ function finalize()
   }
   $label = new EpcShippingLabel();
   $data = array(
+    "mediaSize" => $_SESSION["newticket"]["mediaSize"],
+    "mediaType" => $_SESSION["newticket"]["mediaType"],
     "personName" => $_POST["firstname"]." ".$_POST["lastname"],
     "phoneNumber" => $_POST["phone"],
+    "email" => User::current_user()->email,
     "street" => $_POST["street"],
     "city" => $_POST["city"],
     "state" => $_POST["state"],
@@ -94,26 +97,27 @@ function finalize()
     "customerReference" => User::current_user()->id,
     "transactionNumber" => Ticket::last()->id+1
   );
-  $label->init($data);
-  $label->create();
-  $labelpath = "labels/".User::current_user()->last_name.User::current_user()->first_name.time();
-  $labelCreatedSuccessfully = rename(dirname(__FILE__)."/../".EpcShippingLabel::SHIP_LABEL, dirname(__FILE__)."/../".$labelpath.".pdf");
-  $picCreatedSuccessfully = rename(dirname(__FILE__)."/../".EpcShippingLabel::SHIP_IMAGE, dirname(__FILE__)."/../".$labelpath.".png");
-  fb("labelpath=$labelpath");
+  $label->init_email_label($data);
+  $label->create_email_label();
+  $labelpath = "NONE";
+//  $labelpath = "labels/".User::current_user()->last_name.User::current_user()->first_name.time();
+//  $labelCreatedSuccessfully = rename(dirname(__FILE__)."/../".EpcShippingLabel::SHIP_LABEL, dirname(__FILE__)."/../".$labelpath.".pdf");
+//  $picCreatedSuccessfully = rename(dirname(__FILE__)."/../".EpcShippingLabel::SHIP_IMAGE, dirname(__FILE__)."/../".$labelpath.".png");
+//  fb("labelpath=$labelpath");
   $ticket = new Ticket(array(
 		'user_id'     => User::current_user()->id,
 		'service_id'     => $_SESSION["newticket"]["service"],
-      'media'       => $_SESSION["newticket"]["mediaType"],
+    'media'       => $_SESSION["newticket"]["mediaType"],
 		'megabytes'   => $_SESSION["newticket"]["mediaSize"],
-      'comments'    => $_SESSION["newticket"]["mediaDetail"],
+    'comments'    => $_SESSION["newticket"]["mediaDetail"],
 		'weight'      => $weight_estimate,
-      'length'      => $length_estimate,
-      'width'       => $width_estimate,
-      'height'      => $height_estimate,
-      'shipping_cost' => "10.00",
-      'labelpath'     => $labelpath
+    'length'      => $length_estimate,
+    'width'       => $width_estimate,
+    'height'      => $height_estimate,
+    'shipping_cost' => "10.00",
+    'labelpath'     => $labelpath
 	));
-	if($ticket->is_invalid() || !$labelCreatedSuccessfully || !$picCreatedSuccessfully)
+	if($ticket->is_invalid()) // || !$labelCreatedSuccessfully || !$picCreatedSuccessfully)
 	{
     $result = "FAILURE";
     $message = "Error creating ticket";
@@ -126,7 +130,7 @@ function finalize()
 		$ticket->save();
       $result = "OK";
       $message = "Ticket Created";
-      sendLabelViaEmail($labelpath.".pdf", User::current_user()->email);
+//      sendLabelViaEmail($labelpath.".pdf", User::current_user()->email);
    }
   fb($message);  
   $ar = array("result" => $result,

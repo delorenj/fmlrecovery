@@ -37,6 +37,20 @@ function initializeMyLocationMap()
 
 function sendMessage()
 {
-  //TODO: Create a sendMessage function
-  comingSoon();
+  if($("#email").val() == "") {
+    flashError("Email is required");
+  }
+  if($("#message").val() == "") {
+    flashError("Message is required");
+  }
+
+  if((isValidEmail($("#email").val(), "#email") && ($("#message").val() != ""))){
+    $.post("ajax/contact.php", {action: "sendMessage",
+                                name: $("#name").val(),
+                                email: $("#email").val(),
+                                message: $("#message").val()
+    }, function(data) {
+      flashNotice(data);
+    });
+  }
 }

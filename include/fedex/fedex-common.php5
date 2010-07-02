@@ -49,16 +49,16 @@ fwrite($logfile, sprintf("\r%s:- %s",date("D M j G:i:s T Y"), $client->__getLast
 
 //To use these defaults set the check to return true.
 function setDefaults($var){
-	if($var == 'shipaccount') Return '510087704';
+	if($var == 'shipaccount') Return '393961961';
 /**
  * If the billaccount and dutyaccount do not match the shipping account
  * the pay type will need to be changed from SENDER in shipping transactions.
  */
-	if($var == 'billaccount') Return '510087704';
-	if($var == 'dutyaccount') Return '510087704';
-	if($var == 'meter') Return '118511379';
-	if($var == 'key') Return 'U5Yg16WCEmzWnuOT';
-	if($var == 'password') Return 'tIiKDyA9tH8pahAqtnWU8ZKEq';
+	if($var == 'billaccount') Return '393961961';
+	if($var == 'dutyaccount') Return '393961961';
+	if($var == 'meter') Return '101988886';
+	if($var == 'key') Return '09KbRKbKrhEK49FK';
+	if($var == 'password') Return 'eHPUpPORZhGoDJAqnnOoLJZYV';
 	if($var == 'check') Return true;
 }
 

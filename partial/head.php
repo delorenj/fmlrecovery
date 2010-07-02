@@ -10,7 +10,6 @@
               and provides an interface to create a service request" />
         <link href="css/reset.css" rel="stylesheet" type="text/css" />
         <link type="text/css" href="css/redmond/jquery-ui.css" rel="stylesheet" />
-        <link type="text/css" href="css/ui.multiselect.css" rel="stylesheet" />
         <link href="css/default.css" rel="stylesheet" type="text/css" />
 <!--        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Josefin+Sans+Std+Light|Yanone+Kaffeesatz|IM+Fell+DW+Pica|Nobile" /> -->
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -24,7 +23,6 @@
         <script type="text/javascript" src="js/plugins/jCounter/jquery.backgroundPosition.js"></script>
         <script type="text/javascript" src="js/plugins/jCounter/jquery.jcounter.js"></script>
         <script type="text/javascript" src="js/plugins/cookies.js"></script>
-				<script type="text/javascript" src="js/ui.multiselect.js"></script>
         <script type="text/javascript" src="js/epc.js"></script>
     </head>
 

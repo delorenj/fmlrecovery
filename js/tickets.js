@@ -92,7 +92,7 @@ google.setOnLoadCallback(function(){
   });
 
   $("#priceTotal").jCounter({
-      count: 100,
+      count: 99,
       currency: true,
       counterBg: "http://www.fmlrecovery.com/js/plugins/jCounter/bg-counter.png",
       counterImg: "http://www.fmlrecovery.com/js/plugins/jCounter/counter-numbers.png",
@@ -225,8 +225,8 @@ function postLoginProcessing()
 function forgotPassword()
 {
   if(!validateEmail()) return false;
-  //TODO: Send an email!
-  flashNotice("Your password has been sent to your email.")
+  //TODO: Actually reset the password and send it!
+  flashNotice("Your password has been reset. Your new password has been sent to your email.")
   return true;
 }
 
@@ -492,7 +492,6 @@ function validateShippingPanel()
                       data: {action: "finalize",
                              firstname: $("#firstname").val(),
                              lastname: $("#lastname").val(),
-                             email: $("#email").val(),
                              password: $("#password").val(),
                              street: $("#street").val(),
                              zip: $("#zip").val(),
@@ -649,23 +648,6 @@ function dontKnowMediaType()
 
 function specificFileType()
 {
-  /*
-  $("#specificFileTypeField").html("<div class='formfield'>\n\
-                                      <label for='specificFileTypeField'>Popular File Types</label>\n\
-                                      <select id='filetypes' class='multiselect' multiple='multiple' name='filetypes[]'>\n\
-                                        <option value='doc'>doc</option>\n\
-                                        <option value='doc'>ppt</option>\n\
-                                        <option value='doc'>ai</option>\n\
-                                        <option value='doc'>zip</option>\n\
-                                        <option value='doc'>pdf</option>\n\
-                                        <option value='doc'>mp3</option>\n\
-                                        <option value='doc'>jpg</option>\n\
-                                        <option value='doc'>rar</option>\n\
-                                      </select>\n\
-                                    </div>");
-
-$("#filetypes").multiselect({sortable: false, searchable: false});
-*/
   var fileTypes = "";
   $("#specificFileTypeField").html("<div class='formfield'>\n\
                                       <div class='clearfix'>\n\
@@ -827,7 +809,7 @@ function testMail()
 
 function recalculatePrice()
 {
-  total = 100;
+  total = 99;
   fudge = 0;
   mediaType = $("#mediaType").val().toLowerCase();
   mediaSize = $("#mediaSize").val();
@@ -849,8 +831,15 @@ function recalculatePrice()
   else if((mediaSize >= 500)) {
     fudge += 50
   }
-
-  $("#priceTotal").jCounter({count: total+fudge});
+  
+  $("#priceTotal").jCounter({
+      count: total+fudge,
+      currency: true,
+      counterBg: "http://www.fmlrecovery.com/js/plugins/jCounter/bg-counter.png",
+      counterImg: "http://www.fmlrecovery.com/js/plugins/jCounter/counter-numbers.png",
+      dollarImg: "http://www.fmlrecovery.com/js/plugins/jCounter/dollar.png",
+      duration: 100
+    });
 
   if( (mediaType == "idk") ||
       (mediaType == "other") ||
