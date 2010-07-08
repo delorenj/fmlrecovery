@@ -16,5 +16,6 @@ ActiveRecord\Config::initialize(function($cfg) {
             $cfg->set_connections(array('development' => 'mysql://fmladmin:Mog43yo...@localhost/fmladmin_epc'));
         });
 
+require_once 'fmlExceptions.php';
 require_once 'Helpers.php';
 ?>

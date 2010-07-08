@@ -535,11 +535,13 @@ function validateShippingPanel()
 
 function handleFinalizeTicket(response)
 {
-  flashNotice(response.message);
   if(response.result == "OK"){
     $("#shippingDiv").find(".panelNav").fadeOut("slow", function(){
-      $("#shippingLabels ul").append("<li><a href='"+ response.labelpath + ".pdf" +"'>Click here to download and print your pre-paid FedEx shipping label.</a></li>")
+      flashNotice("<div style='padding:15px; text-align:center;'>Your pre-paid FedEx shipping label has been sent to the email you provided!<br /><span style='font-size:smaller;'>It should arrive within a few minutes.</span></div>");
     });
+  }
+  else {
+    flashError(response.message);
   }
 }
 

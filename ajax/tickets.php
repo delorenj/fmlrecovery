@@ -17,6 +17,9 @@
 		case "finalize":
 			finalize();
 			break;
+		case "resendLabel":
+			resendLabel();
+			break;
     case "testMail":
       sendLabelViaEmail("../labels/DeLorenzoJarad1275680177.pdf", "jaradd@gmail.com");
       break;
@@ -136,6 +139,69 @@ function finalize()
   $ar = array("result" => $result,
               "message" => $message,
               "labelpath" => $labelpath);
+
+  echo json_encode($ar);
+}
+
+function resendLabel()
+{
+  $ticket = Ticket::find($_POST["id"]);
+  $address = Address::find($ticket->user->id);
+
+  switch(strtolower($ticket->media)){
+    case "external":
+      $weight_estimate = 3.0;
+      $length_estimate = 5;
+      $width_estimate = 2;
+      $height_estimate = 5;
+      break;
+    case "usb":
+    case "flash":
+    case "phone":
+      $weight_estimate = 1.0;
+      $length_estimate = 4;
+      $width_estimate = 3;
+      $height_estimate = 1;
+      break;
+    default:
+      $weight_estimate = 2.0;
+      $length_estimate = 5;
+      $width_estimate = 2;
+      $height_estimate = 5;
+      break;
+  }
+  $label = new EpcShippingLabel();
+  $data = array(
+    "mediaSize" => $ticket->megabytes,
+    "mediaType" => $ticket->media,
+    "personName" => $ticket->user->first_name." ".$ticket->user->last_name,
+    "phoneNumber" => $address->phonenumber,
+    "email" => User::current_user()->email,
+    "street" => $address->streetlines,
+    "city" => $address->city,
+    "state" => $address->stateorprovincecode,
+    "zip" => $address->postalcode,
+    "weight" => $weight_estimate,
+    "L" => $length_estimate,
+    "W" => $width_estimate,
+    "H" => $height_estimate,
+    "customerReference" => User::current_user()->id,
+    "transactionNumber" => $ticket->id
+  );
+
+  try {
+    $label->init_email_label($data);
+    $label->create_email_label();
+    $OK = true;
+    $message = "Email label sent!";
+  }
+  catch(EmailLabelException $e) {
+    $OK = false;
+    $message = $e->errorMessage();
+  }
+
+  $ar = array("message" => $message,
+              "OK" => $OK);
 
   echo json_encode($ar);
 }

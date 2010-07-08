@@ -105,14 +105,16 @@ function init_email_label($data) {
                                               'ServiceType' => 'FEDEX_GROUND',
                                               'PackagingType' => 'YOUR_PACKAGING',
                                               'Shipper' => array('Contact' => array('PersonName' => $data["personName"],
-                                                                                    'PhoneNumber' => $data["phoneNumber"]),
+                                                                                    'PhoneNumber' => $data["phoneNumber"],
+                                                                                    'EMailAddress' => $data["email"]),
                                                                  'Address' => array('StreetLines' => array($data["street"]),
                                                                                     'City' => $data["city"],
                                                                                     'StateOrProvinceCode' => $data["state"],
                                                                                     'PostalCode' => $data["zip"],
                                                                                     'CountryCode' => 'US')),
                                               'Recipient' => array('Contact' => array('CompanyName' => 'fmlRecovery',
-                                                                                      'PhoneNumber' => '9734408809'),
+                                                                                      'PhoneNumber' => '9734408809',
+                                                                                      'EMailAddress' => 'tickets@fmlrecovery.com'),
                                                                    'Address' => array('StreetLines' => array('9 Morris Rd'),
                                                                                       'City' => 'Stanhope',
                                                                                       'StateOrProvinceCode' => 'NJ',
@@ -130,8 +132,8 @@ function init_email_label($data) {
                                                                     'ReturnShipmentDetail' => array('ReturnType' => 'PENDING',
                                                                                                     'ReturnEMailDetail' => array('MerchantPhoneNumber' => '973 440 8809')),
                                                                     'PendingShipmentDetail' => array('Type' => 'EMAIL', 'ExpirationDate' => date('Y-m-d'),
-                                                                                             'EmailLabelDetail' => array('NotificationEMailAddress' => 'tickets@fmlrecovery.com',
-                                                                                                                          'NotificationMessage' => 'TEST NOTIFICATION MESSAGE'))),
+                                                                                             'EmailLabelDetail' => array('NotificationEMailAddress' => $data["email"],
+                                                                                                                          'NotificationMessage' => 'Thank you for choosing fmlRecovery! You can print and use this FedEx shipping label to send us your damaged media free of charge. '))),
                                               'LabelSpecification' => array('LabelFormatType' => 'COMMON2D',
                                                                             'ImageType' => 'PNG'),
                                               'RateRequestTypes' => array('ACCOUNT','LIST'),
@@ -152,14 +154,14 @@ function init_email_label($data) {
 function create_email_label() {
   try
   {
-      $response = $this->client ->createPendingShipment($this->request);
+      $response = $this->client->createPendingShipment($this->request);
 
-      if ($response -> HighestSeverity != 'FAILURE' && $response -> HighestSeverity != 'ERROR')
+      if ($response->HighestSeverity != 'FAILURE' && $response->HighestSeverity != 'ERROR')
       {
-          fb('Url: '.$response -> CompletedShipmentDetail -> AccessDetail -> EmailLabelUrl.Newline);
-          fb('User Id: '.$response -> CompletedShipmentDetail -> AccessDetail -> UserId.Newline);
-          fb('Password: '.$response -> CompletedShipmentDetail -> AccessDetail -> Password.Newline);
-          fb('Tracking Number: '.$response -> CompletedShipmentDetail -> CompletedPackageDetails -> TrackingIds -> TrackingNumber.Newline);
+          fb('Url: '.$response->CompletedShipmentDetail->AccessDetail->EmailLabelUrl.Newline);
+          fb('User Id: '.$response->CompletedShipmentDetail->AccessDetail->UserId.Newline);
+          fb('Password: '.$response->CompletedShipmentDetail->AccessDetail->Password.Newline);
+          fb('Tracking Number: '.$response->CompletedShipmentDetail->CompletedPackageDetails->TrackingIds->TrackingNumber.Newline);
 //          printSuccess($this->client, $response);
       }
       else
@@ -171,6 +173,7 @@ function create_email_label() {
 
   } catch (SoapFault $exception) {
 //      printFault($exception, $client);
+        throw new EmailLabelException($exception);
 }
 
   }

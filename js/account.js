@@ -22,19 +22,32 @@ function addComment(id, ticketId) {
 
 }
 
+function resendShippingLabel(key, id) {
+  $.post("ajax/tickets.php", {action:"resendLabel", id: id},
+    function(data){
+      if(data.OK) {
+        flashNotice("<div style='padding:15px; text-align:center;'>Your pre-paid FedEx shipping label has been sent to the email you provided!<br /><span style='font-size:smaller;'>It should arrive within a few minutes.</span></div>")
+      }
+      else {
+        flashError(data.message);
+      }
+    },"json");
+}
+
 function cancelTicket(key, id) {
   //TODO: Add a confirm dialog when deleting an account
   //TODO: Make ticket "inactive" instead of deleting from database
-  $.post("ajax/tickets.php", {action:"delete", id: id}, function(data){
-    if(data.OK) {
-      $("#openticket" + key).fadeOut("slow",function(){
-        $("#openticket" + key).remove();
-        if($("#openTicketsDiv ul").children().length == 0){
-          $("#openTicketsDiv").html("<p>No Open Tickets</p><p><a href='index.php'>Click here to start a new one!</a></p>")
-        }
-      });
-    }
-   },"json");
+  $.post("ajax/tickets.php", {action:"delete", id: id},
+    function(data){
+      if(data.OK) {
+        $("#openticket" + key).fadeOut("slow",function(){
+          $("#openticket" + key).remove();
+          if($("#openTicketsDiv ul").children().length == 0){
+            $("#openTicketsDiv").html("<p>No Open Tickets</p><p><a href='index.php'>Click here to start a new one!</a></p>")
+          }
+        });
+      }
+    },"json");
  }
 
 
