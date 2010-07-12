@@ -4,14 +4,11 @@
     <div id="header">
       <div class="midHeader">
         <div class="superHeader">
-          <? if(User::is_admin()) { ?>
-            <span><a href="#" onclick="testMail(); return 0;">Test Mail</a></span><br />
-          <? } ?>
           <? if(User::logged_in()){
             echo "<span id='login-message'>Welcome ".User::current_user()->first_name."</span><br />";
-            echo "<a href='#' onClick='logout()'>Log out</a>";
+            echo "<a style='font-size:smaller;' href='#' onClick='logout()'>Log out</a>";
           } else {
-            echo "<span id='login-message'>Welcome Guest</span><br />";
+            echo "<a style='font-size:smaller;' href='#' onClick='window.location=\"account.php\"'>Log in</a>";
           }?>
         </div>
       </div>

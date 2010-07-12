@@ -96,8 +96,7 @@ google.setOnLoadCallback(function(){
       currency: true,
       counterBg: "http://www.fmlrecovery.com/js/plugins/jCounter/bg-counter.png",
       counterImg: "http://www.fmlrecovery.com/js/plugins/jCounter/counter-numbers.png",
-      dollarImg: "http://www.fmlrecovery.com/js/plugins/jCounter/dollar.png",
-      duration: 100
+      dollarImg: "http://www.fmlrecovery.com/js/plugins/jCounter/dollar.png"
     });
   
 });
@@ -839,8 +838,7 @@ function recalculatePrice()
       currency: true,
       counterBg: "http://www.fmlrecovery.com/js/plugins/jCounter/bg-counter.png",
       counterImg: "http://www.fmlrecovery.com/js/plugins/jCounter/counter-numbers.png",
-      dollarImg: "http://www.fmlrecovery.com/js/plugins/jCounter/dollar.png",
-      duration: 100
+      dollarImg: "http://www.fmlrecovery.com/js/plugins/jCounter/dollar.png"
     });
 
   if( (mediaType == "idk") ||

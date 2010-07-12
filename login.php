@@ -8,7 +8,7 @@
   <div class="flash_notice"></div>
   <div class="flash_error"></div>
   <div id="login-box">
-    <img src="images/loginheader.gif" style="float:left;"/>
+    <div class="clearfix"><img src="images/loginheader.gif" style="float:left;"/></div>
     <div class="clearfix"></div>
     <div class="lcolumn">
       <div class="formfield">

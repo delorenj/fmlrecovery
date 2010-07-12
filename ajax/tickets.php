@@ -20,9 +20,6 @@
 		case "resendLabel":
 			resendLabel();
 			break;
-    case "testMail":
-      sendLabelViaEmail("../labels/DeLorenzoJarad1275680177.pdf", "jaradd@gmail.com");
-      break;
     default:
         echo "Unknown Action";
         break;
@@ -102,11 +99,6 @@ function finalize()
   );
   $label->init_email_label($data);
   $label->create_email_label();
-  $labelpath = "NONE";
-//  $labelpath = "labels/".User::current_user()->last_name.User::current_user()->first_name.time();
-//  $labelCreatedSuccessfully = rename(dirname(__FILE__)."/../".EpcShippingLabel::SHIP_LABEL, dirname(__FILE__)."/../".$labelpath.".pdf");
-//  $picCreatedSuccessfully = rename(dirname(__FILE__)."/../".EpcShippingLabel::SHIP_IMAGE, dirname(__FILE__)."/../".$labelpath.".png");
-//  fb("labelpath=$labelpath");
   $ticket = new Ticket(array(
 		'user_id'     => User::current_user()->id,
 		'service_id'     => $_SESSION["newticket"]["service"],
@@ -118,27 +110,21 @@ function finalize()
     'width'       => $width_estimate,
     'height'      => $height_estimate,
     'shipping_cost' => "10.00",
-    'labelpath'     => $labelpath
 	));
-	if($ticket->is_invalid()) // || !$labelCreatedSuccessfully || !$picCreatedSuccessfully)
+	if($ticket->is_invalid())
 	{
     $result = "FAILURE";
     $message = "Error creating ticket";
-    if(!$labelCreatedSuccessfully || !$picCreatedSuccessfully) {
-      $message.=": Looks like FedEx Web Services are currently down. Try again later.";
-    }
 	}
 	else
 	{
 		$ticket->save();
       $result = "OK";
       $message = "Ticket Created";
-//      sendLabelViaEmail($labelpath.".pdf", User::current_user()->email);
    }
   fb($message);  
   $ar = array("result" => $result,
-              "message" => $message,
-              "labelpath" => $labelpath);
+              "message" => $message);
 
   echo json_encode($ar);
 }

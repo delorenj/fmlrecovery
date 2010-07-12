@@ -38,14 +38,15 @@ CREATE TABLE  `fmladmin_epc`.`addresses` (
   `phoneNumber` varchar(10) NOT NULL,
   `default` binary(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fmladmin_epc`.`addresses`
 --
 INSERT INTO `fmladmin_epc`.`addresses` (`id`,`user_id`,`nickname`,`companyName`,`streetLines`,`city`,`stateOrProvinceCode`,`postalCode`,`phoneNumber`,`default`) VALUES 
  (1,1,'default',NULL,'9 Morris Rd.','Stanhope','NJ','07874','2152083549',0x31),
- (2,2,'default',NULL,'10 Man Ln.','Morrisville','PA','19067','2152223333',0x31);
+ (2,2,'default',NULL,'10 Man Ln.','Morrisville','PA','19067','2152223333',0x31),
+ (3,191144,'default',NULL,'150 Parish Dr','Wayne','NJ','07470','9733052261',0x31);
 
 --
 -- Definition of table `fmladmin_epc`.`schema_migrations`
@@ -136,23 +137,41 @@ CREATE TABLE  `fmladmin_epc`.`tickets` (
   `shipping_cost` decimal(8,2) DEFAULT NULL,
   `comments` text COLLATE utf8_unicode_ci,
   `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Media is not yet shipped',
-  `labelpath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `rtc` datetime DEFAULT NULL,
   `etc` datetime DEFAULT NULL,
   `state` enum('OPEN','CLOSED') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'OPEN',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-ALTER TABLE `fmladmin_epc`.`tickets` AUTO_INCREMENT = 219913;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 --
 -- Dumping data for table `fmladmin_epc`.`tickets`
 --
-INSERT INTO `fmladmin_epc`.`tickets` (`id`,`user_id`,`service_id`,`media`,`megabytes`,`carrier`,`weight`,`length`,`width`,`height`,`service_fee`,`shipping_cost`,`comments`,`status`,`labelpath`,`rtc`,`etc`,`state`,`created_at`,`updated_at`) VALUES 
- (1,1,'0','Flash Card',16,'FedEx',2,5,2,5,199,'10.00','fileTypes=pictures,videos,ppt|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680177',NULL,NULL,'OPEN','2010-06-04 15:36:17','2010-06-04 15:36:17'),
- (2,1,'1','External Hard Drive',250,'FedEx',2,5,2,5,199,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1275680346',NULL,NULL,'OPEN','2010-06-04 15:39:06','2010-06-04 15:39:06'),
- (3,2,'1','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/TestJoe1276007758',NULL,NULL,'OPEN','2010-06-08 10:35:58','2010-06-08 10:35:58'),
- (4,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped','labels/DeLorenzoJarad1276196900',NULL,NULL,'OPEN','2010-06-10 15:08:20','2010-06-10 15:08:20');
+INSERT INTO `fmladmin_epc`.`tickets` (`id`,`user_id`,`service_id`,`media`,`megabytes`,`carrier`,`weight`,`length`,`width`,`height`,`service_fee`,`shipping_cost`,`comments`,`status`,`rtc`,`etc`,`state`,`created_at`,`updated_at`) VALUES 
+ (1,1,'0','Flash Card',16,'FedEx',2,5,2,5,199,'10.00','fileTypes=pictures,videos,ppt|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-06-04 15:36:17','2010-06-04 15:36:17'),
+ (2,1,'1','External Hard Drive',250,'FedEx',2,5,2,5,199,'10.00','fileTypes=|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-06-04 15:39:06','2010-06-04 15:39:06'),
+ (3,2,'1','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-06-08 10:35:58','2010-06-08 10:35:58'),
+ (4,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-06-10 15:08:20','2010-06-10 15:08:20'),
+ (5,1,'0','idk',88,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-01 13:57:07','2010-07-01 13:57:07'),
+ (6,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-01 16:14:23','2010-07-01 16:14:23'),
+ (7,1,'0','Desktop Hard Drive',99,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-02 10:33:24','2010-07-02 10:33:24'),
+ (8,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-02 11:04:23','2010-07-02 11:04:23'),
+ (9,1,'0','idk',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-02 13:19:29','2010-07-02 13:19:29'),
+ (10,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-02 13:52:34','2010-07-02 13:52:34'),
+ (11,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-02 14:44:01','2010-07-02 14:44:01'),
+ (12,1,'0','Desktop Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-02 15:04:32','2010-07-02 15:04:32'),
+ (13,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-02 15:51:20','2010-07-02 15:51:20'),
+ (14,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-02 16:25:20','2010-07-02 16:25:20'),
+ (15,1,'0','Laptop Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-06 15:30:38','2010-07-06 15:30:38'),
+ (16,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-06 15:40:04','2010-07-06 15:40:04'),
+ (17,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-06 15:45:23','2010-07-06 15:45:23'),
+ (18,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-07 10:26:47','2010-07-07 10:26:47'),
+ (19,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-08 15:21:30','2010-07-08 15:21:30'),
+ (20,1,'0','USB Stick',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-08 15:22:51','2010-07-08 15:22:51'),
+ (21,1,'0','External Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-08 15:24:58','2010-07-08 15:24:58'),
+ (22,1,'0','Desktop Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-08 15:25:45','2010-07-08 15:25:45'),
+ (23,1,'0','Laptop Hard Drive',90,'FedEx',2,5,2,5,NULL,'10.00','fileTypes=music,documents,pictures,videos,archives|specificFiles=','Media is not yet shipped',NULL,NULL,'OPEN','2010-07-08 15:27:20','2010-07-08 15:27:20');
 
 --
 -- Definition of table `fmladmin_epc`.`users`
@@ -169,15 +188,15 @@ CREATE TABLE  `fmladmin_epc`.`users` (
   `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=191145 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE `fmladmin_epc`.`users` AUTO_INCREMENT = 191144;
 --
 -- Dumping data for table `fmladmin_epc`.`users`
 --
 INSERT INTO `fmladmin_epc`.`users` (`id`,`email`,`crypted_password`,`created_at`,`updated_at`,`first_name`,`last_name`,`admin`) VALUES 
  (1,'jaradd@gmail.com','$1$.J/EoDxq$FcWY/U72RLL5AuBBIpomK1','2010-06-04 15:36:15','2010-06-04 15:36:15','Jarad','DeLorenzo',1),
- (2,'test@test.com','$1$sgjCQwL9$E7blwM/r5LfOkRK92Gx8C0','2010-06-08 10:35:55','2010-06-08 10:35:55','Joe','Test',0);
+ (2,'test@test.com','$1$sgjCQwL9$E7blwM/r5LfOkRK92Gx8C0','2010-06-08 10:35:55','2010-06-08 10:35:55','Joe','Test',0),
+ (191144,'jarad.delorenzo@baesystems.com','$1$Tryws2z6$In2B0gW9Gfouz8mSQQ2kU1','2010-06-24 15:14:35','2010-06-24 15:14:35','Jarad','DeLorenzo',0);
 
 
 

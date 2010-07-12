@@ -52,12 +52,12 @@
 			for( var i = 0; i < countlen; i++ ){
 				$(this).append('<div class="jCounter' + i + '"></div>\n');
 				$('.jCounter' + i, $(this)).css({'background-image' : 'url(' + options.counterImg + ')', 'float' : 'right', 'width' : options.width + 'px', 'height' : numHeight + 'px'});
-				if (i > 0) $('.jCounter' + i, $(this)).css('border-right', '1px solid #EEEEEE');
+				if (i > 0) $('.jCounter' + i, $(this)).css('border-right', '1px solid #fcfdfd');
 			}
       if(options.currency) {
         $(this).append('<div class="jCounterDollar"></div>\n');
         $('.jCounterDollar', $(this)).css({'background-image' : 'url(' + options.dollarImg + ')', 'float' : 'right', 'width' : options.width + 'px', 'height' : numHeight + 'px'});
-        $('.jCounterDollar', $(this)).css('border-right', '1px solid #EEEEEE');
+        $('.jCounterDollar', $(this)).css('border-right', '1px solid #fcfdfd');
       }
 		}
     

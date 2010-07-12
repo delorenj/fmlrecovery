@@ -46,7 +46,7 @@
             <span class="fieldlink"><a href="#" onClick="dontKnowMediaSize()">I don't know</a></span>
           </div>
           <div class="formfield" style="overflow:hidden">
-            <div id="priceTotal" style="width: 33px; height: 80px; border-right: 1px solid #EEEEEE; border-bottom:1px solid #EEEEEE;"></div>
+            <div id="priceTotal" style="width: 33px; height: 80px; border-right: 1px solid #fcfdfd; border-bottom:1px solid #fcfdfd;"></div>
             <span id="priceTotalModifier" style='display:none; color:red; font-size:smaller;'>*Price subject to change</span>
           </div>
         </div>

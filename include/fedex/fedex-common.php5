@@ -2,7 +2,7 @@
 
 // Copyright 2009, FedEx Corporation. All rights reserved.
 
-define('TRANSACTIONS_LOG_FILE', 'labels/fedextransactions.log');  // Transactions log file
+define('TRANSACTIONS_LOG_FILE', 'conf/fedextransactions.log');  // Transactions log file
 
 /**
  *  Print SOAP request and response
