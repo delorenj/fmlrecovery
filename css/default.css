@@ -221,14 +221,6 @@ body {
 }
 
 
-#footer {
-  width: 100%;
-  color:#999999;
-  font-size: 0.9em;
-  text-align: center;
-  border-top: 2px solid #EEEEEE;
-}
-
 .formfield {
   margin-top: 15px;
   margin-bottom:15px;
@@ -688,18 +680,33 @@ font-size:1em;
   font-weight: 600;
 }
 
+#footer {
+  width: 100%;
+  color: #051E5D;
+  font-size: 0.9em;
+  text-align: center;
+  border-top: 2px solid #EEEEEE;
+}
+
 #footer ul {
   list-style-type: none;
   font-size: 0.8em;
+  padding-top: 8px;
 }
 
 #footer ul li {
   display: inline;
-  padding-right: 15px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 #footer ul li a {
-  color: #AAAAAA;
+  color: #051E5D;
+  text-decoration: none;
+}
+
+#footer ul li a:hover {
+  text-decoration: underline;
 }
 
 #footer ul li:first-child {
