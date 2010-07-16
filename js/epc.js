@@ -75,6 +75,11 @@ google.setOnLoadCallback(function(){
       }
 		});
 	});
+      $('a[rel*=facebox]').facebox({
+        loading_image : 'http://localhost/etherealpc/js/plugins/facebox/loading.gif',
+        close_image   : 'http://localhost/etherealpc/js/plugins/facebox/closelabel.gif'
+      })
+
 });
 
 function logout()

@@ -10,6 +10,8 @@
               and provides an interface to create a service request" />
         <link href="css/reset.css" rel="stylesheet" type="text/css" />
         <link type="text/css" href="css/redmond/jquery-ui.css" rel="stylesheet" />
+        <link type="text/css" href="js/plugins/facebox/facebox.css" rel="stylesheet" />
+        <link type="text/css" href="js/plugins/facebox/faceplant.css" rel="stylesheet" />
         <![if !IE]>
           <link href="css/default.css" rel="stylesheet" type="text/css" />
         <![endif]>
@@ -24,6 +26,7 @@
         <script src="http://www.google.com/jsapi?key=ABQIAAAAg5hreqiv4zDpiIkbdnYh2hTzfCc0yQNCbcPtiTLLMI753LI8pxRmlMPmjJmMp2SUicPuSauIcJawDQ" type="text/javascript"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/plugins/facebox/facebox.js"></script>
 				<script type="text/javascript" src="js/plugins/localisation/jquery.localisation-min.js"></script>
 				<script type="text/javascript" src="js/plugins/scrollTo/jquery.scrollTo-min.js"></script>
         <script type="text/javascript" src="js/plugins/jCounter/jquery.backgroundPosition.js"></script>

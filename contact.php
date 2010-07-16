@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <p><object type="application/x-shockwave-flash" data="https://clients4.google.com/voice/embed/webCallButton" width="400" height="120"><param name="movie" value="https://clients4.google.com/voice/embed/webCallButton" /><param name="wmode" value="transparent" /><param name="FlashVars" value="id=6d140f190b9719697367cdd2d271cdc3e2369e4e&style=0" /></object></p>
+ <!--     <p><object type="application/x-shockwave-flash" data="https://clients4.google.com/voice/embed/webCallButton" width="400" height="120"><param name="movie" value="https://clients4.google.com/voice/embed/webCallButton" /><param name="wmode" value="transparent" /><param name="FlashVars" value="id=6d140f190b9719697367cdd2d271cdc3e2369e4e&style=0" /></object></p> -->
 
     </div>
     <div class="rcolumn">
