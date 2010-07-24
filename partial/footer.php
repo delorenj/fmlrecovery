@@ -5,7 +5,7 @@
               <li><a href="./account.php">Account</a></li>
               <li><a href="./contact.php">Contact</a></li>
               <li><a href="./about.php">About</a></li>
-              <li><a rel="facebox" href="./terms.html">Terms and Conditions</a></li>
+              <li><a href="./terms.html">Terms and Conditions</a></li>
               <li><a href="./privacy.php">Privacy Policy</a></li>
             </ul>
 				</div>
