@@ -24,7 +24,7 @@
           <input type="password" size="20" id="password" name="password" class="epc-textfield float_left" />
         </div>
       </div>
-      <div class="clearfix"></div>
+      
       <button id='loginButton' class='epc-button ui-state-default ui-corner-all' href='#' onClick='validateLoginForm("account.php"); return false;'>Log in</button>
     </div>
     <div class="rcolumn">

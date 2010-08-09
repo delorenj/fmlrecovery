@@ -7,7 +7,7 @@
 
 <div id="main-content">
 		<div class="flash_notice"></div>
-		<div class="flash_error"></div>
+      <div class="flash_error"></div>
 		<?include 'partial/ticket_form.php';?>
 </div>
 <? include "partial/footer.php" ?>

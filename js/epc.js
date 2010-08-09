@@ -28,27 +28,27 @@ $.fn.focusNextInputField = function() {
 jQuery.namespace("jQuery.epc");
 
 google.setOnLoadCallback(function(){
-      //Set console.log to 'undefined' when firebug is not active
-      if(typeof console === "undefined") {
-          console = {log: function() { }};
-      }
-      
-			$('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').addClass("idleField");
-  		$('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').live('focus',function() {
-   			$(this).removeClass("idleField").addClass("focusField");
-  	    if (this.value == this.defaultValue){ 
-  	    	this.value = '';
-				}
+  //Set console.log to 'undefined' when firebug is not active
+  if(typeof console === "undefined") {
+      console = {log: function() { }};
+  }
+
+  $('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').addClass("idleField");
+  $('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').live('focus',function() {
+    $(this).removeClass("idleField").addClass("focusField");
+    if (this.value == this.defaultValue){
+     this.value = '';
+    }
 //				if(this.value != this.defaultValue){
 //	    			this.select();
 //	   		}
-   		});
-   		$('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').live('blur', function() {
-   			$(this).removeClass("focusField").addClass("idleField");
-   	    if ($.trim(this.value) == ''){
-			   	this.value = (this.defaultValue ? this.defaultValue : '');
-				}
-    	});
+  });
+  $('.epc-textfield, .epc-select, .epc-checkbox, .epc-textarea').live('blur', function() {
+    $(this).removeClass("focusField").addClass("idleField");
+     if ($.trim(this.value) == ''){
+      this.value = (this.defaultValue ? this.defaultValue : '');
+     }
+  });
 
 
 	$(function(){

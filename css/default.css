@@ -570,10 +570,6 @@ font-size:1em;
   text-align: left;
 }
 
-#specificFileTypeField {
-  display: none;
-}
-
 #filetypes {
   width: 50%;
 }
@@ -610,6 +606,11 @@ font-size:1em;
   font-weight: 600;
   text-decoration: none;
   text-transform: none;
+}
+
+.login-snippet span {
+  position: relative;
+  top:-10px;
 }
 
 #login-box {

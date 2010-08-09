@@ -1,11 +1,11 @@
 google.setOnLoadCallback(function(){
 	$("#ticket-accordion").accordion({
-		autoHeight: false,
+		autoHeight: true,
 		clearStyle: true,
-    animated:false
+      animated:true
 	});
 
-  $(".ui-accordion-header").unbind("click");
+//  $(".ui-accordion-header").unbind("click");
 
   $(".ui-accordion-header")
     .live("mouseover mouseout", function(event){
@@ -15,8 +15,8 @@ google.setOnLoadCallback(function(){
       if(event.type == 'mouseout'){
 				$(this).removeClass("ui-state-hover").css("cursor", "default").children().css("cursor", "default");
 			}
-    })
-  
+    });
+
   $("#ticket-accordion h3 a").css("text-decoration", "none");
 
   $("#ticket-accordion").bind('accordionchange', function(event,ui){
@@ -32,6 +32,7 @@ google.setOnLoadCallback(function(){
     }
   });
 
+/*
   $(".service").hover(function(){
     $(this).css({
       backgroundPosition: '0 -190px'
@@ -46,6 +47,7 @@ google.setOnLoadCallback(function(){
    .click(function(){
      validateServicePanel($(this).parent().prevAll().length);
    });
+*/
 
  $("input[name='deviceType']").click(function(){
    onClickDeviceType($(this).val());
@@ -98,7 +100,11 @@ google.setOnLoadCallback(function(){
       counterImg: "http://www.fmlrecovery.com/js/plugins/jCounter/counter-numbers.png",
       dollarImg: "http://www.fmlrecovery.com/js/plugins/jCounter/dollar.png"
     });
-  
+
+  $(".epc-checkbox").change(function() {
+    checkCheck($(this))
+  });
+ 
 });
 
 
@@ -568,22 +574,6 @@ function checkCheck(sel)
     var key = $(sel).prevAll().length/2;
     var val = $(sel).attr("checked");
     var numChecked = $("#fileSelection").find("input[type='checkbox']:checked").length;console.log(key+":"+val+":"+numChecked);
-    if((key == 7.5) && (val == 1)){ //Other
-      specificFileType();
-      numChecked--;
-    }
-    else if((key == 7.5) && (val == 0)){
-      $("#specificFileTypeField").fadeOut("slow");
-      $("#extraTypes").fadeOut("slow");
-    }
-/*
-    if(numChecked > 0){
-      jQuery.epc.mediaPanel[2] = 1;
-    }
-    else {
-      jQuery.epc.mediaPanel[2] = 0;
-    }
-*/
     formCompleteCheck(jQuery.epc.mediaPanel, $("#mediaDiv").find(".accordion-control :last-child"));
 }
 
@@ -591,13 +581,13 @@ function addType(type)
 {
   var pass = true;
   pass = pass &&
-          notEmpty($("input[name='specificFileTypeField']").val(),"File type cannot be blank", "input[name='specificFileTypeField']");
+          notEmpty($("input[name='extraTypeField']").val(),"File type cannot be blank", "input[name='extraTypeField']");
 
   if(!pass) return;
 
-    $("#extraTypes").append("<input type='checkbox' class='epc-checkbox' value='"+$("input[name='specificFileTypeField']").val()+"' id= '"+$("input[name='specificFileTypeField']").val()+"' onChange='checkCheck($(\"this\"))' checked />"+$("input[name='specificFileTypeField']").val()+" <br />");
+    $("#extraTypes").append("<input type='checkbox' class='epc-checkbox' value='"+$("input[name='extraTypeField']").val()+"' id= '"+$("input[name='extraTypeField']").val()+"' onChange='checkCheck($(\"this\"))' checked />"+$("input[name='extraTypeField']").val()+" <br />");
     $("#extraTypes:last-child").effect("highlight",1000);
-    $("input[name='specificFileTypeField']").attr("value","");
+    $("input[name='extraTypeField']").attr("value","");
 
 }
 
@@ -650,13 +640,6 @@ function dontKnowMediaType()
 function specificFileType()
 {
   var fileTypes = "";
-  $("#specificFileTypeField").html("<div class='formfield'>\n\
-                                      <div class='clearfix'>\n\
-                                        <label for='specificFileTypeField'>Specific File Type (i.e. mp3)</label>\n\
-                                        <input id='extraTypeField' name='specificFileTypeField' size=10 maxlength=10 class='epc-textfield idleField float_left' type='text' /><span class='fieldOK'></span>\n\
-                                        <button href='#' onClick='addType(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add Type</b></button><br />\n\
-                                      </div>\n\
-                                     </div>");
   $("#specificFileTypeField").slideDown("slow");
   $("#ticket-form").animate({height:"+=2em"},1000);
 
@@ -810,10 +793,11 @@ function testMail()
 
 function recalculatePrice()
 {
-  total = 99;
-  fudge = 0;
-  mediaType = $("#mediaType").val().toLowerCase();
-  mediaSize = $("#mediaSize").val();
+  var total = 99;
+  var fudge = 0;
+  var mediaType = $("#mediaType").val().toLowerCase();
+  var mediaSize = $("#mediaSize").val();
+
 
   if( (mediaType == "external hard drive") ||
       (mediaType == "desktop hard drive") ||

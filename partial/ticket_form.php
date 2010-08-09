@@ -1,6 +1,7 @@
 <?php unset($_SESSION["newticket"]); ?>
-<div>
+<div style="position: relative;">
   <div id="ticket-accordion" class="ui-accordion-container" style="padding-top: 10px; clear: both;">
+<!--
     <h3><a href="javascript: void(0)" class="ui-accordion-link">Choose a service<span class="loading" style="float:right;"></span></a></h3>
     <div id="serviceDiv">
       <div id="serviceContainer">
@@ -13,8 +14,9 @@
       </div>
       <div id="serviceInfo"></div>
     </div>
+-->
     <h3><a href="javascript: void(0)" class="ui-accordion-link">Tell us about your media<span class="loading" style="float:right;"></span></a></h3>
-    <div id="mediaDiv" style="display:none;">
+    <div id="mediaDiv">
       <div>
         <div class="lcolumn">
           <div class="formfield">
@@ -51,19 +53,51 @@
           </div>
         </div>
         <div class="rcolumn">
-          <div style="width:100%; margin-left: auto; margin-right: auto;">
-            <div id="fileSelection">&nbsp;</div>
+          <div style="width:95%; margin-left: auto; margin-right: auto;">
+            <div id="fileSelection">
+              <div class='formfield'>
+                <div class='clearfix'>
+                  <label for='fileTypeSelectInput'>What types of media are you interested in recovering?</label>
+                  <div class='epc-checkbox-group lcolumn'>
+                    <input type='checkbox' class='epc-checkbox' id='music'checked /><span style='position:relative; top:-1%;'>Music</span> <br />
+                    <input type='checkbox' class='epc-checkbox' id='documents' checked /><span style='position:relative; top:-1%;'>Text Documents</span> <br />
+                    <input type='checkbox' class='epc-checkbox' id='pictures' checked /><span style='position:relative; top:-1%;'>Pictures</span> <br />
+                    <input type='checkbox' class='epc-checkbox' id='videos' checked /><span style='position:relative; top:-1%;'>Videos</span> <br />
+                    <input type='checkbox' class='epc-checkbox' id='archives' checked /><span style='position:relative; top:-1%;'>Archived Files</span> <br />
+                  </div>
+                  <div id='extraTypes' class='epc-checkbox-group lcolumn'></div>
+                </div>
+              </div>
+              <div class='clearfix'>&nbsp;</div>
+              <div id='specificFileTypeField' class='float_left'>
+                <div class='formfield'>
+                  <div class='clearfix'>
+                    <label for='extraTypeField'>Add a specific file type (i.e. mp3)</label>
+                    <input id='extraTypeField' name='extraTypeField' size=10 maxlength=10 class='epc-textfield idleField float_left' type='text' /><span class='fieldOK'></span>
+                    <button href='#' onClick='addType(); return false;' class='epc-button epc-button-icon-right ui-state-default ui-corner-all ie-fix-button-height'><span class='ui-icon ui-icon-circle-plus'></span><b>Add Type</b></button><br />
+                  </div>
+                </div>
+              </div>
+<!--
+              <div class='clearfix'></div>
+              <div class='formfield'>
+                <div class='clearfix' id='fileSelectDiv'>
+                  <span class='fieldlink'><a href='#' onClick='doKnowFileNames()'>I want to add specific files or directories</a></span>
+                </div>
+              </div>
+              <div id='fileSelectionResults'><ol></ol></div>
+-->
+            </div>
           </div>
         </div>
         <div class="clearfix"></div>
         <div class="panelNav">
           <div class="accordion-control">
-            <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(0); return false;"><< Back</button>
-            <button class="epc-button ui-state-disabled ui-corner-all" onClick="validateMediaPanel(); return false;" disabled>Next >></button>
+            <button class="epc-button ui-state-disabled ui-corner-all" style="float:right;" onClick="validateMediaPanel(); return false;" disabled>Next >></button>
           </div>
         </div>
       </div>
-		</div>
+    </div>
 		<h3><a href="javascript: void(0)" class="ui-accordion-link">Shipping Info<span class="loading" style="float:right;"></span></a></h3>
     <div id="shippingDiv" style="display:none;">
       <div>
@@ -154,7 +188,7 @@
           <div class="clearfix">&nbsp;</div>
           <div class="panelNav">
             <div class="accordion-control">
-              <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(1); return false;"><< Back</button>
+              <button class="epc-button ui-state-default ui-corner-all" onClick="togglePanel(0); return false;"><< Back</button>
               <button type="submit" class="epc-button ui-state-disabled ui-corner-all" onClick="validateShippingPanel(); return false;" disabled>Next >></button>
             </div>
           </div>

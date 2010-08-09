@@ -7,6 +7,9 @@
 	    backgroundPosition: function(fx) {
             if (fx.state === 0 && typeof fx.end == 'string') {
                 var start = $.curCSS(fx.elem,'backgroundPosition');
+                if(typeof(start) == 'undefined') {
+                  start = $.curCSS(fx.elem,'background-position-x') + ' ' + $.curCSS(fx.elem,'background-position-y');
+                }
                 start = toArray(start);
                 fx.start = [start[0],start[2]];
                 var end = toArray(fx.end);
