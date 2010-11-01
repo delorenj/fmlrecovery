@@ -7,7 +7,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
 
 //require_once('FirePHPCore/fb.php');
 function fb($message) {
-	//
+	error_log($message);
 }
 
 require_once 'php-activerecord/ActiveRecord.php';

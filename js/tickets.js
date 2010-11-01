@@ -451,7 +451,7 @@ function validateMediaPanel()
     }
     if(data.indexOf("SUCCESS") != -1){
       $("#ticket-accordion h3:eq(1) a").append("<img src='images/accept.png' style='margin-top:-5px;float:right;'/>")
-      $("#ticket-accordion").accordion("activate", 2);
+      $("#ticket-accordion").accordion("activate", 1);
     }
   });
   return false;

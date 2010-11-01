@@ -1,6 +1,6 @@
 <?php
 	session_start();
-   ob_start();
+  ob_start();
 	require_once('../include/environment.inc');
   require_once('fedex/epcshippinglabel.inc');
 	include('Mail.php');
@@ -101,7 +101,7 @@ function finalize()
   $label->create_email_label();
   $ticket = new Ticket(array(
 		'user_id'     => User::current_user()->id,
-		'service_id'     => $_SESSION["newticket"]["service"],
+		'service_id'     => '0',
     'media'       => $_SESSION["newticket"]["mediaType"],
 		'megabytes'   => $_SESSION["newticket"]["mediaSize"],
     'comments'    => $_SESSION["newticket"]["mediaDetail"],
